@@ -1,2 +1,2 @@
-FUER
+FU Exam Reminder
 ====
