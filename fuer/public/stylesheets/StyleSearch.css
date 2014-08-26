@@ -1,0 +1,1281 @@
+/*
+    Document   : Style
+    Created on : Mar 11, 2014, 4:48:07 PM
+    Author     : Bui Tien Tuan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body {
+    /*width: 1220px;*/
+    margin: 0 auto;
+    margin-top: 53px;
+    /*padding: 10px;*/
+    background: url(../images/bg.png);
+}
+
+ol, ul {
+    list-style: none;
+}
+
+#body{
+    text-align: center;
+    width: 1245px;
+    margin: 0 auto;
+    min-height: 610px;
+    opacity: 0.5;
+}
+
+#loadingpage {
+    background-repeat: no-repeat;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    position: fixed;
+    display: none;
+}
+
+#loadingpage img {
+    width: 150px;
+    height: 150px;
+}
+
+#errorSearch {
+    float: right;
+    text-align: center;
+    width: 160px;
+    margin-right: -170px;
+    margin-top: 2px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 20px;
+    color: yellow;
+    border: 1px solid red;
+    font-family: sans-serif;
+    display: none;
+}
+
+#exam {
+    display: block;
+}
+
+#memory{
+    float:right;
+    margin-top: -5px;
+    display: none;
+    height: 55px;
+    cursor: pointer;
+}
+
+#memory:hover{
+}
+
+#memory .title{
+    width: 10px;
+    line-height: 12px;
+    margin-top: -63px;
+    margin-left: 24px;
+    font-size: 18px;
+    font-family: cursive;
+    color:white;
+}
+
+#memory .title:hover{
+    color:#f1c40f;
+}
+
+#memory svg{
+    fill:#27ae60;
+    width: 60px;
+    height: 60px;
+}
+
+#memory svg:hover{
+    fill:#2ecc71;
+}
+
+#searchForm{
+    display: none;
+}
+
+
+#noResult {
+    font-family: "Segoe UI Light";
+    width: 500px;
+    height: 40px;
+    margin-top: 30px;
+    /*    background-color: burlywood;*/
+    text-align: center;
+    line-height: 40px;
+    color: #b53224;
+    font-size: 2em;
+}
+
+#left {
+    float: left;
+}
+
+#leftNo {
+    float: left;
+}
+
+#right {
+    float: left;
+    /*    border: solid;*/
+    min-height: 500px;
+    width: 200px;
+    margin: 1px 0 0 -2px;
+}
+
+#right .list {
+    /*  width: 200px;*/
+}
+
+#right h2 {
+    font: 400 40px/1.5 Segoe UI Light, Verdana, sans-serif;
+    margin: 0 auto;
+    /*    padding-top: 8px;*/
+    text-align: center;
+    background-color: #FF9640;
+    height: 88px;
+    color: #FFF;
+    line-height: 80px;
+}
+
+#right ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#right li {
+    font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+    border-bottom: 1px solid #ccc;
+}
+
+#right li:last-child {
+    border: none;
+}
+
+#right li a {
+    text-decoration: none;
+    color: #7f8c8d;
+    display: block;
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#right li a:hover {
+    text-align: center;
+    font-size: 20px;
+    background: #EEE;
+    color: #000;
+}
+
+#right li a span {
+    margin-left: 10px;
+}
+
+#right li a span:hover {
+}
+
+#right .choose {
+    text-align: center;
+    font-size: 20px;
+    background: #DDD;
+}
+
+#right .choosePoint {
+    float: left;
+}
+
+.deleteExamDatabase {
+    float: left;
+    margin-left: 5px;
+}
+
+.deleteExamDatabase svg {
+    fill: #7f8c8d;
+    height: 30px;
+    width: 30px;
+}
+
+.deleteExamDatabase svg:hover {
+    fill: #c0392b;
+}
+
+.PointExam {
+    float: left;
+    margin-left: 5px;
+}
+
+.PointExam svg {
+    fill: #7f8c8d;
+    margin-top: 10px;
+    height: 15px;
+    width: 30px;
+}
+
+.PointExam svg:hover {
+    fill: #c0392b;
+}
+
+.SaveExamToLocal {
+    float: right;
+    margin-right: 5px;
+}
+
+.SaveExamToLocal svg {
+    fill: #7f8c8d;
+    height: 30px;
+    width: 30px;
+
+}
+
+.SaveExamToLocal svg:hover {
+    fill: #27ae60;
+}
+
+.SaveExamToLocal img {
+    float: right;
+    margin-top: 3px;
+    margin-right: 5px;
+    height: 25px;
+    width: 25px;
+}
+
+#LoginForm {
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 250px;
+    margin: -125px 0 0 -175px;
+    padding: 20px 20px 0px 20px;
+    background-color: #ecf0f1;
+    position: fixed;
+    float: right;
+}
+
+#AddAdminForm {
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 250px;
+    margin: -125px 0 0 -175px;
+    padding: 20px 20px 0px 20px;
+    background-color: #ecf0f1;
+    position: fixed;
+    float: right;
+    display: none;
+}
+
+.titleLogin {
+    text-align: center;
+    line-height: 25px;
+    font-family: "Segoe UI Light";
+    font-size: 2em;
+}
+
+.field {
+    margin: 20px;
+    width: 310px;
+}
+
+.field span {
+    line-height: 35px;
+}
+
+.textLogin {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+    outline: none;
+    font-size: larger;
+    border: 0px solid #DDD;
+    padding: 5px 5px 5px 10px;
+    width: 220px;
+    height: 35px;
+    font-family: "Segoe UI Light";
+    float: right;
+}
+
+.textLogin:focus {
+    color: #666;
+    border: 1.5px solid #1abc9c;
+}
+
+.submit {
+    margin: 20px;
+    width: 310px;
+}
+
+.btnLogin {
+    font-family: "Segoe UI Light";
+    position: relative;
+    vertical-align: top;
+    font-size: 1.5em;;
+    color: white;
+    text-align: center;
+    background: #1abc9c;
+    border: 0;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px #e2b607;
+    /*    margin-top: 10px;*/
+
+    -webkit-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -moz-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -o-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -ms-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    /*    margin-left: -2px;*/
+    width: 300px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 5px;
+}
+
+.btnLogin:hover {
+    background-color: #16a085;
+    cursor: pointer;
+}
+
+#fixbox {
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+
+    right: 0px;
+    top: 50%;
+    /*    bottom: 100px;*/
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    background-color: #bdc3c7;
+    padding: 5px;
+}
+
+#fixbox:hover {
+    background-color: #FFF;
+}
+
+.name {
+    width: 70px;
+    right: 0px;
+    /*    height: 20px;*/
+    font-size: 1.5em;
+    /*    color: #FFF;*/
+    /*    margin: 70px 0px -5px -5px;*/
+    margin-top: 70px;
+    /*    background-color: darkgreen;*/
+    text-align: center;
+    color: #7f8c8d;
+    position: fixed;
+}
+
+.logoutfix {
+    width: 70px;
+    height: 20px;
+    font-size: 1em;
+    color: #FFF;
+    margin: -30px 0px -5px -5px;
+    background-color: #95a5a6;
+    text-align: center;
+    position: fixed;
+}
+
+.logoutfix:hover {
+    background-color: #ecf0f1;
+}
+
+.logoutfix a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+#fixbox img path {
+    /*    margin-top: 5px;
+        margin-left: 8px;*/
+}
+
+#fixbox svg {
+    width: 50px;
+    height: 50px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    margin-left: 5px;
+    margin-top: 5px;
+    fill: #FFF;
+}
+
+#fixbox svg:hover {
+    fill: #7f8c8d;
+}
+
+#fixbox .tipLock {
+    width: 70px;
+    height: 20px;
+    font-size: 1em;
+    color: #FFF;
+    margin: 5px 5px 0px -5px;
+    background-color: darkgreen;
+    text-align: center;
+    position: fixed;
+}
+
+#fixbox .tipMana {
+    width: 70px;
+    height: 20px;
+    font-size: 1em;
+    color: #FFF;
+    margin: 65px 5px 0px -5px;
+    background-color: darkgreen;
+    text-align: center;
+    position: fixed;
+}
+
+#layerLogin {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 0.7;
+    position: fixed;
+    display: none;
+    background-color: #000;
+}
+
+/*Delete from*/
+
+#DeleteForm {
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 128px;
+    margin: -64px 0 0 -175px;
+    padding: 20px 20px 20px 20px;
+    background-color: #ecf0f1;
+    position: fixed;
+    float: right;
+    display: none;
+}
+
+.closeDelete {
+    position: fixed;
+    right: 50%;
+    top: 50%;
+    margin-top: -60px;
+    margin-right: -210px;
+}
+
+.titleDelete {
+    color: #DD4E3F;
+    text-align: center;
+    line-height: 25px;
+    font-family: "Segoe UI Light";
+    font-size: 2em;
+}
+
+.infoDelete {
+    margin-top: 15px;
+    margin-bottom: -25px;
+    height: 25px;
+    text-align: left;
+    color: #859596;
+    font-family: "Segoe UI Light";
+    font-size: 1em;
+    text-align: center;
+}
+
+.OkDelete {
+    margin-top: 30px;
+    width: 150px;
+    float: left;
+}
+
+.btnDelete {
+    font-family: "Segoe UI Light";
+    position: relative;
+    vertical-align: top;
+    font-size: 1.5em;;
+    color: white;
+    text-align: center;
+    background: #DD4E3F;
+    border: 0;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px #e2b607;
+    /*    margin-top: 10px;*/
+
+    -webkit-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -moz-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -o-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -ms-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    /*    margin-left: -2px;*/
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 5px;
+}
+
+.btnDelete:hover {
+    background-color: #b53224;
+    cursor: pointer;
+}
+
+.cancelDelete {
+    margin-top: 30px;
+    width: 150px;
+    float: right;
+}
+
+.btnCancel {
+    font-family: "Segoe UI Light";
+    position: relative;
+    vertical-align: top;
+    font-size: 1.5em;;
+    color: white;
+    text-align: center;
+    background: #1abc9c;
+    border: 0;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px #e2b607;
+    /*    margin-top: 10px;*/
+
+    -webkit-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -moz-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -o-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -ms-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    /*    margin-left: -2px;*/
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 5px;
+}
+
+.btnCancel:hover {
+    background-color: #16a085;
+    cursor: pointer;
+}
+
+#deleteLoading {
+    margin: 10px;
+    margin-left: 70px;
+}
+
+#deleteLoading img {
+    margin: 10px;
+}
+
+/*End Delete from*/
+
+
+
+#ListSubjectName {
+    width: 340px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#ListSubjectName .subject {
+    margin: 5px;
+    font-family: "Segoe UI Light";
+    vertical-align: top;
+    font-size: 13px;
+    color: white;
+    background: #1abc9c;
+    border: 0;
+    -webkit-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -moz-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -o-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    -ms-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    width: 70px;
+    height: 25px;
+    border-radius: 4px;
+}
+
+#ListSubjectName .subject:hover {
+    background-color: #16a085;
+    cursor: pointer;
+}
+
+#ListSubjectName img {
+    width: 15px;
+    height: 15px;
+    float: right;
+}
+
+
+
+
+/*Positon*/
+
+#butoonViewPosition {
+    border-radius: 2px 2px 2px 2px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px 10px;
+    text-transform: none;
+    width: 16.795%;
+    text-align: center;
+    float: right;
+    background: none repeat scroll 0 0 #c0392b;
+    color: white;
+    margin-right: 200px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#butoonViewPosition:hover {
+    background: none repeat scroll 0 0 #e74c3c;
+}
+
+/*End position*/
+
+/*Local left*/
+
+#leftLocal {
+    float: left;
+    display: none;
+}
+
+/*End local left*/
+
+/*Exam Date*/
+#examDate {
+    float: left;
+    width: 200px;
+    min-height: 610px;
+    border: 1px solid #ecf0f1;
+    border-top: 0px;
+    border-right: 0px;
+    border-radius: 20px 0px 0px 0px;
+    box-shadow: -5px 0 30px -5px #D4D4D4;
+}
+
+#examDate .title{
+    padding-top: 8px;
+    min-height: 40px;
+    font-family: 'Segoe UI Light','Segoe UI';
+    font-weight: 100;
+    text-align: center;
+    background-color: #c0392b;
+    font-size: 24.5px;
+    border-radius: 20px 0px 0px 0px;
+}
+
+#examDate .title span{
+    color: #ecf0f1;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#examDate .list {
+    width: 200px;
+}
+
+#examDate .list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: -5px;
+}
+
+#examDate .list li {
+    font-size: 20px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#examDate .list li:last-child {
+    border: none;
+}
+
+#examDate .list li div {
+    text-align: right;
+    text-decoration: none;
+    color: #000;
+    display: block;
+    width: 200px;
+    -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+#examDate .list li div:hover {
+    font-size: 30px;
+    background: #f6f6f6;
+}
+/*End Exam Date*/
+
+/*Memory panel*/
+
+#storagePanel {
+    float: left;
+    width: 200px;
+    min-height: 610px;
+    border: 1px solid #ecf0f1;
+    border-top: 0px;
+    border-left: 0px;
+    border-radius: 0px 20px 0px 0px;
+    box-shadow: 5px 0 30px -5px #DDD;
+}
+
+#storagePanel .title{
+    padding-top: 8px;
+    min-height: 40px;
+    font-family: 'Segoe UI Light','Segoe UI';
+    font-weight: 100;
+    text-align: center;
+    background-color: #27ae60;
+    font-size: 24.5px;
+    border-radius: 0px 20px 0px 0px;
+}
+
+#storagePanel .title span {
+    color: #ecf0f1;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#listStorage {
+    margin-top: -5px;
+}
+
+#listStorage a {
+    text-decoration: none;
+    color: #7f8c8d;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+}
+
+#listStorage a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+.itemStorage {
+    height: 40px;
+    /*    margin-bottom: 5px;*/
+    font-weight: normal;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.itemStorage:hover {
+    /*font-weight: bold;*/
+    background: #ecf0f1;
+
+}
+
+.verticalLine {
+    float: left;
+    width: 15px;
+    height: 40px;
+    background: #7f8c8d;
+    margin-right: 5px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.verticalLine:hover {
+    background: #c0392b;
+    width: 20px;
+}
+
+.verticalLine .delete {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.itemStorage .nameStorage {
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+.itemStorage .subjectDate {
+    float: right;
+    height: 10px;
+    margin-right: 5px;
+    line-height: 5px;
+    font-size: 0.7em;
+    font-family: "Segoe UI Light";
+}
+
+.itemStorage .examTypeStorage {
+    float: left;
+    font-size: 0.7em;
+    line-height: 5px;
+}
+/*end Memory panel*/
+
+/*menu bar*/
+nav.fixed-menu {
+    font-family: "Segoe UI Light";
+    margin-top: 0;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 0 7px 1px rgba(51,51,51, 0.4);
+    background-color: #5B6BA7;
+    width: 100%;
+}
+
+nav .container {
+    position: relative;
+    height: 52px;
+    margin: 0 auto;
+    width: 50%;
+    min-width: 800px;
+    text-align: left;}
+
+nav .left-nav {
+    float: left;
+    margin-top: 5px;
+}
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: rgba(0,0,0,0);
+    border-radius: 10px;
+    border: 1px solid #fff;
+}
+
+nav span {
+    margin-right: 3px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #fff !important;
+}
+/*end menu bar*/
+
+/*search bar*/
+
+#searchBar{
+    float: right;
+    width: 500px;
+    height: 40px;
+    margin-top: 5px;
+}
+
+/*end search bar*/
+
+
+.cf:before, .cf:after{
+    content:"";
+    display:table;
+}
+
+.cf:after{
+    clear:both;
+}
+
+.cf{
+    zoom:1;
+}
+
+/* Form wrapper styling */
+.form-wrapper {
+    width: 425px;
+    padding: 8px;
+    /*margin: 150px auto 50px auto;*/
+    background: #444;
+    background: rgba(0,0,0,.2);
+    border-radius: 10px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    float: right;
+    margin-bottom: 0px;
+    margin-top: 3px;
+}
+
+/* Form text input */
+
+/* Form submit button */
+.form-wrapper input {
+    width: 340px;
+    height: 30px;
+    padding: 10px 5px;
+    float: left;
+    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border: 0;
+    background: #eee;
+    border-radius: 3px 0 0 3px;
+}
+
+.form-wrapper input:focus {
+    outline: 0;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+.form-wrapper input::-webkit-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+.form-wrapper button {
+    overflow: visible;
+    position: relative;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 30px;
+    width: 85px;
+    font: bold 14px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    color: #fff;
+    text-transform: uppercase;
+    background: #d83c3c;
+    border-radius: 0 3px 3px 0;
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+    line-height: 1px;
+}
+
+.form-wrapper button:hover{
+    background: #e54040;
+}
+
+.form-wrapper button:active,
+.form-wrapper button:focus{
+    background: #c42f2f;
+    outline: 0;
+}
+
+.form-wrapper button:before { /* left arrow */
+    content: '';
+    position: absolute;
+    border-width: 8px 8px 8px 0;
+    border-style: solid solid solid none;
+    border-color: transparent #d83c3c transparent;
+    top: 8px;
+    left: -6px;
+}
+
+.form-wrapper button:hover:before{
+    border-right-color: #e54040;
+}
+
+.form-wrapper button:focus:before,
+.form-wrapper button:active:before{
+    border-right-color: #c42f2f;
+}
+
+.form-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+    border: 0;
+    padding: 0;
+}
+
+#loadingImage{
+    margin-top: 1px;
+}
+
+/*load bar*/
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #FF5800;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    height: 2px;
+
+    -webkit-transition: width 1s;
+    -moz-transition: width 1s;
+    -o-transition: width 1s;
+    transition: width 1s;
+}
+
+.pace .pace-progress-inner {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #FF5800, 0 0 5px #FF5800;
+    opacity: 1.0;
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+    -moz-transform: rotate(3deg) translate(0px, -4px);
+    -ms-transform: rotate(3deg) translate(0px, -4px);
+    -o-transform: rotate(3deg) translate(0px, -4px);
+    transform: rotate(3deg) translate(0px, -4px);
+}
+
+.pace .pace-activity {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    top: 15px;
+    right: 15px;
+    width: 14px;
+    height: 14px;
+    border: solid 2px transparent;
+    border-top-color: #FF5800;
+    border-left-color: #FF5800;
+    border-radius: 10px;
+    -webkit-animation: pace-spinner 400ms linear infinite;
+    -moz-animation: pace-spinner 400ms linear infinite;
+    -ms-animation: pace-spinner 400ms linear infinite;
+    -o-animation: pace-spinner 400ms linear infinite;
+    animation: pace-spinner 400ms linear infinite;
+}
+
+@-webkit-keyframes pace-spinner {
+    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes pace-spinner {
+    0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes pace-spinner {
+    0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes pace-spinner {
+    0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes pace-spinner {
+    0% { transform: rotate(0deg); transform: rotate(0deg); }
+    100% { transform: rotate(360deg); transform: rotate(360deg); }
+}
+/*end load bar*/
+
+
+/*register modal*/
+#regisDialog {
+    display: none;
+    z-index: 5;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#regisDialog #screen {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.8;
+}
+
+#regisDialog .dialog {
+    z-index: 10;
+    display: none;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 500px;
+    background-color: #777;
+}
+
+#regisDialog .dialog .OkDialog {
+    float: left;
+    height: 100px;
+    width: 100px;
+    background-color: #95a5a6;
+    text-align: center;
+    vertical-align: top;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#regisDialog .dialog .OkDialog:hover {
+    background-color: #27ae60;
+}
+
+#regisDialog .dialog .body-dialog {
+    float: left;
+    height: 100px;
+    line-height: 100px;
+    width: 350px;
+    background: #e74c3c;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#regisDialog .dialog .body-dialog:hover {
+}
+
+#regisDialog .dialog .body-dialog p {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    font: 14px roboto;
+    color: #EEE;
+    vertical-align: middle;
+    width: 350px;
+}
+
+#regisDialog .dialog .body-dialog p a{
+    text-decoration: none;
+    color: white;
+}
+
+#regisDialog .dialog .body-dialog p span {
+    font-weight: 700;
+}
+
+#regisDialog .dialog .CancelDialog {
+    float: left;
+    height: 100px;
+    width: 50px;
+    background-color: #95a5a6;
+    text-align: center;
+    vertical-align: top;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#regisDialog .dialog .CancelDialog:hover {
+    background-color: #c0392b;
+}
+
+/*end register modal*/
+
+
+/*exam date info*/
+#dateInfo{
+    margin-top: 20px;
+    background: #ecf0f1;
+}
+
+#dateInfo .exam{
+    margin-top: 10px;
+}
+
+#dateInfo  img{
+    float: left;
+    margin-left: 22px;
+    margin-right: 22px;
+    height: 25px;
+    margin-top: 2px;
+}
+
+#dateInfo .titleInfo{
+    background: #f39c12;
+    height: 30px;
+    line-height: 25px;
+    text-align: left;
+    font-size: 20px;
+    color: white;
+    font-family: 'Segoe UI Light','Segoe UI';
+}
+
+#dateInfo .number{
+    height: 25px;
+    line-height: 25px;
+    font-family: serif;
+    font-size: 15px;
+}
+
+#dateInfo .titleNum{
+    float: left;
+    margin-left: 20px;
+    font-weight: bolder;
+    width: 100px;
+    text-align: left;
+}
+
+#dateInfo .contenNum{
+
+}
+/*end exam date info*/

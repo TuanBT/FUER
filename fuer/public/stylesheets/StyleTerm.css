@@ -1,0 +1,59 @@
+#titleList{
+    /*float: left;*/
+}
+
+#titleList .boxTitle{
+    width: 100px;
+    height: 100px;
+    background: #B1E0EC;
+    cursor: pointer;
+    color: #2A9FB4;
+    fill: #2A9FB4;
+    border-right: 1px solid #52BAD5;
+    float: left;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#titleList .boxTitle:hover{
+    background: #FFFFFF;
+    border-radius: 0px;
+    color: black;
+    fill: #FDBD12;
+}
+
+#titleList .boxTitle svg{
+    width: 45px;
+    /*border: 1px solid;*/
+    margin-left: 27px;
+    margin-top: 15px;
+    /*fill: #2A9FB4;*/
+}
+
+#titleList .boxTitle svg:hover{
+    /*fill: #d35400;*/
+}
+
+#titleList .boxTitle .text{
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    width: 90px;
+    margin-left: 6px;
+    /*color: #2A9FB4;*/
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+#contentList{
+    width: 100%;
+    float: left;
+    background: #F9F9F9;
+}
+
+#contentList .boxContent{
+    display: none;
+}

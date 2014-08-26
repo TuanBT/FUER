@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta property="og:image" content="http://fuer.herokuapp.com/images/logoFUER_100.png"/>
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <title><%= title %></title>
+
+
+    <script src="../javascripts/firebase.js" type="text/javascript"></script>
+    <script src="../javascripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="../javascripts/angular.min.js" type="text/javascript"></script>
+    <script src="../javascripts/angular-animate.min.js" type="text/javascript"></script>
+    <script src="../javascripts/index2Function.js" type="text/javascript"></script>
+
+
+    <script src="../javascripts/odometer.min.js"></script>
+    <script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js'></script>
+
+    <script src="../javascripts/modernizr-2.6.2.js"></script>
+    <link href="../stylesheets/style2.css" rel="stylesheet"/>
+    <link href="../stylesheets/odometer-theme-minimal.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
+    <link href="../stylesheets/odometer-theme-minimal.css" rel="stylesheet"/>
+    <link href="../stylesheets/normalize.css" rel="stylesheet"/>
+    <link href="../stylesheets/StyleIndex2.css" rel="stylesheet"/>
+    <link href="../fontello/css/fontello.css" rel="stylesheet"/>
+    <link href="../fontello/css/animation.css" rel="stylesheet"/>
+
+
+    <script src="../javascripts/pace.min.js" type="text/javascript"></script>
+    <link href="../stylesheets/ng-animation.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<!--button menu-->
+<a href="/search">
+    <div id="searchLink">
+        <svg style="z-index: 102;width: 40px;height: 40px;margin-left: 10px;margin-top: 6px;"
+             xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 512 512" viewBox="0 0 512 512"
+             width="512px" height="512px" xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:space="preserve"
+             version="1.1"><g>
+                <path fill="#FFF"
+                      d="M 111.642 112.146 c -53.535 53.535 -53.586 140.391 -0.051 193.926 c 45.764 45.764 116.021 52.228 168.623 19.978 l 105.04 105.04 c 12.495 12.495 32.761 12.495 45.255 0 c 12.495 -12.494 12.495 -32.76 0 -45.255 L 325.434 280.759 c 32.208 -52.645 25.754 -122.841 -19.968 -168.563 C 251.931 58.661 165.177 58.611 111.642 112.146 Z M 274.404 274.907 c -36.353 36.353 -95.297 36.353 -131.65 0.001 c -36.352 -36.353 -36.352 -95.297 0 -131.65 c 36.352 -36.352 95.297 -36.353 131.649 0 C 310.757 179.61 310.756 238.555 274.404 274.907 Z"/>
+                <path opacity="0.03" fill="#7f8c8d"
+                      d="M 111.519 112.022 c -0.013 0.013 -0.025 0.025 -0.038 0.038 l 31.112 31.113 c 0.013 -0.013 0.026 -0.025 0.039 -0.038 c 36.352 -36.352 95.233 -36.416 131.585 -0.064 c 36.353 36.353 36.288 95.233 -0.063 131.585 c -0.013 0.014 -0.025 0.025 -0.038 0.039 l 156.394 156.394 c 12.495 -12.494 12.495 -32.76 0 -45.255 L 325.434 280.759 c 32.208 -52.645 25.692 -122.902 -20.029 -168.625 C 251.869 58.6 165.053 58.487 111.519 112.022 Z"/>
+            </g></svg>
+    </div>
+</a>
+<!--end button menu-->
+
+<div id="container">
+    <!--header-->
+    <nav id="nav-bar" class="fixed-menu">
+        <div class="container" id="containerFixMenu">
+            <a href="/">
+                <div class="left-nav">
+                    <img src="../images/logoFUER_100.png" width="35" height="35"/>
+                    <span id="counter-small" class="badge odometer-theme-minimal" style="margin-left: -15px">000</span>
+                    <span style="vertical-align: text-top;font-size: 18px;font-weight: 300"> FU Exam Reminder    </span>
+                </div>
+            </a>
+        </div>
+    </nav>
+    <div id="header-container">
+        <div id="header">
+            <div id="product-overview">
+                <div id="brand">
+                    <div class="logo">
+                        <a href="/"><img src="../images/logoFUER_100.png" width="85" height="85"/></a>
+                    </div>
+                    <div class="title">
+                        <span style="font-size: 50px;color: white; font-weight: 100; font-family: 'Raleway';">FU Exam Reminder</span>
+
+                        <span style="font-size: 0.55em;color: white;display: block;font-weight: 200; margin: 13px 0;font-family: sans-serif;"> "Đừng chết vì thiếu hiểu biết"</span>
+
+                        <div class="fb-like" style="font-size: 0.9em;margin-left: -100px;float: left;"
+                             data-href="http://fuer.herokuapp.com"
+                             data-send="false"
+                             data-layout="standard" data-width="400" data-show-faces="true"
+                             data-colorscheme="dark" data-font="segoe ui"></div>
+                        <!--facebook button-->
+                        <div id="btnFacebook" title="Thêm nhận xét và nói về dịch vụ" onClick="facebookClick()">
+                            <div style="float: left;margin-top: 5px;margin-right: 5px;">
+                                <img src="../images/facebookIcon.png" style="width: 25px;height: 25px;">
+                            </div>
+                            <div style="float: left;line-height: 38px;color: white;font-family: inherit;font-size: 15px;">
+                                Comment
+                            </div>
+                        </div>
+                        <!--end facebook button-->
+                    </div>
+
+
+                </div>
+                <div id="counter-container">
+                          <span class="counter">
+                              <span class="odometer odometer-theme-minimal" id="odometer"></span>
+                              Lượt đăng ký
+                          </span>
+                    <ul id="register-ul" data-bind="foreach : registerList">
+                        <li><span data-bind="text: StudentId"></span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--end header-->
+    <div id="content-container" style="">
+
+        <!--Register panel-->
+        <div id="left-content" class="inactive-color " onmouseover="toggleActive(this,0)"
+             onmouseout="toggleInactive(this)">
+            <div id="register-container">
+                <h1 style="font-weight: lighter;font-size: 1.2em;margin-top: 0;font-family: Segoe UI Light;">Đăng
+                    ký</h1>
+
+                <p style="font-size: 17px;line-height: 26px;">Đăng ký ngay để nhận được email thông báo kỳ thi mới
+                    nhất,</p>
+
+                <p style="font-size: 17px">và đồng ý với mọi</p>
+
+                <div class="cl-effect-5"><a href="/terms"><span
+                                data-hover="Điều khoản và sử dụng">Điều khoản và sử dụng</span></a>
+                </div>
+                <p style="font-size: 17px;float: left;margin-top: -20px;margin-left: 5px;">của chúng tôi</p>
+
+                <form class="form-wrapper" method="post" id="register-form">
+                    <input id="student-id" class="inputbox email" type="text" name="form[studentid]"
+                           placeholder="MSSV. SB60123" style="text-transform:uppercase" value="" required/>
+                    <input id="email" name="form[email]" class="inputbox password" type="text"
+                           placeholder="Email. anvsb60123@fpt.edu.vn" value="" style="text-transform: lowercase;" required/>
+                    <script type="text/javascript"
+                            src="http://www.google.com/recaptcha/api/challenge?k=6LfFlfgSAAAAANP4qCMwOIwGgYT2OXhfy7H_hrnn">
+                    </script>
+                    <noscript>
+                        <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfFlfgSAAAAANP4qCMwOIwGgYT2OXhfy7H_hrnn"
+                                frameborder="0"></iframe>
+                        <br>
+                        <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                        </textarea>
+                        <input type="hidden" name="recaptcha_response_field"
+                               value="manual_challenge">
+                    </noscript>
+                    <ul class="validation-summary-errors" id="error-message"
+                        style="float:right; font-size: 16px; color: red; font-weight: normal; font-family: 'Segoe UI'; width: 230px; margin-right: -150px;">
+                    </ul>
+                    <button type="submit" class="register-button" id='submit-button'>Gửi<img id="regImg"
+                                                                                             src="../images/loading.gif"/>
+                    </button>
+                </form>
+            </div>
+            <!--Login form-->
+            <div id="loginContainer">
+                <h1>Đăng nhập</h1>
+                <p>
+                    Đăng nhập để có thể sử dụng các chức năng của admin
+                </p>
+                <p>
+                    Đăng nhập để có thể thực sự khai thác triệt để FUER
+                </p>
+                <form class="form-wrapper" method="post">
+                    <input id="liName" class="inputbox" type="text" placeholder="Tên đăng nhập" value="" required/>
+                    <input id="liPass" class="inputbox" type="password" placeholder="Mật khẩu" value="" required/>
+                    <button type="submit"  id='loginBtn'>Đăng nhập
+                        <img id="liImg"src="../images/loading.gif"/>
+                    </button>
+                    <div id="liSttData"></div>
+                </form>
+            </div>
+            <!--end login form-->
+        </div>
+        <!--end register panel-->
+
+        <!--middle logo-->
+         <span id="middle-logo">
+            <div id="logo-inner" class="left-active-color" onclick="loginForm()">
+                <img id="loadingImg" src="../images/loadingIndex2.gif"
+                     style="position: relative;width: 98px;margin-left: -9px;margin-top: -9px;">
+                <i class="icon-spin1 animate-spin" style="margin-left: -31px;margin-top:-10px;display: none"></i>
+                <svg id="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"
+                     style="position: absolute; top: 16px; left: 24px; fill:#ffffff; width: 40px;height: 40px;">
+                    <path class="fil0"
+                          d="M381 495l126 0 254 -126 -380 0 0 126zm0 252l254 -126 -254 0 0 126zm380 126l-508 0 0 -631 -254 126 0 631 508 0 254 -126z"/>
+                    <path class="fil0"
+                          d="M628 228c20,1 40,6 58,14l45 0 30 0 0 28 0 40c5,9 9,19 12,29 4,13 6,27 7,41 22,0 44,0 66,0 1,-46 -11,-93 -38,-130 -40,-58 -109,-93 -180,-92 0,23 0,47 0,70z"/>
+                    <path class="fil0"
+                          d="M618 77c97,0 193,50 249,130 37,53 57,118 56,183 25,0 51,0 76,0 1,-61 -12,-123 -40,-177 -36,-70 -92,-130 -162,-167 -55,-29 -117,-44 -179,-45 0,25 0,51 0,76z"/>
+                </svg>
+                <!--<img src="../images/logoFUER_100.png" width="40" height="40" style="position: absolute;top: 16px;left: 24px;"/>  -->
+            </div>
+         </span>
+        <!--end middle logo-->
+
+
+
+
+        <!--Search panel-->
+        <div id="right-content" class="inactive-color" onmouseover="toggleActive(this,1)"
+             onmouseout="toggleInactive(this)">
+            <div id="search-container" class="">
+                <div style="font-size: 1.2em;margin-top: 0; text-align: center;">
+                    <i class="icon-search" style="font-size: 70px"></i>
+                </div>
+                <section ng-controller="studentController">
+                    <form class="form-wrapper">
+                        <div id="searchDiv">Đang tìm dữ liệu...</div>
+                        <input id="searchInput" style="height: 45px; width: 408px;"
+                               class="inputbox email" type="text"
+                               placeholder="Nhập MSSV, tên, lớp" ng-model="searchWord" ng-change="change()"/>
+                    </form>
+                    <div id="search-result-container">
+                        <div id="search-result">
+                            <ul id="search-list">
+                                <li class="item" ng-show="isShow" ng-class="animation" ng-repeat="student in list"
+                                    ng-click="displayExam(student)">
+                                    <div>
+                                        <div class="border"
+                                             style="height: 60px; width: 8px; margin-right:0px;float:left;clear: both">
+                                        </div>
+                                        <div class="search-result-bar">
+                                            <div style="height: 30px;line-height: 30px">
+                                                <div class="search-name"><span>{{student.Name}}</span></div>
+                                                <div class="search-class"><span>Lớp {{student.Class}}</span></div>
+
+                                            </div>
+                                            <div style="height: 30px;line-height: 30px">
+                                                <div class="search-date"><span>{{student.Date}}</span></div>
+                                                <div class="search-detail"><span>{{student.MSSV}}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!--end search panel-->
+
+    </div>
+</div>
+
+
+<!--footer-->
+<div style=" text-align: center;color: #999999;font: inherit;font-size: 14px;">
+    <div style="height: 200px;padding: 5px 0;background: #dddddd">
+        <div class="bottom-container" style="width: 1220px;margin: 0 auto;font: inherit;">
+            <div style="float: left;width: 340px;margin: 0 auto;">
+                <div style="width: 300px;margin: 0 auto;margin-top: 10px;margin-bottom: 20px;">
+                    <div style="height: 65px;">
+                        <img src="../images/fpt.png" style="" width="268">
+                    </div>
+                    <span style="font-size:13px">Đại học FPT, CVPM Quang Trung, Q.12, TPHCM          </span></div>
+                <div style="width: 100px; margin: 0 auto;">
+                    <div>
+                        <img src="../images/cdc-logo.png" height="50" style="margin-bottom: 10px">
+                    </div>
+                    <span>Cóc Dám Code    </span>
+                </div>
+            </div>
+            <div class="member" style="float:left;width: 200px; text-align: left; line-height: 25px;margin-top: 10px;">
+                <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold">Nhóm phát triển</h3>
+                <ul style="list-style-type: disc; margin-left:30px;line-height: 31px;">
+                    <li>TuânBT</li>
+                    <li>HòaNT</li>
+                    <li>TrangNTM</li>
+                    <li>TuấnNH</li>
+                </ul>
+            </div>
+            <div class="contact"
+                 style="float:left;width: 300px; text-align: left; line-height: 25px;font: inherit;margin-top: 10px;">
+                <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold">Liên hệ</h3>
+                <ul style="line-height: 45px;font-family: sans-serif;">
+                    <li style="font-weight: bold;">Facebook: <span style="font-weight: normal;">www.facebook.com/CocDamCode</span>
+                    </li>
+                    <li style="font-weight: bold;">Email: <span style="font-weight: normal;">cocdamcode@gmail.com</span>
+                    </li>
+                    <li style="font-weight: bold;">Truyền thông:<span style="font-weight: normal;"> H6 TIÊN SINH</span>
+                        <img src="../images/H6.png"
+                             style="width: 50px;float: right;margin-right: 35px;margin-top: -6px;"></li>
+                </ul>
+            </div>
+            <div class="tech" style="float:left;width: 300px; text-align: left; line-height: 25px;margin-top: 10px;">
+                <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold;margin-left:30px">Powered by</h3>
+                <ul style="margin-left: -28px;">
+                    <li title=".NET" style="float:left;margin-left:30px">
+                        <img src="../images/dotnet.png"></li>
+                    <li title="nodejs" style="float:left">
+                        <img src="../images/nodeJS.png"></li>
+                    <li title="heroku" style="float:left">
+                        <img src="../images/heroku.png"></li>
+                    <li title="firebase" style="float:left; clear:right">
+                        <img src="../images/firebase.png"></li>
+                </ul>
+                <span style="font-style: italic;margin-top: 69px; float: left;margin-left:30px;font: inherit; ">
+                    © FUER 2014. All Rights Reserved.
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end footer-->
+
+
+<!--facebook-->
+<div id="facebookComment" class="fb-comments" data-order_by="reverse_time" data-href="http://fuer.herokuapp.com"
+     data-width="450"
+     data-num-posts="3"></div>
+<!-end facebook-->
+
+<script>
+    var viewModel = {
+        registerList: ko.observableArray([
+            {"StudentId": "..."}
+        ])
+    };
+    var odometer = document.getElementById("odometer");
+    var smallCounter = document.getElementById("counter-small");
+    var fuerRootRef = new Firebase('https://fuerdb.firebaseio.com/');
+    var regRef = fuerRootRef.child('Registers');
+
+    var countRef = fuerRootRef.child('RegisterCount');
+    countRef.once('value', function (snapshot) {
+        odometer.innerHTML = snapshot.child('Count').val();
+        smallCounter.innerHTML = snapshot.child('Count').val();
+    });
+    ko.applyBindings(viewModel);
+
+    var regListQuery = regRef.limit(8);
+    regListQuery.once('value', function (snapshot) {
+        snapshot.forEach(function (aReg) {
+            viewModel.registerList.splice(0, 0, aReg.val());
+        });
+
+    });
+
+    countRef.on('child_changed', function (snapshot) {
+        var num = snapshot.val();
+        odometer.innerHTML = num;
+        smallCounter.innerHTML = num;
+        regListQuery = regRef.limit(1);
+        regListQuery.once('child_added', function (snap) {
+            viewModel.registerList.splice(0, 0, snap.val());
+            if (viewModel.registerList.length > 8) {
+                viewModel.registerList = viewModel.registerList.remove(viewModel.registerList()[viewModel.registerList().length - 2 ]);
+            }
+        });
+
+    });
+
+    var navBar = document.getElementById("nav-bar");
+    window.onscroll = displayNav;
+
+    function displayNav() {
+        var value = window.pageYOffset;
+        if (value > 145) {
+            navBar.style.opacity = 1;
+            $('#containerFixMenu').css({opacity: 1});
+        } else {
+            navBar.style.opacity = 0;
+            $('#containerFixMenu').css({opacity: 0});
+        }
+    }
+</script>
+</body>
+</html>

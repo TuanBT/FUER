@@ -1,0 +1,234 @@
+
+<div style="border-radius: 10px 10px 0px 0px; margin: 0 auto;  width: 440px;  border: 1px solid #ecf0f1;border-top: 0px; font-family: 'Segoe UI';  font-weight: 100; min-height: <%if(detail["exam"]=="Writting"){%>1200px;<%}else{%>650px;<%}%>">
+<div style="border-radius: 10px 10px 0px 0px; padding-top:8px;min-height:40px;font-family:'Segoe UI Light','Segoe UI';font-weight:100;text-align:center;background-color:rgb(40,70,110);font-size:24.5px">
+                <span style="color:#ecf0f1;display:block;margin-bottom:5px">THÔNG TIN KÌ THI NGÀY
+                    <span class="dates"> <%=detail["date"]%></span>
+                </span>
+        <span style="color:#ecf0f1;display:block;margin-bottom:5px;padding-bottom: 8px;margin-top: -8px;">
+                    <span class="subjectName"><%=detail["subjectName"]%></span>
+                    -
+                    <span class="examTimes"><%=detail["examTimes"]%></span>
+                    -
+                    <span class="examType"><%=detail["exam"]%></span>
+                </span>
+</div>
+
+<!--logo-->
+<div title="FU Exam Reminder" style="width:300px;margin:0 auto;min-height:50px;color: black;">
+    <div style="width:50px;min-height:50px;float:left">
+        <a href="https://fuer.herokuapp.com" target="_blank">
+            <img src="http://fuer.herokuapp.com/images/logoFUER_100.png" width="50" height="50" style="margin-bottom:10px;margin-left:25px">
+        </a>
+        <div style="width:100px;float:left;font-size:10px;text-align:center;font-family:sans-serif">Fu Exam Reminder</div>
+    </div>
+    <div title="Cóc Dám Code" style="width:50px;min-height:50px;float:right">
+        <a href="https://www.facebook.com/CocDamCode" target="_blank">
+            <img src="http://fuer.herokuapp.com/images/cdc-logo.png" width="50" height="50" style="margin-bottom:10px;margin-right: 25px;float: right;">
+        </a>
+        <div style="float:right;width:100px;font-size:10px;text-align:center;font-family:sans-serif">Cóc Dám Code</div>
+    </div>
+</div>
+<div style="margin-top: 38px;width: 209px;margin-left: 110px;border: 1px solid #ecf0f1;border-bottom: 0px;"></div>
+<!--end logo-->
+
+<div style="display:block;float:left;width:440px;margin-top: 5px;">
+    <img src="http://fuer.herokuapp.com/images/imgSearch/User.png"
+         style="float: left;  margin: 22px 15px 15px 15px;width: 100px;  height: 100px;">
+    <ul style="float:left;list-style:none;text-align:left;min-height:110px;margin-top:25px;font-size:13px;font-family:inherit;padding-left:0px;color: black;">
+        <li style="font-size: 1.5em;" class="studentName"><%=detail["studentName"]%></li>
+        <li style="font-size:1.2em" class="birthdate"><%=detail["birthDate"]%></li>
+        <li style="font-size:1.2em" class="studentId"><%=detail["studentId"]%></li>
+        <li>Lớp <span class="studentClass"><%=detail["studentClass"]%></span></li>
+    </ul>
+</div>
+<div style="float:right;margin-top: -15px;min-width: 440px;">
+    <img src="http://fuer.herokuapp.com/images/imgSearch/calendar.png"
+         style="float: right;  margin: 0px 15px 0px 0px;width: 100px;  height: 100px;">
+    <ul style="float:right;list-style:none;margin-right:10px;text-align: right;color: black;">
+        <li style="font-size:1.3em">Phòng <span class="room" style="color: #c0392b;font-weight: bold;"><%=detail["room"]%></span>&nbsp;|&nbsp;<span class="position" style="color: #e74c3c;  font-weight: bold;"><%=detail["position"]%></span></li>
+        <li style="font-size:1.3em;color: #8e44ad;font-weight: bold;" class="time"><%=detail["time"]%></li>
+        <li style="font-size:1.2em">Môn <span class="subjectName"><%=detail["subjectName"]%></span></li>
+        <li style="font-size:1.1em"><span class="examTimes"><%=detail["examTimes"]%></span></li>
+     </ul>
+</div>
+<div style="float:left;padding: 20px 20px 0px 20px;">
+    <div style="text-align: justify">
+        <img src="http://fuer.herokuapp.com/images/imgSearch/quote.png" width="30px" height="30px"
+             style="margin-left: -16px;margin-top: -23px;float: left;">
+        <span class="positionSentence" style="font-style:italic"><%=detail["positionSentence"]%></span>
+        <cite style="float:right;margin-top: 15px;">- Chia sẻ bởi <span class="posShare"><%=detail["posShare"]%></span></cite>
+    </div>
+</div>
+<div style="width:440px;float:left;text-align:center">
+    <button title="https://fuer.herokuapp.com/search?<%=detail["studentId"]%>" type="button" style="font-family:'Segoe UI Light';vertical-align:top;font-size:13px;color:white;background:#1abc9c;border:0;min-height:25px;border-radius:4px">
+        <a href="https://fuer.herokuapp.com/search?<%=detail["studentId"]%>" target="_blank" style="text-decoration: none;color: white;">
+    <div style="min-height:17px"><%=detail["studentId"]%></div></a></button>
+</div>
+<!--position-->
+<%if(detail["exam"]=="Writting"){%>
+<div id="positionPanel" style="padding: 0px; width: 440px; margin-top: 15px; float: left; font-family: 'Segoe UI';color: black;">
+    <div style="width: 440px; min-height: 100px;">
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">A6</span>
+                <span id="subIdA6" style="color: <%=pos["A6"].color%>;"><%=pos["A6"].id%> - <%=pos["A6"].subject%></span>
+                <br>
+                <span id="nameA6" style="color: <%=pos["A6"].color%>;"><%=pos["A6"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">A2</span>
+                <span id="subIdA2" style="color: <%=pos["A2"].color%>;"><%=pos["A2"].id%> - <%=pos["A2"].subject%></span>
+                <br>
+                <span id="nameA2" style="color: <%=pos["A2"].color%>;"><%=pos["A2"].name%></span>
+            </div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;text-align: center;">A</div>
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">A1</span>
+                <span id="subIdA1" style="color: <%=pos["A1"].color%>;"><%=pos["A1"].id%> - <%=pos["A1"].subject%></span>
+                <br>
+                <span id="nameA1" style="color: <%=pos["A1"].color%>;"><%=pos["A1"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">A5</span>
+                <span id="subIdA5" style="color: <%=pos["A5"].color%>;"><%=pos["A5"].id%> - <%=pos["A5"].subject%></span>
+                <br>
+                <span id="nameA5" style="color: <%=pos["A5"].color%>;"><%=pos["A5"].name%></span>
+            </div>
+        </div>
+    </div>
+    <div style="width: 440px; min-height: 100px;">
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">B6</span>
+                <span id="subIdB6" style="color: <%=pos["B6"].color%>;"><%=pos["B6"].id%> - <%=pos["B6"].subject%></span>
+                <br>
+                <span id="nameB6" style="color: <%=pos["B6"].color%>;"><%=pos["B6"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">B2</span>
+                <span id="subIdB2" style="color: <%=pos["B2"].color%>;"><%=pos["B2"].id%> - <%=pos["B2"].subject%></span>
+                <br>
+                <span id="nameB2" style="color: <%=pos["B2"].color%>;"><%=pos["B2"].name%></span>
+            </div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;text-align: center;">B</div>
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">B1</span>
+                <span id="subIdB1" style="color: <%=pos["B1"].color%>;"><%=pos["B1"].id%> - <%=pos["B1"].subject%></span>
+                <br>
+                <span id="nameB1" style="color: <%=pos["B1"].color%>;"><%=pos["B1"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">B5</span>
+                <span id="subIdB5" style="color: <%=pos["B5"].color%>;"><%=pos["B5"].id%> - <%=pos["B5"].subject%></span>
+                <br>
+                <span id="nameB5" style="color: <%=pos["B5"].color%>;"><%=pos["B5"].name%></span>
+            </div>
+        </div>
+    </div>
+    <div style="width: 440px; min-height: 100px;">
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">C6</span>
+                <span id="subIdC6" style="color: <%=pos["C6"].color%>;"><%=pos["C6"].id%> - <%=pos["C6"].subject%></span>
+                <br>
+                <span id="nameC6" style="color: <%=pos["C6"].color%>;"><%=pos["C6"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">C2</span>
+                <span id="subIdC2" style="color: <%=pos["C2"].color%>;"><%=pos["C2"].id%> - <%=pos["C2"].subject%></span>
+                <br>
+                <span id="nameC2" style="color: <%=pos["C2"].color%>;"><%=pos["C2"].name%></span>
+            </div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;text-align: center;">C</div>
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">C1</span>
+                <span id="subIdC1" style="color: <%=pos["C1"].color%>;"><%=pos["C1"].id%> - <%=pos["C1"].subject%></span>
+                <br>
+                <span id="nameC1" style="color: <%=pos["C1"].color%>;"><%=pos["C1"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">C5</span>
+                <span id="subIdC5" style="color: <%=pos["C5"].color%>;"><%=pos["C5"].id%> - <%=pos["C5"].subject%></span>
+                <br>
+                <span id="nameC5" style="color: <%=pos["C5"].color%>;"><%=pos["C5"].name%></span>
+            </div>
+        </div>
+    </div>
+    <div style="width: 440px; min-height: 100px;">
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">D6</span>
+                <span id="subIdD6" style="color: <%=pos["D6"].color%>;"><%=pos["D6"].id%> - <%=pos["D6"].subject%></span>
+                <br>
+                <span id="nameD6" style="color: <%=pos["D6"].color%>;"><%=pos["D6"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">D2</span>
+                <span id="subIdD2" style="color: <%=pos["D2"].color%>;"><%=pos["D2"].id%> - <%=pos["D2"].subject%></span>
+                <br>
+                <span id="nameD2" style="color: <%=pos["D2"].color%>;"><%=pos["D2"].name%></span>
+            </div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;text-align: center;">D</div>
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">D1</span>
+                <span id="subIdD1" style="color: <%=pos["D1"].color%>;"><%=pos["D1"].id%> - <%=pos["D1"].subject%></span>
+                <br>
+                <span id="nameD1" style="color: <%=pos["D1"].color%>;"><%=pos["D1"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">D5</span>
+                <span id="subIdD5" style="color: <%=pos["D5"].color%>;"><%=pos["D5"].id%> - <%=pos["D5"].subject%></span>
+                <br>
+                <span id="nameD5" style="color: <%=pos["D5"].color%>;"><%=pos["D5"].name%></span>
+            </div>
+        </div>
+    </div>
+    <div style="width: 440px; min-height: 100px;">
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">E6</span>
+                <span id="subIdE6" style="color: <%=pos["E6"].color%>;"><%=pos["E6"].id%> - <%=pos["E6"].subject%></span>
+                <br>
+                <span id="nameE6" style="color: <%=pos["E6"].color%>;"><%=pos["E6"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">E2</span>
+                <span id="subIdE2" style="color: <%=pos["E2"].color%>;"><%=pos["E2"].id%> - <%=pos["E2"].subject%></span>
+                <br>
+                <span id="nameE2" style="color: <%=pos["E2"].color%>;"><%=pos["E2"].name%></span>
+            </div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;text-align: center;">E</div>
+        <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">E1</span>
+                <span id="subIdE1" style="color: <%=pos["E1"].color%>;"><%=pos["E1"].id%> - <%=pos["E1"].subject%></span>
+                <br>
+                <span id="nameE1" style="color: <%=pos["E1"].color%>;"><%=pos["E1"].name%></span>
+            </div>
+            <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">E5</span>
+                <span id="subIdE5" style="color: <%=pos["E5"].color%>;"><%=pos["E5"].id%> - <%=pos["E5"].subject%></span>
+                <br>
+                <span id="nameE5" style="color: <%=pos["E5"].color%>;"><%=pos["E5"].name%></span>
+            </div>
+        </div>
+    </div>
+</div>
+<%}%>
+<!--End position-->
+
+<div style="float:right;width: 440px;color: black;">
+    <p style="float:right;font-style: italic; margin-right: 20px; font-weight: bold">Nhóm phát triển FU Exam
+        Reminder</p>
+</div>
+
+</div>

@@ -1,0 +1,799 @@
+/*menu*/
+nav {
+    /*margin-bottom: 40px;*/
+    padding: 0;
+    height: 52px;
+    width: 100%;
+}
+
+nav.fixed-menu {
+    margin-top: 0;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 0 7px 1px rgba(51, 51, 51, 0.4);
+    background-color: #5B6BA7;
+}
+
+nav .container {
+    position: relative;
+    height: 52px;
+    margin: 0 auto;
+    width: 984px;
+    min-width: 800px;
+    text-align: left;
+
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+nav div {
+    margin-top: 3px;
+    white-space: nowrap;
+}
+
+nav span {
+    margin-right: 3px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #fff !important;
+}
+
+#content-container {
+    height: 450px;
+    background-color: white;
+
+}
+
+nav .left-nav {
+    float: left;
+    font-family: 'Segoe UI Light';
+}
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    border: 1px solid #fff;
+}
+
+.active-color {
+
+    color: white !important;
+}
+
+.right-active-color {
+    background-color: #9b59b6 !important;
+
+}
+
+.left-active-color {
+    background-color: #1abc9c !important;
+}
+
+.inactive-color {
+    background-color: white;
+    color: #ABB0B8 !important;
+
+}
+
+#nbLogin{
+
+}
+
+.nbLoginBtn{
+    font-family: "Segoe UI Light";
+    font-size: 18px;
+    color: white;
+    border: 0;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 7px;
+    background: #27ae60;
+    float: right;
+}
+
+.nbLoginBtn:hover{
+    background: #2ecc71;
+}
+
+#nbLoginName{
+    display: block;
+    float: right;
+    font-family: cursive;
+    margin-top: 10px;
+}
+
+.loginName{
+
+}
+
+
+/*end menu*/
+
+#left {
+    float: left;
+    width: 322px;
+}
+
+/*manager*/
+#mailInfoPanel {
+    /*width: 302px;*/
+    height: 120px;
+    /*float: left;*/
+    border: 1px solid #DDD;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#DateExam {
+    width: 110px;
+    float: left;
+}
+
+#DateExam svg {
+    float: left;
+    height: 40px;
+}
+
+#sentEmail {
+    width: 100px;
+    float: left;
+    border-top: 0px;
+}
+
+#addInfo {
+    width: 100px;
+    float: left;
+}
+
+.title {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    font-family: sans-serif;
+    border-bottom: 1px solid #DDD;
+}
+
+.write {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-family: fantasy;
+}
+
+.speak {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-family: fantasy;
+}
+
+/*end manager*/
+
+/*Statistics*/
+#statisticsPanel {
+    border-left: 1px solid #DDDDDD;
+   border-right: 1px solid #DDDDDD;
+}
+
+#statisticsPanel .staTitle{
+    text-align: center;
+    background: turquoise;
+    color: white;
+    font-family: arial;
+    font-size: 23px;
+    line-height: 30px;
+}
+
+#statisticsPanel .staType{
+    line-height: 35px;
+    font-family: arial;
+    font-size: 20px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+#statisticsPanel .staType  .staText{
+    margin-left: 10px;
+}
+
+#statisticsPanel .staType .staContent{
+    margin-right: 100px;
+    float: right;
+}
+
+#statisticsPanel .staType svg{
+    float: right;
+    width: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#statisticsPanel .staType svg:hover{
+    fill:red;
+}
+
+/*end statistics*/
+
+/*exam manager panel*/
+ #examManagerPanel{
+     border-left: 1px solid #DDDDDD;
+     border-right: 1px solid #DDDDDD;
+ }
+
+ #examManagerPanel .emTitle{
+     text-align: center;
+     background: #27ae60;
+     color: white;
+     font-family: arial;
+     font-size: 23px;
+     line-height: 30px;
+ }
+
+ #examManagerPanel .examDate{
+     line-height: 35px;
+     font-family: arial;
+     font-size: 20px;
+     border-bottom: 1px solid #DDDDDD;
+     height: 85px;
+ }
+
+#examManagerPanel .examDate .emDate{
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+#examManagerPanel .examDate svg{
+    float: right;
+    width: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+#examManagerPanel .examDate svg:hover{
+    fill:red;
+}
+
+.emDetail{
+    /*margin-left: 40px;
+    margin-right: 40px;*/
+    font-size: 15px;
+    line-height: 15px;
+    font-family: sans-serif;
+}
+
+.emDeTitle{
+    font-weight: bold;
+}
+
+.emWri{
+    float: left;
+    width: 160px;
+    text-align: center;
+}
+
+.emWri div{
+
+}
+
+.emSpe{
+    float: left;
+    width: 160px;
+    text-align: center;
+}
+/*end exam manager panel*/
+
+/*Edit position panel*/
+
+#posSenPanel {
+    width: 455px;
+    height: 440px;
+    border: 1px solid #DDD;
+    float: left;
+}
+
+#position {
+    float: left;
+}
+
+#position .btn {
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #2c3e50;
+    color: #bdc3c7;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: cursive;
+}
+
+#position .btn:hover {
+    background: #34495e;
+    color: #FFFFFF;
+}
+
+
+#posList {
+    float: left;
+}
+
+#posList .btn {
+    width: 25px;
+    height: 24px;
+    text-align: center;
+    line-height: 25px;
+    border-bottom: 1px solid #DDDDDD;
+    cursor: pointer;
+    background: white;
+}
+
+#posList .btn:hover {
+    background: #ecf0f1;
+}
+
+#editBox {
+    float: left;
+    width: 360;
+    height: 200px;
+}
+
+#editBox .text {
+    height: 180px;
+    width: 100%;
+    text-align: justify;
+}
+
+#writeEditBox {
+    display: none;
+}
+
+#readEditBox {
+    padding: 10px;
+    background: #bdc3c7;
+}
+
+#shareBox {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+
+#shareBox .share {
+    float: right;
+}
+
+#shareBox .shareTitle {
+    float: right;
+}
+
+#writeShareName {
+    display: none;
+}
+
+#readShareName {
+
+}
+
+#buttonFunction {
+    margin-left: 10px;
+}
+
+#buttonFunction  .btn {
+    margin-left: 30px;
+    font-family: "Segoe UI Light";
+    font-size: 18px;
+    color: white;
+    border: 0;
+    width: 70px;
+    height: 30px;
+    border-radius: 7px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+    float: left;
+}
+
+#buttonFunction  .btn {
+
+}
+
+#addPosList {
+    background: #27ae60;
+}
+
+#addPosList:hover {
+    background: #2ecc71;
+}
+
+#updatePosList {
+    background: #f39c12;
+}
+
+#updatePosList:hover {
+    background: #f1c40f;
+}
+
+#deletePosList {
+    background: #c0392b;
+}
+
+#deletePosList:hover {
+    background: #e74c3c;
+}
+
+#savePosList {
+    background: #2980b9;
+    display: none;
+}
+
+#savePosList:hover {
+    background: #3498db;
+}
+
+/*end Edit position panel*/
+
+/* SQUARED THREE */
+.squaredThree {
+    width: 20px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.squaredThree label {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    border-radius: 4px;
+
+    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, .4);
+    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, .4);
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, .4);
+
+    background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+    background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+    background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+    background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#222', endColorstr='#45484d', GradientType=0);
+}
+
+.squaredThree label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 4px;
+    left: 4px;
+    border: 3px solid #fcfff4;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.squaredThree label:hover::after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    opacity: 0.3;
+}
+
+.squaredThree input[type=checkbox]:checked + label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
+/* SLIDE THREE */
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+.slideThree {
+    float: left;
+    margin-top: 8px;
+    margin-left: 10px;
+
+    width: 80px;
+    height: 26px;
+    background: #2c3e50;
+
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    position: relative;
+
+    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.slideThree:after {
+    content: 'OFF';
+    font: 12px/26px Arial, sans-serif;
+    color: #bdc3c7;
+    position: absolute;
+    right: 10px;
+    z-index: 0;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, .15);
+}
+
+.slideThree:before {
+    content: 'ON';
+    font: 12px/26px Arial, sans-serif;
+    color: #2ecc71;
+    position: absolute;
+    left: 10px;
+    z-index: 0;
+    font-weight: bold;
+}
+
+.slideThree label {
+    display: block;
+    width: 34px;
+    height: 20px;
+
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    transition: all .4s ease;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    background: #fcfff4;
+
+    background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0);
+}
+
+.slideThree input[type=checkbox]:checked + label {
+    left: 43px;
+}
+
+
+/*logs panel*/
+#logsPanel{
+         float: left;
+}
+#lgbtnReset{
+    font-family: "Segoe UI Light";
+    font-size: 18px;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border-radius: 7px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    background: #c0392b;
+    margin: 0 auto;
+}
+
+#lgbtnReset:hover{
+    background: #e74c3c;
+}
+
+#logsText{
+
+}
+/*end logs panel*/
+
+
+/*Add exam panel*/
+#addExamPanel{
+    border: 1px solid #DDDDDD;
+    border-top: 0px;
+    height: 128px;
+}
+
+.aeTitle{
+    text-align: center;
+    background: #2980b9;
+    color: white;
+    font-family: arial;
+    font-size: 23px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.aeTxt{
+    float: left;
+    margin-left: 10px;
+    width: 210px;
+    border: 1px solid #27ae60;
+    height: 30px;
+}
+
+.aeTxt:focus{
+    border: 2px solid #2ecc71;
+}
+
+.aeBtn{
+    font-family: "Segoe UI Light";
+    font-size: 18px;
+    color: white;
+    border: 0;
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    float: right;
+    background: #27ae60;
+    margin-right: 10px;
+}
+
+.aeBtn:hover{
+    background: #2ecc71;;
+}
+
+.aeLoading{
+    width: 30px;
+    float: right;
+    display: none;
+}
+
+#aeEqual{
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    margin-top: 60px;
+    font-size: 15px;
+    font-style: italic;
+    font-family: serif;
+}
+
+/* Form wrapper styling */
+.form-wrapper {
+    width: 283px;
+    padding: 8px;
+    /* margin: 150px auto 50px auto; */
+    background: #444;
+    background: rgba(0,0,0,.2);
+    border-radius: 10px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    float: left;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+/* Form text input */
+
+/* Form submit button */
+.form-wrapper input {
+    width: 198px;
+    height: 30px;
+    padding: 10px 5px;
+    float: left;
+    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border: 0;
+    background: #eee;
+    border-radius: 3px 0 0 3px;
+}
+
+.form-wrapper input:focus {
+    outline: 0;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+.form-wrapper input::-webkit-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+.form-wrapper button {
+    overflow: visible;
+    position: relative;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 30px;
+    width: 85px;
+    font: bold 14px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    color: #fff;
+    text-transform: uppercase;
+    background: #27ae60;
+    border-radius: 0 3px 3px 0;
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+    line-height: 1px;
+}
+
+.form-wrapper button:hover{
+    background: #2ecc71;
+}
+
+.form-wrapper button:active,
+.form-wrapper button:focus{
+    background: #c42f2f;
+    outline: 0;
+}
+
+.form-wrapper button:before { /* left arrow */
+    content: '';
+    position: absolute;
+    border-width: 8px 8px 8px 0;
+    border-style: solid solid solid none;
+    border-color: transparent #27ae60 transparent;
+    top: 8px;
+    left: -6px;
+}
+
+.form-wrapper button:hover:before{
+    border-right-color: #2ecc71;
+}
+
+.form-wrapper button:focus:before,
+.form-wrapper button:active:before{
+    border-right-color: #c42f2f;
+}
+
+.form-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+    border: 0;
+    padding: 0;
+}
+/*End add exam panel*/

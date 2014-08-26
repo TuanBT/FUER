@@ -1,0 +1,210 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <title><%= title %></title>
+    <script src="../javascripts/jquery-2.1.1.min.js"></script>
+    <script src="../javascripts/jsonpath-0.8.0.js"></script>
+    <script src="../javascripts/firebase.js"></script>
+    <script src="../javascripts/pace.min.js"></script>
+    <script src="../javascripts/adminFunction.js" type="text/javascript"></script>
+    <link href="../stylesheets/StyleAdmin.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<h1>Admin</h1>
+<nav id="nav-bar" class="fixed-menu">
+    <div class="container">
+        <a href="/" title="FU Exam Reminder">
+            <div class="left-nav">
+                <img src="../images/logoFUER_100.png" width="35" height="35">
+                <span id="counter-small" class="badge odometer-theme-minimal" style="margin-left: -15px">000</span>
+                <span style="vertical-align: text-top;font-size: 18px;font-weight: 300;">FU Exam Reminder</span>
+            </div>
+        </a>
+
+        <div id="nbLogin">
+            <% if(global.USERNAME == ""){ %>
+            <!--<div class="nbLoginBtn">Đăng nhập</div>-->
+            <div id="nbLoginName"><span>Phải đăng nhập để sử dụng chức năng này</span></div>
+            <% }else{ %>
+            <div id="nbLoginName"><span>Xin chào: </span><span class="loginName"><%= global.USERNAME %></span></div>
+            <% } %>
+        </div>
+    </div>
+</nav>
+
+<%
+if(global.USERNAME != ""){
+%>
+<% if(global.ROLE == "Mod" || global.ROLE == "Admin"){ %>
+<% if(global.ROLE == "Admin"){ %>
+<div id="left">
+    <div id="mailInfoPanel">
+        <div id="DateExam">
+            <div class="title">
+                Ngày thi
+            </div>
+            <div class="write">
+                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 32 32" height="32px" id="Layer_1"
+                     version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"><path
+                            d="M29.395,2.58C27.75,0.937,25.584,0,23.449,0c-1.801,0-3.459,0.668-4.67,1.877l-4.867,4.904  c-0.015,0.014-0.032,0.023-0.047,0.038c-0.008,0.008-0.013,0.019-0.021,0.026l0.002,0.002L3.517,17.256  c-0.476,0.473-0.821,1.062-1.013,1.705l-2.349,8.508C0.153,27.492,0,28.16,0,28.5C0,30.432,1.569,32,3.504,32  c0.385,0,1.13-0.184,1.157-0.188l8.478-2.229c0.644-0.191,1.229-0.539,1.705-1.016l15.263-15.383  C32.883,10.406,32.57,5.75,29.395,2.58z M16.014,23.795c-0.082-0.902-0.337-1.787-0.719-2.627l9.455-9.454  c0.578,1.826,0.281,3.736-0.986,5.004c-0.008,0.008-0.018,0.013-0.025,0.021l0.014,0.013l-7.728,7.79  C16.025,24.293,16.037,24.049,16.014,23.795z M14.793,20.256c-0.373-0.613-0.797-1.205-1.322-1.729  c-0.611-0.611-1.312-1.09-2.044-1.492l9.532-9.532c0.748,0.332,1.465,0.805,2.098,1.438c0.541,0.539,0.959,1.143,1.281,1.771  L14.793,20.256z M10.486,16.562c-0.926-0.373-1.896-0.586-2.868-0.599l7.703-7.762c1.179-1.15,2.896-1.481,4.587-1.062  L10.486,16.562z M4.167,29.873C4.058,29.898,3.719,29.984,3.489,30C2.667,29.99,2,29.322,2,28.5  c0.012-0.168,0.079-0.457,0.102-0.562l1.053-3.814c1.143-0.031,2.373,0.414,3.34,1.383c0.982,0.98,1.444,2.234,1.394,3.391  L4.167,29.873z M8.874,28.637c-0.024-1.342-0.57-2.738-1.672-3.838C6.16,23.756,4.796,23.154,3.436,23.1l0.996-3.607  c0.072-0.24,0.215-0.477,0.391-0.684c2.006-1.436,5.091-1.012,7.234,1.133c2.267,2.266,2.617,5.586,0.871,7.568  c-0.116,0.061-0.233,0.119-0.359,0.156L8.874,28.637z M28.691,11.772l-1.684,1.697c0-0.226,0.027-0.443,0.006-0.674  c-0.176-1.935-1.078-3.806-2.543-5.269c-1.629-1.63-3.789-2.565-5.928-2.571l1.656-1.67C21.027,2.458,22.184,2,23.449,2  c1.609,0,3.262,0.728,4.533,1.995c1.193,1.191,1.904,2.671,2.006,4.168C30.082,9.56,29.621,10.841,28.691,11.772z"
+                            fill="#000000" id="pen"/></svg>
+                <span id="WdateExam"></span>
+            </div>
+            <div class="speak">
+                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 32 32" height="32px" id="Layer_1"
+                     version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"><g id="bubble">
+                        <path clip-rule="evenodd"
+                              d="M16,7c-5.963,0-11,3.206-11,7c0,0.276,0.224,0.5,0.5,0.5   S6,14.276,6,14c0-3.196,4.673-6,10-6c0.275,0,0.5-0.224,0.5-0.5S16.276,7,16,7z"
+                              fill="#000000" fill-rule="evenodd"/>
+                        <path clip-rule="evenodd"
+                              d="M16,2C7.163,2,0,7.373,0,14c0,4.127,2.779,7.766,7.008,9.926   C7.008,23.953,7,23.971,7,24c0,1.793-1.339,3.723-1.928,4.736c0.001,0,0.002,0,0.002,0C5.027,28.846,5,28.967,5,29.094   C5,29.594,5.405,30,5.906,30C6,30,6.165,29.975,6.161,29.986c3.125-0.512,6.069-3.383,6.753-4.215C13.913,25.918,14.943,26,16,26   c8.835,0,16-5.373,16-12C32,7.373,24.836,2,16,2z M16,24c-0.917,0-1.858-0.07-2.796-0.207c-0.097-0.016-0.194-0.021-0.29-0.021   c-0.594,0-1.163,0.264-1.546,0.73c-0.428,0.521-1.646,1.684-3.085,2.539c0.39-0.895,0.695-1.898,0.716-2.932   c0.006-0.064,0.009-0.129,0.009-0.184c0-0.752-0.421-1.439-1.09-1.781C4.212,20.252,2,17.207,2,14C2,8.486,8.28,4,16,4   c7.718,0,14,4.486,14,10C30,19.514,23.719,24,16,24z"
+                              fill="#000000" fill-rule="evenodd"/>
+                    </g></svg>
+                <span id="SdateExam"></span>
+            </div>
+        </div>
+        <div id="sentEmail">
+            <div class="title">
+                Gửi mail
+            </div>
+            <div class="write">
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="mailTrue" name="check1"
+                           onclick="changeStatus('mail',true)"/>
+                    <label for="mailTrue"></label>
+                </div>
+            </div>
+            <div class="speak">
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="mailFalse" name="check3"
+                           onclick="changeStatus('mail',false)"/>
+                    <label for="mailFalse"></label>
+                </div>
+            </div>
+        </div>
+        <div id="addInfo">
+            <div class="title">
+                Thông tin
+            </div>
+            <div class="write">
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="infoTrue" name="check2"
+                           onclick="changeStatus('infoExams',true)"/>
+                    <label for="infoTrue"></label>
+                </div>
+
+            </div>
+            <div class="speak">
+                <div class="slideThree">
+                    <input type="checkbox" value="None" id="infoFalse" name="check4"
+                           onclick="changeStatus('infoExams',false)"/>
+                    <label for="infoFalse"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="statisticsPanel">
+        <div class="staTitle">Thống kê</div>
+        <div class="staType" id="staConnect">
+            <span class="staText">Số truy cập:</span>
+            <span onclick="resetStatistics('Connect')"><svg xmlns="http://www.w3.org/2000/svg" height="32px"
+                                                            id="Layer_1" style="enable-background:new 0 0 32 32;"
+                                                            version="1.1" viewBox="0 0 32 32" width="32px"
+                                                            xml:space="preserve"><path
+                            d="M28,16c-1.219,0-1.797,0.859-2,1.766C25.269,21.03,22.167,26,16,26c-5.523,0-10-4.478-10-10S10.477,6,16,6  c2.24,0,4.295,0.753,5.96,2H20c-1.104,0-2,0.896-2,2s0.896,2,2,2h6c1.104,0,2-0.896,2-2V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v0.518  C21.733,2.932,18.977,2,16,2C8.268,2,2,8.268,2,16s6.268,14,14,14c9.979,0,14-9.5,14-11.875C30,16.672,28.938,16,28,16z"/></svg></span>
+            <span class="staContent" id="connectCount"></span>
+        </div>
+        <div class="staType" id="staMail">
+            <span class="staText">Mail đã gửi:</span>
+            <span onclick="resetStatistics('Mail')"><svg xmlns="http://www.w3.org/2000/svg" height="32px" id="Layer_1"
+                                                         style="enable-background:new 0 0 32 32;" version="1.1"
+                                                         viewBox="0 0 32 32" width="32px" xml:space="preserve"><path
+                            d="M28,16c-1.219,0-1.797,0.859-2,1.766C25.269,21.03,22.167,26,16,26c-5.523,0-10-4.478-10-10S10.477,6,16,6  c2.24,0,4.295,0.753,5.96,2H20c-1.104,0-2,0.896-2,2s0.896,2,2,2h6c1.104,0,2-0.896,2-2V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v0.518  C21.733,2.932,18.977,2,16,2C8.268,2,2,8.268,2,16s6.268,14,14,14c9.979,0,14-9.5,14-11.875C30,16.672,28.938,16,28,16z"/></svg></span>
+            <span class="staContent" id="mailCount"></span>
+        </div>
+    </div>
+    <div id="examManagerPanel">
+        <div class="emTitle">Quản lý Exams</div>
+        <div id="listExamManager">
+            <!--<div class="examDate">
+                <span class="emDate">23/08/2014</span>
+                <span onclick="deleteExams('23/08/2014')"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" id="Layer_1" version="1.1" viewBox="0 0 24 24" width="24px" xml:space="preserve"><path d="M22.245,4.015c0.313,0.313,0.313,0.826,0,1.139l-6.276,6.27c-0.313,0.312-0.313,0.826,0,1.14l6.273,6.272  c0.313,0.313,0.313,0.826,0,1.14l-2.285,2.277c-0.314,0.312-0.828,0.312-1.142,0l-6.271-6.271c-0.313-0.313-0.828-0.313-1.141,0  l-6.276,6.267c-0.313,0.313-0.828,0.313-1.141,0l-2.282-2.28c-0.313-0.313-0.313-0.826,0-1.14l6.278-6.269  c0.313-0.312,0.313-0.826,0-1.14L1.709,5.147c-0.314-0.313-0.314-0.827,0-1.14l2.284-2.278C4.308,1.417,4.821,1.417,5.135,1.73  L11.405,8c0.314,0.314,0.828,0.314,1.141,0.001l6.276-6.267c0.312-0.312,0.826-0.312,1.141,0L22.245,4.015z"/></svg></span>
+                <div class="emDetail">
+                    <div class="emWri">
+                        <div class="emDeTitle">Thi viết</div>
+                     <div>Số môn: 13</div>
+                        <div>Số sinh viên: 15</div>
+                    </div>
+                    <div class="emSpe">
+                        <div class="emDeTitle">Thi nói</div>
+                        <div>Số môn: 13</div>
+                        <div>Số sinh viên: 15</div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <div id="addExamPanel">
+        <div class="aeTitle">
+            <span>Thêm lịch thi từ link Excel</span>
+            <img class="aeLoading" src="../images/loading.gif"/>
+        </div>
+        <div id="searchForm" class="form-wrapper cf">
+            <input id="aeTxt" type="text" title="Lịch thi .xls..." placeholder="Lịch thi .xls..." value="" required>
+            <button id="SearchBtn" type="submit" title="Ấn để thêm lịch thi" onclick="addExam()">Add</button>
+        </div>
+        <div id="aeEqual"></div>
+    </div>
+</div>
+<% } %>
+<div id="posSenPanel">
+    <div id="position">
+        <!--<div class="btn">A1</div>-->
+    </div>
+    <div id="posList">
+        <!--<div class="btn">0</div>-->
+    </div>
+    <div id="editBox">
+        <div class="text" id="readEditBox"></div>
+        <textarea class="text" id="writeEditBox" onkeypress="enterTextarea()"></textarea>
+
+        <div id="shareBox">
+            <input class="share" type="text" id="writeShareName"/>
+
+            <div class="share" id="readShareName">A1</div>
+            <div class="shareTitle">-Chia sẻ bởi&nbsp</div>
+        </div>
+        <div id="buttonFunction">
+            <div class="btn" id="addPosList" onclick="addPos()">
+                Add
+            </div>
+            <div class="btn" id="updatePosList" onclick="updatePos()">
+                Update
+            </div>
+            <div class="btn" id="deletePosList" onclick="deletePos()">
+                Delete
+            </div>
+            <div class="btn" id="savePosList" onclick="savePos()">
+                Save
+            </div>
+        </div>
+    </div>
+    <img src="../images/posMap.png" style="width: 145px;margin-top: 79px;margin-left: 129px;">
+</div>
+<div id="logsPanel">
+    <% if(global.ROLE == "Admin"){ %>
+    <div id="lgbtnReset" onclick="resetLogs()">
+        Reset
+    </div>
+    <% } %>
+    <textarea cols="30" rows="25" id="logsText">
+    </textarea>
+</div>
+<% } %>
+<% } %>
+</body>
+
+</html>
