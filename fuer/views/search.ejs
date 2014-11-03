@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <title><%=title%></title>
+    <title><%= title %></title>
     <script src="../javascripts/jquery-2.1.1.min.js"></script>
     <script src="../javascripts/jsonpath-0.8.0.js"></script>
     <script src="../javascripts/firebase.js"></script>
@@ -10,9 +10,17 @@
     <script src="../javascripts/dbTest.js"></script>
     <script src="../javascripts/searchFunction.js"></script>
     <link rel="stylesheet" type="text/css" href="../stylesheets/StyleSearch.css"/>
+    <link href="../fontello/css/fontello.css" rel="stylesheet"/>
 </head>
 <body>
-
+<div id="fb-root"></div>
+<!--<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>-->
 <!--heder-->
 <nav id="nav-bar" class="fixed-menu">
     <div class="container">
@@ -39,12 +47,12 @@
 </nav>
 <!--end header-->
 
-
+<!--<div class="fb-share-button" data-href="http://fuer.herokuapp.com/search?SB60441"></div>-->
 <div id="body" style="text-align: center">
 <!--exam date-->
 <div id="examDate">
     <div class="title">
-        <span>Lịch thi</span>
+        <span><i class="icon-calendar"></i>Lịch thi</span>
     </div>
     <div class="list">
         <ul id="examDateShow">
@@ -52,86 +60,84 @@
         </ul>
     </div>
     <!--Exam Date Info-->
-        <div id="dateInfo">
-            <div class="exam" id="examWritingInfo" style="display: none">
-                <img src="../images/imgSearch/pen.svg"/>
-
-                <div class="titleInfo">
-                    Thi viết
-                </div>
-                <div class="number">
-                    <span class="titleNum">Số môn: </span>
-                    <span class="contenNum" id="wriTotNumSub"></span>
-                </div>
-                <div class="number">
-                    <span class="titleNum">Số sinh viên: </span>
-                    <span class="contenNum" id="wriTotNumStu"></span>
-                </div>
+    <div id="dateInfo">
+        <div class="exam" id="examWritingInfo" style="display: none">
+            <i class='icon-pencil'></i>
+            <div class="titleInfo">
+                Thi viết
             </div>
-            <div class="exam" id="examSpeakingInfo" style="display: none">
-                <img src="../images/imgSearch/bubble.svg"/>
-
-                <div class="titleInfo">
-                    Thi nói
-                </div>
-                <div class="number">
-                    <span class="titleNum">Số môn: </span>
-                    <span class="contenNum" id="speTotNumSub"></span>
-                </div>
-                <div class="number">
-                    <span class="titleNum">Số sinh viên: </span>
-                    <span class="contenNum" id="speTotNumStu"></span>
-                </div>
+            <div class="number">
+                <span class="titleNum">Số môn: </span>
+                <span class="contenNum" id="wriTotNumSub"></span>
+            </div>
+            <div class="number">
+                <span class="titleNum">Số sinh viên: </span>
+                <span class="contenNum" id="wriTotNumStu"></span>
             </div>
         </div>
-        <!--End Exam Date Info-->
+        <div class="exam" id="examSpeakingInfo" style="display: none">
+            <i class='icon-comment'></i>
+            <div class="titleInfo">
+                Thi nói
+            </div>
+            <div class="number">
+                <span class="titleNum">Số môn: </span>
+                <span class="contenNum" id="speTotNumSub"></span>
+            </div>
+            <div class="number">
+                <span class="titleNum">Số sinh viên: </span>
+                <span class="contenNum" id="speTotNumStu"></span>
+            </div>
+        </div>
+    </div>
+    <!--End Exam Date Info-->
 </div>
 <!--end exam date-->
 
 <!--info-->
 <div style="float: left; margin: 0 auto;  width: 400px;  border: 1px solid #ecf0f1;border-right: 0px;border-top: 0px; font-family: 'Segoe UI';  font-weight: 100;min-height: 542px;min-height: 610px;">
-    <div style="padding-top:8px;min-height:40px;font-family:'Segoe UI Light','Segoe UI';font-weight:100;text-align:center;background-color:rgb(40,70,110);font-size:24.5px">
-                <span style="color:#ecf0f1;display:block;margin-bottom:5px">THÔNG TIN KÌ THI NGÀY
+    <div style="padding-top:8px;min-height:40px;font-family:'Segoe UI Light','Segoe UI';font-weight:100;text-align:center;background-color:rgb(40,70,110);font-size:23px">
+                <span class="infoTitle" style="color:#ecf0f1;margin-bottom:5px">THÔNG TIN KÌ THI NGÀY
                     <span class="dates">-</span>
                 </span>
     </div>
-
-    <div id="memory" title="Ghi nhớ" onclick="saveMemory()">
-        <?xml version="1.0" ?>
-        <svg enable-background="new 0 0 141.732 141.732" height="141.732px" version="1.1" fill="#000" viewBox="0 0 141.732 141.732" width="141.732px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Livello_42"><polygon points="41.161,0 41.161,140.779 41.369,140.779 70.865,113.964 100.363,140.779 100.571,140.779 100.571,0  "/></g><g id="Livello_1_1_"/></svg>
-        <div class="title">s a v e</div>
-    </div>
-    <div id="ListSubjectName">
-        <!--<button class='subject' type="submit"><div style="width: 35px;height: 17px;float: left;">CJ</div><img src="../images/imgSearch/pen.svg"/></button>-->
-    </div>
-    <div style="display:block;float:left;width:400px;margin-top: -15px;">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve" style="float: left;  margin: 22px 15px 15px 15px;width: 100px;  height: 100px;"><g>
-	<path d="M258.744,293.214c70.895,0,128.365-57.472,128.365-128.366c0-70.896-57.473-128.367-128.365-128.367   c-70.896,0-128.368,57.472-128.368,128.367C130.377,235.742,187.848,293.214,258.744,293.214z"></path>
-	<path d="M371.533,322.432H140.467c-77.577,0-140.466,62.909-140.466,140.487v12.601h512v-12.601   C512,385.341,449.112,322.432,371.533,322.432z"></path></g></svg>
-        <ul style="float:left;list-style:none;margin-left: -40px;text-align: left">
-            <li style="font-size:1.4em" class="studentName"></li>
-            <li style="font-size:1.2em" class="birthdate"></li>
-            <li style="font-size:1.2em" class="studentId"></li>
-            <li>Lớp <span class="studentClass"></span></li>
-        </ul>
-    </div>
-    <div style="float:right;margin-top: -15px;min-width: 400px;">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve" style="float: right;  margin: 20px 15px 0px 0px;width: 100px;  height: 100px;">
-<path d="M64,80V16c0-8.844,7.156-16,16-16s16,7.156,16,16v64c0,8.844-7.156,16-16,16S64,88.844,64,80z M336,96  c8.844,0,16-7.156,16-16V16c0-8.844-7.156-16-16-16s-16,7.156-16,16v64C320,88.844,327.156,96,336,96z M512,384  c0,70.688-57.313,128-128,128s-128-57.313-128-128s57.313-128,128-128S512,313.313,512,384z M480,384c0-52.938-43.063-96-96-96  s-96,43.063-96,96s43.063,96,96,96S480,436.938,480,384z M128,192H64v64h64V192z M64,352h64v-64H64V352z M160,256h64v-64h-64V256z   M160,352h64v-64h-64V352z M32,380.813V160h352v64h32V99.188C416,79.75,400.5,64,381.344,64H368v16c0,17.625-14.344,32-32,32  s-32-14.375-32-32V64H112v16c0,17.625-14.344,32-32,32S48,97.625,48,80V64H34.672C15.516,64,0,79.75,0,99.188v281.625  C0,400.188,15.516,416,34.672,416H224v-32H34.672C33.219,384,32,382.5,32,380.813z M320,256v-64h-64v64H320z M432,384h-48v-48  c0-8.844-7.156-16-16-16s-16,7.156-16,16v64c0,8.844,7.156,16,16,16h64c8.844,0,16-7.156,16-16S440.844,384,432,384z"></path></svg>
-        <ul style="float:right;list-style:none;margin-right:10px;text-align: right">
-            <li style="font-size:1.3em">Phòng <span class="room" style="color: #c0392b;font-weight: bold;"></span>&nbsp;|&nbsp;<span class="position" style="color: #e74c3c;  font-weight: bold;"></span></li>
-            <li style="font-size:1.3em;color: #8e44ad;font-weight: bold;" class="time"></li>
-            <li style="font-size:1.2em">Môn <span class="subjectName"></span></li>
-            <li style="font-size:1.1em"><span class="examTimes"></span></li>
-            <!--<li style="font-size:1.1em">Vị trí <span class="position"></span></li>-->
-        </ul>
-    </div>
-    <div style="float:left;padding: 0px 20px 0px 20px;">
-        <div style="text-align: justify">
-            <img src="../images/imgSearch/quote.svg" width="30px" height="30px"
-                 style="margin-left: -16px;margin-top: -23px;float: left;"/>
-            <span class="positionSentence" style="font-style:italic"></span>
-            <cite style="float:right;margin-top: 15px;">- Chia sẻ bởi <span class="posShare">-</span></cite>
+    <div class="infoBody">
+        <div id="memory" title="Ghi nhớ" onclick="saveMemory()">
+            <!--<i class="icon-star-dark"></i>-->
+            <!--<i class="icon-star-light"></i>-->
+        </div>
+        <div id="ListSubjectName">
+            <!--<button class='subject' type="submit"><div style="width: 35px;height: 17px;float: left;">CJ</div><img src="../images/imgSearch/pen.svg"/></button>-->
+        </div>
+        <div style="display:block;float:left;width:400px;margin-top: -15px;">
+            <i class="icon-user"
+               style="float: left;  margin: 22px 0px 15px 0px;  font-size: 100px;text-shadow: 1px 4px 6px #EEE, 0 0 0 #000, 1px 4px 6px #EEE;color: rgba(125, 139, 139, 0.8);"></i>
+            <ul style="float:left;list-style:none;margin-left: -40px;text-align: left">
+                <li style="font-size:1.3em" class="studentName"></li>
+                <li style="font-size:1.2em" class="birthdate"></li>
+                <li style="font-size:1.2em" class="studentId"></li>
+                <li>Lớp <span class="studentClass"></span></li>
+            </ul>
+        </div>
+        <div style="float:right;margin-top: -15px;min-width: 400px;">
+            <i class="icon-calendar"
+               style="float: right;  margin: 22px 0px 15px 0px;  font-size: 100px;text-shadow: 1px 4px 6px #EEE, 0 0 0 #000, 1px 4px 6px #EEE;color: rgba(125, 139, 139, 0.8);"></i>
+            <ul style="float:right;list-style:none;margin-right:10px;text-align: right">
+                <li style="font-size:1.3em">Phòng <span class="room" style="color: #c0392b;font-weight: bold;"></span>&nbsp;|&nbsp;<span
+                            class="position" style="color: #e74c3c;  font-weight: bold;"></span></li>
+                <li style="font-size:1.3em;color: #8e44ad;font-weight: bold;" class="time"></li>
+                <li style="font-size:1.2em">Môn <span class="subjectName"></span></li>
+                <li style="font-size:1.1em"><span class="examTimes"></span></li>
+                <!--<li style="font-size:1.1em">Vị trí <span class="position"></span></li>-->
+            </ul>
+        </div>
+        <div style="float:left;padding: 0px 20px 0px 20px;">
+            <div style="text-align: justify">
+                <img src="../images/imgSearch/quote.svg" width="30px" height="30px"
+                     style="margin-left: -16px;margin-top: -23px;float: left;"/>
+                <span class="positionSentence" style="font-style:italic"></span>
+                <cite style="float:right;margin-top: 15px;">- Chia sẻ bởi <span class="posShare">-</span> -</cite>
+            </div>
         </div>
     </div>
 </div>
@@ -139,196 +145,254 @@
 
 <!--position-->
 <div style="float: left;min-height: 200px;width: 440px;border: 1px solid #ecf0f1;border-left: 0px;border-top: 0px;min-height: 610px;">
-    <div style="padding-top:8px;min-height:40px;font-family:'Segoe UI Light','Segoe UI';font-weight:100;text-align:center;background-color:rgb(40,70,110);font-size:24.5px">
-                <span style="color:#ecf0f1;display:block;margin-bottom:5px">
+<div style="padding-top:8px;min-height:40px;font-family:'Segoe UI Light','Segoe UI';font-weight:100;text-align:center;background-color:rgb(40,70,110);font-size:24.5px">
+                <span class="infoTitle" style="color:#ecf0f1;margin-bottom:5px">
                     <span class="subjectName"></span>
                     -
                     <span class="examTimes"></span>
                     -
                     <span class="examType"></span>
                 </span>
+</div>
+<div class="infoBody">
+<!--logo-->
+<div title="FU Exam Reminder" style="width: 350px;margin: 0 auto;height: 50px;margin-top: 6px;margin-bottom: 6px;">
+    <div style="width: 50px;height: 50;float: left;">
+        <svg id="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"
+             style="   fill: #FF5800; ">
+            <path class="fil0"
+                  d="M381 495l126 0 254 -126 -380 0 0 126zm0 252l254 -126 -254 0 0 126zm380 126l-508 0 0 -631 -254 126 0 631 508 0 254 -126z"></path>
+            <path class="fil0"
+                  d="M628 228c20,1 40,6 58,14l45 0 30 0 0 28 0 40c5,9 9,19 12,29 4,13 6,27 7,41 22,0 44,0 66,0 1,-46 -11,-93 -38,-130 -40,-58 -109,-93 -180,-92 0,23 0,47 0,70z"></path>
+            <path class="fil0"
+                  d="M618 77c97,0 193,50 249,130 37,53 57,118 56,183 25,0 51,0 76,0 1,-61 -12,-123 -40,-177 -36,-70 -92,-130 -162,-167 -55,-29 -117,-44 -179,-45 0,25 0,51 0,76z"></path>
+        </svg>
     </div>
-    <!--logo-->
-    <div title="FU Exam Reminder" style="width: 300px;margin: 0 auto;height: 50px;">
-        <div style="width: 50px;height: 50;float: left;">
-            <svg id="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" style="   fill: #FF5800; ">
-                <path class="fil0"
-                      d="M381 495l126 0 254 -126 -380 0 0 126zm0 252l254 -126 -254 0 0 126zm380 126l-508 0 0 -631 -254 126 0 631 508 0 254 -126z"></path>
-                <path class="fil0"
-                      d="M628 228c20,1 40,6 58,14l45 0 30 0 0 28 0 40c5,9 9,19 12,29 4,13 6,27 7,41 22,0 44,0 66,0 1,-46 -11,-93 -38,-130 -40,-58 -109,-93 -180,-92 0,23 0,47 0,70z"></path>
-                <path class="fil0"
-                      d="M618 77c97,0 193,50 249,130 37,53 57,118 56,183 25,0 51,0 76,0 1,-61 -12,-123 -40,-177 -36,-70 -92,-130 -162,-167 -55,-29 -117,-44 -179,-45 0,25 0,51 0,76z"></path>
-            </svg>
-        </div>
-        <div title="Cóc Dám Code" style="width: 50;height: 50;float: right;">
-            <img src="../images/cdc-logo.png" width="50" height="50" style="margin-bottom: 10px">
-        </div>
+    <div style="float: left;width: 250px;height: 50px;line-height: 50px;font-family: cursive;font-size: 19px;color: #8e44ad;">
+        http://fuer.herokuapp.com
     </div>
-    <!--end logo-->
-    <div id="positionPanel" style="padding: 0px; width: 440px; margin-top: 7px; float: left; font-family: 'Segoe UI'">
-        <div style="width: 440px; min-height: 100px;">
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">A6</span>
-                    <span id="subIdA6" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameA6" style="color: #2c3e50;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">A2</span>
-                    <span id="subIdA2" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameA2" style="color: #2c3e50;"></span>
-                </div>
+    <div title="Cóc Dám Code" style="width: 50;height: 50;float: right;">
+        <img src="../images/cdc-logo.png" width="50" height="50" style="margin-bottom: 10px">
+    </div>
+</div>
+<!--end logo-->
+<div id="positionPanel" style="display: none; padding: 0px; width: 440px; float: left; font-family: 'Segoe UI'">
+    <div style="width: 440px; min-height: 100px;">
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('A6')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">A6</span>
+                <span id="subIdA6" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameA6" style="color: #2c3e50;"></span>
             </div>
-            <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">A</div>
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">A1</span>
-                    <span id="subIdA1" style="color: #ecf0f1;"></span>
-                    <br/>
-                    <span id="nameA1" style="color: #ecf0f1;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">A5</span>
-                    <span id="subIdA5" style="color: #ecf0f1;"></span>
-                    <br/>
-                    <span id="nameA5" style="color: #ecf0f1;"></span>
-                </div>
+            <div class="posPos" onclick="searchPosClick('A2')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">A2</span>
+                <span id="subIdA2" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameA2" style="color: #2c3e50;"></span>
             </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">A4</div>
         </div>
-        <div style="width: 440px; min-height: 100px;">
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">B6</span>
-                    <span id="subIdB6" style="color: #ecf0f1;"></span>
-                    <br/>
-                    <span id="nameB6" style="color: #ecf0f1;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">B2</span>
-                    <span id="subIdB2" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameB2" style="color: #2c3e50;"></span>
-                </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">A</div>
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('A1')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">A1</span>
+                <span id="subIdA1" style="color: #ecf0f1;"></span>
+                <br/>
+                <span id="nameA1" style="color: #ecf0f1;"></span>
             </div>
-            <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">B</div>
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">B1</span>
-                    <span id="subIdB1" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameB1" style="color: #2c3e50;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">B5</span>
-                    <span id="subIdB5" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameB5" style="color: #2c3e50;"></span>
-                </div>
+            <div class="posPos" onclick="searchPosClick('A5')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">A5</span>
+                <span id="subIdA5" style="color: #ecf0f1;"></span>
+                <br/>
+                <span id="nameA5" style="color: #ecf0f1;"></span>
             </div>
-        </div>
-        <div style="width: 440px; min-height: 100px;">
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">C6</span>
-                    <span id="subIdC6" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameC6" style="color: #2c3e50;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">C2</span>
-                    <span id="subIdC2" style="color: #c0392b;"></span>
-                    <br/>
-                    <span id="nameC2" style="color: #c0392b;"></span>
-                </div>
-            </div>
-            <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">C</div>
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">C1</span>
-                    <span id="subIdC1" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameC1" style="color: #2c3e50;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">C5</span>
-                    <span id="subIdC5" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameC5" style="color: #2c3e50;"></span>
-                </div>
-            </div>
-        </div>
-        <div style="width: 440px; min-height: 100px;">
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">D6</span>
-                    <span id="subIdD6" style="color: #ecf0f1;"></span>
-                    <br/>
-                    <span id="nameD6" style="color: #ecf0f1;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">D2</span>
-                    <span id="subIdD2" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameD2" style="color: #2c3e50;"></span>
-                </div>
-            </div>
-            <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">D</div>
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">D1</span>
-                    <span id="subIdD1" style="color: #ecf0f1;"></span>
-                    <br/>
-                    <span id="nameD1" style="color: #ecf0f1;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">D5</span>
-                    <span id="subIdD5" style="color: #ecf0f1;"></span>
-                    <br/>
-                    <span id="nameD5" style="color: #ecf0f1;"></span>
-                </div>
-            </div>
-        </div>
-        <div style="width: 440px; min-height: 100px;">
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">E6</span>
-                    <span id="subIdE6" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameE6" style="color: #2c3e50;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">E2</span>
-                    <span id="subIdE2" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameE2" style="color: #2c3e50;"></span>
-                </div>
-            </div>
-            <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">E</div>
-            <div style="background: #95a5a6; border-radius: 0px; width: 200px; color: white; font-weight: bold; float: left; min-height: 80px;">
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: left;">
-                    <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">E1</span>
-                    <span id="subIdE1" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameE1" style="color: #2c3e50;"></span>
-                </div>
-                <div style="padding: 5px; width: 85px; text-align: center; font-size: 10px; float: right;">
-                    <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">E5</span>
-                    <span id="subIdE5" style="color: #2c3e50;"></span>
-                    <br/>
-                    <span id="nameE5" style="color: #2c3e50;"></span>
-                </div>
-            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">A3</div>
         </div>
     </div>
+    <div style="width: 440px; min-height: 100px;">
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('B6')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">B6</span>
+                <span id="subIdB6" style="color: #ecf0f1;"></span>
+                <br/>
+                <span id="nameB6" style="color: #ecf0f1;"></span>
+            </div>
+            <div class="posPos" onclick="searchPosClick('B2')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">B2</span>
+                <span id="subIdB2" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameB2" style="color: #2c3e50;"></span>
+            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">B4</div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">B</div>
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('B1')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">B1</span>
+                <span id="subIdB1" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameB1" style="color: #2c3e50;"></span>
+            </div>
+            <div class="posPos" onclick="searchPosClick('B5')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">B5</span>
+                <span id="subIdB5" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameB5" style="color: #2c3e50;"></span>
+            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">B3</div>
+        </div>
+    </div>
+    <div style="width: 440px; min-height: 100px;">
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('C6')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">C6</span>
+                <span id="subIdC6" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameC6" style="color: #2c3e50;"></span>
+            </div>
+            <div class="posPos" onclick="searchPosClick('C2')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">C2</span>
+                <span id="subIdC2" style="color: #c0392b;"></span>
+                <br/>
+                <span id="nameC2" style="color: #c0392b;"></span>
+            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">C4</div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">C</div>
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('C1')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">C1</span>
+                <span id="subIdC1" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameC1" style="color: #2c3e50;"></span>
+            </div>
+            <div class="posPos" onclick="searchPosClick('C5')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">C5</span>
+                <span id="subIdC5" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameC5" style="color: #2c3e50;"></span>
+            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">C3</div>
+        </div>
+    </div>
+    <div style="width: 440px; min-height: 100px;">
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('D6')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">D6</span>
+                <span id="subIdD6" style="color: #ecf0f1;"></span>
+                <br/>
+                <span id="nameD6" style="color: #ecf0f1;"></span>
+            </div>
+            <div class="posPos" onclick="searchPosClick('D2')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">D2</span>
+                <span id="subIdD2" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameD2" style="color: #2c3e50;"></span>
+            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">D4</div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">D</div>
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('D1')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">D1</span>
+                <span id="subIdD1" style="color: #ecf0f1;"></span>
+                <br/>
+                <span id="nameD1" style="color: #ecf0f1;"></span>
+            </div>
+            <div class="posPos" onclick="searchPosClick('D5')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">D5</span>
+                <span id="subIdD5" style="color: #ecf0f1;"></span>
+                <br/>
+                <span id="nameD5" style="color: #ecf0f1;"></span>
+            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">D3</div>
+        </div>
+    </div>
+    <div style="width: 440px; min-height: 100px;">
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('E6')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">E6</span>
+                <span id="subIdE6" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameE6" style="color: #2c3e50;"></span>
+            </div>
+            <div class="posPos" onclick="searchPosClick('E2')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">E2</span>
+                <span id="subIdE2" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameE2" style="color: #2c3e50;"></span>
+            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">E4</div>
+        </div>
+        <div style="margin-top: 20px;font-size: 30px; float: left;height: 60px;width: 40px;">E</div>
+        <div class="posTable"
+             style="background: #95a5a6; border-radius: 0px; width: 200px; font-weight: bold; float: left; min-height: 80px;">
+            <div class="posPos" onclick="searchPosClick('E1')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: left; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: left;">E1</span>
+                <span id="subIdE1" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameE1" style="color: #2c3e50;"></span>
+            </div>
+            <div class="posPos" onclick="searchPosClick('E5')"
+                 style="padding: 5px; width: 90px; height: 70px; text-align: center; font-size: 10px; float: left;">
+                <span style="width: 100px; text-align: right; color: yellow; font-size: 1.3em; font-weight: bold; margin-bottom: 5px; float: right;">E5</span>
+                <span id="subIdE5" style="color: #2c3e50;"></span>
+                <br/>
+                <span id="nameE5" style="color: #2c3e50;"></span>
+            </div>
+            <div style="float: left;margin-top: -76px;height: 10px;font-size: 14px;margin-left: 90px;color: yellow;">E3</div>
+        </div>
+    </div>
+</div>
+<div id="posListNumber" style="padding: 0px; width: 440px; float: left; font-family: 'Segoe UI'">
+        <ul id="listSpeaking">
+           <!-- <li>
+                <div class="plnNumber">
+                </div>
+                <div class="plnId">
+                </div>
+                <div class="plnName">
+                </div>
+            </li>-->
+        </ul>
+</div>
+</div>
 </div>
 <!--End position-->
 
 <!--storage-->
 <div id="storagePanel">
     <div class="title">
-        <span>Ghi nhớ</span>
+        <span><i class="icon-star"></i>Ghi nhớ</span>
     </div>
     <div id="listStorage">
         <div class="itemStorage" id="'+id+'">
@@ -374,63 +438,54 @@
 <!--end storage-->
 
 </div>
-
 <!--footer-->
-<div style="margin-top:0px; text-align: center;color: #999999;font: inherit;">
-
-    <div style="height: 200px;padding: 5px 0;background: #dddddd">
-        <div class="bottom-container" style="width: 1220px;margin: 0 auto;font: inherit;">
-            <div style="float: left;width: 340px;margin: 0 auto;">
-                <div style="width: 300px;margin: 0 auto;margin-top: 20px;margin-bottom: 20px;">
-                    <div>
-                        <img src="../images/fpt.png" style="" width="268">
-                    </div>
-                    <span>ĐH FPT, CVPM Quang Trung, Q.12, TPHCM          </span></div>
-                <div style="width: 100px; margin: 0 auto;">
-                    <div>
-                        <img src="../images/cdc-logo.png" height="50" style="margin-bottom: 10px">
-                    </div>
-                    <span>Cóc Dám Code    </span>
-                </div>
-            </div>
-            <div class="member" style="float:left;width: 200px; text-align: left; line-height: 17px;margin-top: -4px;">
-                <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold">Nhóm phát triển</h3>
-                <ul style="list-style-type: disc; line-height: 34px;">
-                    <li>TuânBT</li>
-                    <li>HòaNT</li>
-                    <li>TrangNTM</li>
-                    <li>TuấnNH</li>
-                </ul>
-            </div>
-            <div class="contact" style="float:left;width: 335px; text-align: left; font: inherit;margin-top: -8px;">
-                <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold">Liên hệ</h3>
-                <ul style="line-height: 44px;margin-left: -33px;font-family: sans-serif;">
-                    <li style="font-weight: bold;">Facebook: <span style="font-weight: normal;">www.facebook.com/CocDamCode</span>
-                    </li>
-                    <li style="font-weight: bold;">Email: <span style="font-weight: normal;">cocdamcode@gmail.com</span>
-                    </li>
-                    <li style="font-weight: bold;">Truyền thông:<span style="font-weight: normal;"> H6 TIÊN SINH</span>
-                        <img src="../images/H6.png"
-                             style="width: 50px;float: right;margin-right: 35px;margin-top: -1px;"></li>
-                </ul>
-            </div>
-            <div class="tech" style="float:left;width: 300px; text-align: left; margin-top: -10px;">
-                <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold;margin-left:30px">Powered by</h3>
-                <ul style="margin-left: -28px;">
-                    <li title=".NET" style="float:left;margin-left:30px">
-                        <img src="../images/dotnet.png"></li>
-                    <li title="nodejs" style="float:left">
-                        <img src="../images/nodeJS.png"></li>
-                    <li title="heroku" style="float:left">
-                        <img src="../images/heroku.png"></li>
-                    <li title="firebase" style="float:left; clear:right">
-                        <img src="../images/firebase.png"></li>
-                </ul>
-                <span style="font-style: italic;margin-top: 81px; float: left;margin-left: 72px;font: inherit; ">
-                    © FUER 2014. All Rights Reserved.
-                </span>
-            </div>
+<div style="height: 200px;background: #dddddd;text-align: center;  color: #999999;  font-family: sans-serif;  font-size: 14px;margin: 0 auto;">
+    <div class="bottom-container" style="width: 850px;margin: 0 auto;background: #dddddd; height: 200px;">
+        <div class="member" style="float:left;width: 220px; text-align: left; line-height: 25px;margin-top: 10px;">
+            <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold;margin-top: 0px;">Nhóm phát triển</h3>
+            <ul style="list-style-type: disc; line-height: 31px;margin-left: -5px;">
+                <li>Bùi Tiến Tuân</li>
+                <li>Nguyễn Thanh Hòa</li>
+                <li>Nguyễn Thị Minh Trang</li>
+                <li>Nguyễn Hoàng Tuấn</li>
+            </ul>
         </div>
+        <div class="contact" style="float:left;width: 330px; text-align: left; line-height: 25px;margin-top: 10px;">
+            <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold;margin-top: 0px;">Liên hệ</h3>
+            <ul style="line-height: 43px;margin-left: -20px;">
+                <li style="font-weight: bold;">Facebook:
+                    <span style="font-weight: normal;">www.facebook.com/CocDamCode</span>
+                </li>
+                <li style="font-weight: bold;">Email:
+                    <span style="font-weight: normal;">cocdamcode@gmail.com</span>
+                </li>
+                <li style="font-weight: bold;">Truyền thông:<span style="font-weight: normal;"> H6 TIÊN SINH
+                    </span><img src="../images/H6.png"
+                                style="width: 50px;float: right;margin-right: 69px;margin-top: -1px;">
+                </li>
+            </ul>
+        </div>
+        <div class="tech" style="float:left;width: 300px; text-align: left; line-height: 25px;margin-top: 10px;">
+            <h3 style="font-size: 20px; margin-bottom: 10px;font-weight: bold;margin-top: 0px;">Biểu tượng</h3>
+            <ul style="margin-left: -20px;">
+                <li title="Cóc Dám Code" style="float:left;margin-right: 20px;">
+                    <img src="../images/cdc-logo.png" height="50"></li>
+                <li title="nodejs" style="float:left;margin-right: 20px;">
+                    <img src="../images/nodeJS.png"></li>
+                <li title="heroku" style="float:left;margin-right: 20px;">
+                    <img src="../images/heroku.png"></li>
+                <li title="firebase" style="float:left; margin-right: 20px;">
+                    <img src="../images/firebase.png"></li>
+            </ul>
+            <ul style="height: 65px;margin-left: -20px;">
+                <img src="../images/fpt.png" style="
+    margin-top: 10px;
+" width="268">
+            </ul>
+        </div>
+        <span style="font-style: italic;margin-top: 58px; float: right;">
+                    © FUER v2 2014. All Rights Reserved.
+                </span>
     </div>
 </div>
 <!--end footer-->
@@ -440,7 +495,10 @@
     <div id="screen"></div>
     <div class="dialog">
         <div class="CancelDialog" title="Thôi. Để sau đi!">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFF" height="512px" id="Layer_1" style="height: 100%;width: 100%;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FFF" height="512px" id="Layer_1"
+                 style="height: 100%;width: 100%;" version="1.1" viewBox="0 0 512 512" width="512px"
+                 xml:space="preserve"><path
+                        d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"></path></svg>
         </div>
         <div class="body-dialog">
             <p>
@@ -462,7 +520,7 @@
                 </svg>
             </div>
             <div style="height: 20px;margin-top: -4px">
-                        <span style="font-family: &quot;Segoe UI Light&quot;;color: white;margin-bottom: 9px;font-size: 15px;">
+                        <span style="font-family: 'Segoe UI';color: white;margin-bottom: 9px;font-size: 15px;">
                             Đăng ký
                         </span></div>
         </div>

@@ -8,12 +8,12 @@ $(document).ready(function () {
     });
 
     $("#register-form").submit(function (e) {
-        $("#submit-button").attr('disabled', true);
+        //$("#submit-button").attr('disabled', true);
         e.preventDefault();
         var challengeField = $("input#recaptcha_challenge_field").val();
         var responseField = $("input#recaptcha_response_field").val();
         var canSubmit = true;
-        var emailRegex = new RegExp(/^([\w-\s]+)(@fpt.edu.vn)$/i);
+        var emailRegex = new RegExp(/^([\w-\s]+)(@fpt\.edu\.vn)$/i);
         //var regexStuId = new RegExp(/^(SE|SB|BA|FB|GC)?\d{5}$/i)
         var studentidField = document.getElementById("student-id");
         var emailField = document.getElementById("email");
@@ -64,9 +64,18 @@ $(document).ready(function () {
                     }
                 }
                 , function (data) {
+                    $('#regImg').hide();
+                    if (data.success) {
+                        $('#student-id').val("");
+                        $('#email').val("");
+                    }
                     $("#register-container").fadeOut('slow', function () {
-                        $("#register-container").html(data.html).fadeIn('slow');
+                        $('#outputContainer').html(data.html).fadeIn('slow');
+                        $('#returnBtn').show();
                     });
+                    /* $("#register-container").fadeOut('slow', function () {
+                     $("#register-container").html(data.html).fadeIn('slow');
+                     });*/
                 });
         } else {
             $("#submit-button").attr('disabled', false);
@@ -96,7 +105,18 @@ $(document).ready(function () {
     })
 });
 
+function returnLoginFrom() {
+    $('#outputContainer').hide();
+    $('#returnBtn').hide();
+    Recaptcha.reload();
+    $('#register-container').fadeIn();
+
+}
+
 function loginForm() {
+    $('#returnBtn').hide();
+    $('#outputContainer').hide();
+    Recaptcha.reload();
     if ($('#loginContainer').is(":visible")) {
         $('#loginContainer').hide();
         $('#register-container').fadeIn();
@@ -109,18 +129,109 @@ function loginForm() {
     }
 }
 
+
 var app = angular.module('app', ['ngAnimate']);
 
 function studentController($scope, $rootScope, $http, $timeout) {
 
     var fuinfoRef = new Firebase('https://fuerdb.firebaseio.com/FUInfo/Students');
-    var fuinfoSnap;
-    fuinfoRef.once('value', function (fuinfoSnaps) {
-        fuinfoSnap = fuinfoSnaps;
+    var fuinfoSnap = null;
+    var fuinfoSearchRef = new Firebase('https://fuerdb.firebaseio.com/FUInfo/Search');
+
+    fuinfoSearchRef.once('value', function (fuinfoSearchSnap) {
+        if (fuinfoSearchSnap.numChildren() > 0) {
+            fuinfoSearchSnap.forEach(function (infoSearchSnap) {
+                $('#typeSearchBox .left').html(infoSearchSnap.name().replaceAll('_', '/') + " - " + infoSearchSnap.numChildren());
+                fuinfoSnap = infoSearchSnap;
+            })
+        }
         $('#searchDiv').hide();
-        $('#searchInput').fadeIn();
+        $('#searchInput').show();
         $('#loadingImg').fadeOut();
-        $('#register-form').fadeIn();
+        $('#register-form').show();
+    })
+
+    function acceptSearch() {
+        $('#searchDiv').hide();
+        $('#searchInput').show();
+        $('#loadingImg').fadeOut();
+    }
+
+    var fuinfoSnapsTemp = null;
+    var fuinfoSearchSnapTemp = null;
+
+    //function changeTypeSearch() {
+    $scope.changeTypeSearch = function () {
+        $scope.list = [];
+        $("#searchInput").val("");
+        $('#searchInput').hide();
+        $('#loadingImg').show();
+        $('#searchDiv').show();
+        //true is max
+        if ($('#typeSearch').prop('checked')) {
+            if (fuinfoSnapsTemp == null) {
+                fuinfoRef.once('value', function (fuinfoSnaps) {
+                    fuinfoSnap = fuinfoSnaps;
+                    $('#typeSearchBox .right').html("All - " + fuinfoSnaps.numChildren());
+                    acceptSearch();
+                })
+            } else {
+                fuinfoSnap = fuinfoSnapsTemp;
+                acceptSearch();
+            }
+        }
+        //false is min
+        else {
+            if (fuinfoSearchSnapTemp == null) {
+                fuinfoSearchRef.once('value', function (fuinfoSearchSnap) {
+                    if (fuinfoSearchSnap.numChildren() > 0) {
+                        fuinfoSearchSnap.forEach(function (infoSearchSnap) {
+                            fuinfoSnap = infoSearchSnap;
+                            $('#typeSearchBox .left').html(infoSearchSnap.name().replaceAll('_', '/') + " - " + infoSearchSnap.numChildren());
+                            acceptSearch();
+                        })
+                    }
+                })
+            } else {
+                fuinfoSnap = fuinfoSearchSnapTemp
+                acceptSearch();
+            }
+        }
+    }
+
+    var arrAnimation = ["toggle", "spin-toggle", "scale-fade", "scale-fade-in", "bouncy-scale-in", "flip-in", "slide-left",
+        "slide-right", "slide-top", "slide-down", "bouncy-slide-left", "bouncy-slide-right", "bouncy-slide-top", "bouncy-slide-down", "rotate-in"];
+    $scope.isShow = true;
+
+    var odometer = document.getElementById("odometer");
+    var smallCounter = document.getElementById("counter-small");
+    var fuerRootRef = new Firebase('https://fuerdb.firebaseio.com/');
+    var regRef = fuerRootRef.child('Registers');
+    var countRef = fuerRootRef.child('RegisterCount');
+
+    $scope.Registers = [];
+    $scope.RegistersShow = [];
+
+    countRef.on('value', function (snapshot) {
+        var num = snapshot.child('Count').val();
+        odometer.innerHTML = num;
+        smallCounter.innerHTML = num;
+        var regListQuery = regRef.limit(8);
+        regListQuery.once('value', function (snapshot) {
+            $scope.Registers = [];
+            snapshot.forEach(function (snap) {
+                $scope.Registers.push(snap.val());
+            });
+            $scope.RegistersShow = [];
+            $scope.animation = arrAnimation[Math.floor(Math.random() * arrAnimation.length)];
+            var index = 0;
+            for (var i = 0; i < $scope.Registers.length; i++) {
+                $timeout(function () {
+                    $scope.RegistersShow.push($scope.Registers[index]);
+                    index++;
+                }, 100 * i);
+            }
+        });
     });
 
     //Trả về mảng các sinh viên phù hợp yêu cầu
@@ -129,12 +240,22 @@ function studentController($scope, $rootScope, $http, $timeout) {
         str = locDau(str);
         if (str != "") {
             try {
+                /*fuinfoSnap.forEach(function (student) {
+                 var searchAtt = ["MSSV", "Name", "Class"];
+                 for (var j = 0; j < searchAtt.length; j++) {
+                 if (locDau(student.val()[searchAtt[j]].toLowerCase()).indexOf(str) > -1) {
+                 students.push(student.val());
+                 break;
+                 }
+                 }
+                 });*/
                 var searchArea = fuinfoSnap.val();
                 var searchAtt = ["MSSV", "Name", "Class"];
                 for (var i = 0; i < searchArea.length; i++) {
                     for (var j = 0; j < searchAtt.length; j++) {
-                        if (locDau(searchArea[i][searchAtt[j]].toLowerCase()).indexOf(str) > -1) {
+                        if (locDau(searchArea[i][searchAtt[j]].toString().toLowerCase()).indexOf(str) > -1) {
                             students.push(searchArea[i]);
+                            students[students.length-1]["Class"]="Lớp "+students[students.length-1]["Class"];
                             break;
                         }
                     }
@@ -153,16 +274,13 @@ function studentController($scope, $rootScope, $http, $timeout) {
     $scope.students = [];
     $scope.list = [];
     var index = 0;
-    var arrAnimation = ["toggle", "spin-toggle", "scale-fade", "scale-fade-in", "bouncy-scale-in", "flip-in", "slide-left",
-        "slide-right", "slide-top", "slide-down", "bouncy-slide-left", "bouncy-slide-right", "bouncy-slide-top", "bouncy-slide-down", "rotate-in"];
-    //$scope.animation = arrAnimation[Math.floor(Math.random() * arrAnimation.length)];
-    $scope.isShow = true;
 
     //Sự kiện thay đổi giá trị
     $scope.change = function () {
         $scope.animation = arrAnimation[Math.floor(Math.random() * arrAnimation.length)];
         $scope.students = getStudents($("#searchInput").val());
         index = 0;
+       // $scope.cleanList();
         $scope.list = [];
 
         var loop = 0;
@@ -196,10 +314,11 @@ function studentController($scope, $rootScope, $http, $timeout) {
     /**
      * Hiển thị sinh viên có lịch thi
      */
-    $scope.displayExam = function (student) {
+    $scope.displayExam = function (studentId) {
+        if(studentId==undefined) return;
         //localStorage.setItem('gbStrSearch', student.MSSV);
         //window.open("/search?" + student.MSSV);
-        window.location.href = "/search?" + student.MSSV;
+        window.location.href = "/search?" + studentId;
     }
 
     /**
@@ -236,6 +355,7 @@ function toggleActive(div, position) {
         logoContainer.className = "left-active-color";
         var logo = document.getElementById("svg-icon");
         logo.className = "svg-active";
+        $('#typeSearchBox .slideThree').css({background: '#9b59b6'});
     }
     else {
         div.className = "active-color right-active-color";
@@ -243,6 +363,8 @@ function toggleActive(div, position) {
         logoContainer.className = "right-active-color";
         var logo = document.getElementById("svg-icon");
         logo.className = "svg-active";
+        $('#typeSearchBox .slideThree').className = "right-active-color";
+        $('#typeSearchBox .slideThree').css({background: '#1abc9c'});
     }
 }
 function toggleInactive(div) {
@@ -283,4 +405,26 @@ function locDau(str) {
     //Các ký tự - ở giữa thì chuyển thành " "
     str = str.replace(/-/g, " ");
     return str;
+}
+
+// Replaces all instances of the given substring.
+String.prototype.replaceAll = function (strTarget, // The substring you want to replace
+                                        strSubString // The string you want to replace in.
+    ) {
+    var strText = this;
+    var intIndexOfMatch = strText.indexOf(strTarget);
+
+    // Keep looping while an instance of the target string
+    // still exists in the string.
+    while (intIndexOfMatch != -1) {
+        // Relace out the current instance.
+        strText = strText.replace(strTarget, strSubString)
+
+        // Get the index of any next matching substring.
+        intIndexOfMatch = strText.indexOf(strTarget);
+    }
+
+    // Return the updated string with ALL the target strings
+    // replaced out with the new substring.
+    return( strText );
 }

@@ -126,12 +126,11 @@ function checkLogin(name, password, res) {
         res.write(JSON.stringify({'success': returns.success, 'value': returns.status}));
         res.end();
     });
-
 }
 
 function validate(studentId, email) {
     var canSubmit = true;
-    var emailRegex = new RegExp(/^([\w-\s]+)(@fpt.edu.vn)$/i);
+    var emailRegex = new RegExp(/^([\w-\s]+)(@fpt\.edu\.vn)$/i);
     //var regexStuId = new RegExp(/^(SE|SB|BA|FB|GC|B)?\d{5}$/i)
     if (studentId == "") {
         canSubmit = false;

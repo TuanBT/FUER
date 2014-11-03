@@ -68,42 +68,50 @@ var subjectName = "";
 var examPositionStorage = "";
 
 //Các biến giữ trạng thái
-var arrayPosition = ["A6", "A2", "A1", "A5", "B6", "B2", "B1", "B5", "C6", "C2", "C1", "C5", "D6", "D2", "D1", "D5", "E6", "E2", "E1", "E5"];
+var arrayPosition = ["A6", "A4", "A2", "A1", "A3", "A5", "B6","B4", "B2", "B1","B3", "B5", "C6", "C4","C2", "C1", "C3","C5", "D6", "D4","D2", "D1", "D3","D5", "E6", "E4","E2", "E1", "E3","E5"];
 //Biến ngày thi
 var statusExamDate = "";
 //Biến tên môn
 var statusSubjectName = "";
 //Biến viết nói
 var statusWriting = true;
+//Biến lưu MSSV tương ứng với vị trí
+var objPosId = [];
+
+function searchPosClick(pos) {
+    for (var i = 0; i < objPosId.length; i++) {
+        if (objPosId[i]["Position"] == pos) {
+            $('#searchText').val(objPosId[i]["StudentId"]);
+            $('#SearchBtn').click();
+            break;
+        }
+    }
+}
+
+function searchNumClick(studentId) {
+    $('#searchText').val(studentId);
+    $('#SearchBtn').click();
+}
 
 function reset() {
     $('#errorSearch').fadeOut();
-    $('#memory').fadeOut();
-    $('#body').css({opacity:"0.5"});
-
     $('#ListSubjectName').html("");
+    $('.infoBody').fadeOut();
+    $('.infoTitle').fadeOut();
 
-    $('.dates').html("-");
-    $('.subjectName').html("-");
-    $('.studentName').html("-");
-    $('.birthdate').html("-");
-    $('.studentId').html("-");
-    $('.studentClass').html("-");
-    $('.time').html("-");
-    $('.room').html("-");
-    $('.position').html("-");
-    $('.examTimes').html("-");
-    $('.examType').html("-");
-    $('.positionSentence').html("-");
-    $('.posShare').html("-");
 
-    arrayPosition = ["A6", "A2", "A1", "A5", "B6", "B2", "B1", "B5", "C6", "C2", "C1", "C5", "D6", "D2", "D1", "D5", "E6", "E2", "E1", "E5"];
+
     for (var i = 0; i < arrayPosition.length; i++) {
         $('#subId' + arrayPosition[i]).css("color", "yellow");
         $('#name' + arrayPosition[i]).css("color", "yellow");
         $('#subId' + arrayPosition[i]).html("-");
         $('#name' + arrayPosition[i]).html("");
     }
+}
+
+function showOn() {
+    $('.infoBody').fadeIn('slow');
+    $('.infoTitle').fadeIn('slow');
 }
 
 //Ấn search ra các ngày thi
@@ -162,11 +170,12 @@ function searchClick() {
         $('#examSpeakingInfo').fadeOut();
         $('#loadingImage').fadeOut();
         $('#errorSearch').fadeIn();
-        $('#body').css({opacity:"0.5"});
+        $('#body').css({opacity: "0.5"});
         return;
     }
     showSubjectName(examShow[0].Date);
     showResult(examShow[0].Date, subjectName, true);
+    checkStudentExist(strSearch);
     statusExamDate = examShow[0].Date;
     statusSubjectName = subjectName;
     statusWriting = true;
@@ -189,7 +198,7 @@ function showSubjectName(examDate) {
             //Nếu ExamDetail có tồn tại Id này thì thêm
             if (jsonPath(arrayExamSubject[i], "$.ExamDetails[?(@.StudentId=='" + strSearch + "')].StudentName").toString() != "false") {
                 subjectName = arrayExamSubject[i].SubjectName.toString();
-                $('#ListSubjectName').append("<button class='subject' title='Môn thi' type='button' onclick=showResult('" + examDate + "','" + subjectName + "',true) ><div style='width: 35px;height: 17px;float: left;'>" + subjectName + "</div><img src='../images/imgSearch/pen.svg'/></button>");
+                $('#ListSubjectName').append("<button class='subject' title='Môn thi' type='button' onclick=showResult('" + examDate + "','" + subjectName + "',true) ><div style='height: 17px;float: left;'>" + subjectName + "</div><i class='icon-pencil' style='font-size: 16px'></i></button>");
             }
         }
         $('#wriTotNumSub').html(arrayExamSubject.length);
@@ -205,7 +214,7 @@ function showSubjectName(examDate) {
             //Nếu ExamDetail có tồn tại Id này thì thêm
             if (jsonPath(arrayExamSubject[i], "$.ExamDetails[?(@.StudentId=='" + strSearch + "')].StudentName").toString() != "false") {
                 subjectName = arrayExamSubject[i].SubjectName.toString();
-                $('#ListSubjectName').append("<button class='subject' type='submit' onclick=showResult('" + examDate + "','" + subjectName + "',false) ><div style='width: 35px;height: 17px;float: left;'>" + subjectName + "</div><img src='../images/imgSearch/bubble.svg'/></button>");
+                $('#ListSubjectName').append("<button class='subject' type='submit' onclick=showResult('" + examDate + "','" + subjectName + "',false) ><div style='height: 17px;float: left;'>" + subjectName + "</div><i class='icon-comment' style='font-size: 16px'></i></button>");
             }
         }
         $('#speTotNumSub').html(arrayExamSubject.length);
@@ -232,7 +241,7 @@ function showResult(examDate, subjectName, isWritting) {
 
         var examsubjectTemp = jsonPath(examType, "$..ExamSubjects[?(@.SubjectName=='" + subjectName + "')]");
         var examDetailTemp;
-        var indexSubject =0;
+        var indexSubject = 0;
         //Sẽ có trường hợp 1 môn mà thi 2 phòng. Như kiểu thi nói chia làm 2
         for (var i = 0; i < examsubjectTemp.length; i++) {
             examDetailTemp = jsonPath(examsubjectTemp[i], "$.ExamDetails[?(@.StudentId=='" + strSearch + "')]")[0];
@@ -252,7 +261,8 @@ function showResult(examDate, subjectName, isWritting) {
         examTimes = examSubjectTemp.ExamTimes;
         time = examSubjectTemp.Time;
         examTypeStr = isWritting == true ? "Writting" : "Speaking";
-        var positionTemp = position; if(position>=1 || position<=20) positionTemp=0;
+        var positionTemp = position;
+        if (position >= 1 || position <= 20) positionTemp = 0;
         ranSentence = Math.floor(Math.random() * jsonPath(objPosition, "$." + positionTemp + "")[0].length);
         var posObj = jsonPath(objPosition, "$." + positionTemp + "")[0][ranSentence];
         positionSentence = posObj.Description;
@@ -283,7 +293,7 @@ function showResult(examDate, subjectName, isWritting) {
         $('.positionSentence').html(positionSentence);
         $('.posShare').html(posShare);
 
-        arrayPosition = ["A6", "A2", "A1", "A5", "B6", "B2", "B1", "B5", "C6", "C2", "C1", "C5", "D6", "D2", "D1", "D5", "E6", "E2", "E1", "E5"];
+        objPosId = [];
         for (var i = 0; i < arrayPosition.length; i++) {
             $('#subId' + arrayPosition[i]).css("color", "yellow");
             $('#name' + arrayPosition[i]).css("color", "yellow");
@@ -292,41 +302,69 @@ function showResult(examDate, subjectName, isWritting) {
         }
 
         examPositionStorage = "";
-        var arraySubjectName = jsonPath(examType, "$..ExamSubjects[?(@.Time=='" + time + "')]");
-        for (var i = 0; i < arraySubjectName.length; i++) {
-            var subName = arraySubjectName[i].SubjectName.toString();
-            var arrayExamdetail = jsonPath(arraySubjectName[i], "$.ExamDetails[?(@.Room=='" + room + "')]");
-            for (var j = 0; j < arrayExamdetail.length; j++) {
-                var positionTemp = arrayExamdetail[j].Position.toString();
-                //Chính là người tìm
-                if (arrayExamdetail[j].StudentId.toString() == studentId) {
-                    $('#subId' + positionTemp).css("color", "#c0392b");
-                    $('#name' + positionTemp).css("color", "#c0392b");
-                    examPositionStorage += "'" + positionTemp + "': {'SubjectName': '" + subName + "','StudentId': '" + arrayExamdetail[j].StudentId.toString() + "','StudentName': '" + arrayExamdetail[j].StudentName.toString() + "','TypePosition':'0'},";
+        //Nếu là lịch thi viết thì sẽ thêm dữ liệu vào bảng chỗ ngồi
+        if (isWritting) {
+            $('#posListNumber').hide();
+            var arraySubjectName = jsonPath(examType, "$..ExamSubjects[?(@.Time=='" + time + "')]");
+            for (var i = 0; i < arraySubjectName.length; i++) {
+                var subName = arraySubjectName[i].SubjectName.toString();
+                var arrayExamdetail = jsonPath(arraySubjectName[i], "$.ExamDetails[?(@.Room=='" + room + "')]");
+                for (var j = 0; j < arrayExamdetail.length; j++) {
+                    var positionTemp = arrayExamdetail[j].Position.toString();
+                    if(positionTemp[1]=='3') positionTemp=positionTemp[0]+"5";
+                    //Chính là người tìm
+                    if (arrayExamdetail[j].StudentId.toString() == studentId) {
+                        $('#subId' + positionTemp).css("color", "#c0392b");
+                        $('#name' + positionTemp).css("color", "#c0392b");
+                        examPositionStorage += "'" + positionTemp + "': {'SubjectName': '" + subName + "','StudentId': '" + arrayExamdetail[j].StudentId.toString() + "','StudentName': '" + arrayExamdetail[j].StudentName.toString() + "','TypePosition':'0'},";
+                    }
+                    //Thi cùng môn
+                    else if (subName == subjectName) {
+                        $('#subId' + positionTemp).css("color", "#2c3e50");
+                        $('#name' + positionTemp).css("color", "#2c3e50");
+                        examPositionStorage += "'" + positionTemp + "': {'SubjectName': '" + subName + "','StudentId': '" + arrayExamdetail[j].StudentId.toString() + "','StudentName': '" + arrayExamdetail[j].StudentName.toString() + "','TypePosition':'1'},";
+                    }
+                    //Thi cùng phòng
+                    else {
+                        $('#subId' + positionTemp).css("color", "#ecf0f1");
+                        $('#name' + positionTemp).css("color", "#ecf0f1");
+                        examPositionStorage += "'" + positionTemp + "': {'SubjectName': '" + subName + "','StudentId': '" + arrayExamdetail[j].StudentId.toString() + "','StudentName': '" + arrayExamdetail[j].StudentName.toString() + "','TypePosition':'-1'},";
+                    }
+                    $('#subId' + positionTemp).html(subName + " - " + arrayExamdetail[j].StudentId.toString());
+                    $('#name' + positionTemp).html(arrayExamdetail[j].StudentName.toString());
+                    objPosId.push({"StudentId": arrayExamdetail[j].StudentId.toString(), "Position": positionTemp});
                 }
-                //Thi cùng môn
-                else if (subName == subjectName) {
-                    $('#subId' + positionTemp).css("color", "#2c3e50");
-                    $('#name' + positionTemp).css("color", "#2c3e50");
-                    examPositionStorage += "'" + positionTemp + "': {'SubjectName': '" + subName + "','StudentId': '" + arrayExamdetail[j].StudentId.toString() + "','StudentName': '" + arrayExamdetail[j].StudentName.toString() + "','TypePosition':'1'},";
-                }
-                //Thi cùng phòng
-                else {
-                    $('#subId' + positionTemp).css("color", "#ecf0f1");
-                    $('#name' + positionTemp).css("color", "#ecf0f1");
-                    examPositionStorage += "'" + positionTemp + "': {'SubjectName': '" + subName + "','StudentId': '" + arrayExamdetail[j].StudentId.toString() + "','StudentName': '" + arrayExamdetail[j].StudentName.toString() + "','TypePosition':'-1'},";
-                }
-                $('#subId' + positionTemp).html(subName + " - " + arrayExamdetail[j].StudentId.toString());
-                $('#name' + positionTemp).html(arrayExamdetail[j].StudentName.toString());
             }
+            $('#positionPanel').show();
+        }
+        //Nếu là lịch thi nói thì sẽ thêm dữ liệu vào danh sách thi nói
+        else {
+            $('#positionPanel').hide();
+            $('#listSpeaking').html("");
+            var arraySubjectName = jsonPath(examType, "$..ExamSubjects[?(@.SubjectName=='" + subjectName + "')]");
+            for (var i = 0; i < arraySubjectName.length; i++) {
+                for (var j = 0; j < arraySubjectName[i].ExamDetails.length; j++) {
+                    var detail = arraySubjectName[i].ExamDetails;
+                    if (detail[j]["Room"] == room) {
+                        if (detail[j]["StudentId"] == studentId) {
+                            $('#listSpeaking').append("<li style='color: #ff0000' onclick=searchNumClick('" + detail[j]["StudentId"] + "')><div class='plnNumber'>" + detail[j]["Position"] + "</div><div class='plnId'>" + detail[j]["StudentId"] + "</div><div class='plnName'>" + detail[j]["StudentName"] + "</div></li>");
+                            examPositionStorage += "'" + detail[j]["Position"] + "':{'StudentId':'" + detail[j]["StudentId"] + "','StudentName':'" + detail[j]["StudentName"] + "','TypePosition':'0'},";
+                        } else {
+                            $('#listSpeaking').append("<li onclick=searchNumClick('" + detail[j]["StudentId"] + "')><div class='plnNumber'>" + detail[j]["Position"] + "</div><div class='plnId'>" + detail[j]["StudentId"] + "</div><div class='plnName'>" + detail[j]["StudentName"] + "</div></li>");
+                            examPositionStorage += "'" + detail[j]["Position"] + "':{'StudentId':'" + detail[j]["StudentId"] + "','StudentName':'" + detail[j]["StudentName"] + "','TypePosition':'1'},";
+                        }
+                    }
+                }
+            }
+            $('#posListNumber').show();
         }
 
         statusSubjectName = subjectName;
         statusWriting = isWritting;
+        var id = studentId + '_' + studentName.replaceAll(' ', '.') + '_' + subjectName + '_' + date.replaceAll('/', '.') + '_' + examTypeStr;
+        checkMemoryExist(id);
         loadStatusButton();
-        checkStudentExist(strSearch);
-        $('#memory').fadeIn('slow');
-        $('#body').css({opacity:"1"});
+        showOn();
     }
     catch (exception) {
         //console.writeln("TuanBT-Lỗi chỗ này đích thị là không load được cái database!");
@@ -344,28 +382,43 @@ function checkStudentExist(studentId) {
     }
 }
 
+function checkMemoryExist(id) {
+    id = studentId + '_' + studentName.replaceAll(' ', '.') + '_' + subjectName + '_' + date.replaceAll('/', '.') + '_' + examTypeStr;
+    if (localStorage.getItem(id) != null) {
+        $('#memory').html("<i class='icon-star-light'></i>");
+    } else {
+        $('#memory').html("<i class='icon-star-dark'></i>");
+    }
+}
+
 function saveMemory() {
     var id = studentId + '_' + studentName.replaceAll(' ', '.') + '_' + subjectName + '_' + date.replaceAll('/', '.') + '_' + examTypeStr;
-    deleteMemory(id);
-    var value = "{" +
-        "'ExamDetail': {" +
-        "'Room': '" + room + "'," +
-        "'Position': '" + position + "', " +
-        "'BirthDate': '" + birthDate + "'," +
-        "'StudentClass': '" + studentClass + "'," +
-        "'StudentName': '" + studentName + "'," +
-        "'StudentId': '" + studentId + "'," +
-        "'Date': '" + date + "'," +
-        "'ExamTimes': '" + examTimes + "'," +
-        "'Time': '" + time + "'," +
-        "'ExamTypeStr': '" + examTypeStr + "'," +
-        "'PositionSentence': '" + positionSentence + "'," +
-        "'PosShare': '" + posShare + "'," +
-        "'SubjectName': '" + subjectName + "'" +
-        "},'ExamPositon': {" + examPositionStorage.substr(0, examPositionStorage.length - 1) +
-        "}}";
-    saveToLocalStorage(id, value);
-    loadLocalStorage()
+    //Kiểm tra. Nếu id = localStorage => Xóa và dùng class dark. ngược lại với light
+    if (localStorage.getItem(id) != null) {
+        deleteMemory(id);
+        $('#memory').html("<i class='icon-star-dark'></i>");
+    } else {
+        var value = "{" +
+            "'ExamDetail': {" +
+            "'Room': '" + room + "'," +
+            "'Position': '" + position + "', " +
+            "'BirthDate': '" + birthDate + "'," +
+            "'StudentClass': '" + studentClass + "'," +
+            "'StudentName': '" + studentName + "'," +
+            "'StudentId': '" + studentId + "'," +
+            "'Date': '" + date + "'," +
+            "'ExamTimes': '" + examTimes + "'," +
+            "'Time': '" + time + "'," +
+            "'ExamTypeStr': '" + examTypeStr + "'," +
+            "'PositionSentence': '" + positionSentence + "'," +
+            "'PosShare': '" + posShare + "'," +
+            "'SubjectName': '" + subjectName + "'" +
+            "},'ExamPositon': {" + examPositionStorage.substr(0, examPositionStorage.length - 1) +
+            "}}";
+        saveToLocalStorage(id, value);
+        $('#memory').html("<i class='icon-star-light'></i>");
+    }
+    loadLocalStorage();
 }
 
 function saveToLocalStorage(key, value) {
@@ -402,41 +455,71 @@ function fillData(id) {
     $('.positionSentence').html(examDetail.PositionSentence.toString());
     $('.posShare').html(examDetail.PosShare.toString());
 
-    var examPosition = eval('(' + valueLocalStorageRow + ')').ExamPositon;
-    for (var i = 0; i < arrayPosition.length; i++) {
-        $('#subId' + arrayPosition[i]).css("color", "yellow");
-        $('#name' + arrayPosition[i]).css("color", "yellow");
-        $('#subId' + arrayPosition[i]).html("-");
-        $('#name' + arrayPosition[i]).html("");
+    studentId = examDetail.StudentId.toString();
+    studentName = examDetail.StudentName.toString();
+    subjectName = examDetail.SubjectName.toString();
+    date = examDetail.Date.toString();
+    examTypeStr = examDetail.ExamTypeStr.toString();
 
-        var examposPath = jsonPath(examPosition, "$.'" + arrayPosition[i] + "'");
-        if (examposPath != false) {
-            exampos = examposPath[0];
-            var color = "";
-            //Chính là người tìm
-            if (exampos.TypePosition.toString() == "0") {
-                color = "#c0392b";
+    var examPosition = eval('(' + valueLocalStorageRow + ')').ExamPositon;
+    if (examTypeStr == "Writting") {
+        $("#posListNumber").hide();
+        $("#positionPanel").fadeIn();
+        for (var i = 0; i < arrayPosition.length; i++) {
+            $('#subId' + arrayPosition[i]).css("color", "yellow");
+            $('#name' + arrayPosition[i]).css("color", "yellow");
+            $('#subId' + arrayPosition[i]).html("-");
+            $('#name' + arrayPosition[i]).html("");
+
+            var examposPath = jsonPath(examPosition, "$.'" + arrayPosition[i] + "'");
+            if (examposPath != false) {
+                exampos = examposPath[0];
+                var color = "";
+                //Chính là người tìm
+                if (exampos.TypePosition.toString() == "0") {
+                    color = "#c0392b";
+                }
+                //Cùng môn
+                else if (exampos.TypePosition.toString() == "1") {
+                    color = "#2c3e50";
+                }
+                //Cùng phòng
+                else {
+                    color = "#ecf0f1";
+                }
+                $('#name' + arrayPosition[i]).css("color", color);
+                $('#subId' + arrayPosition[i]).css("color", color);
+                $('#subId' + arrayPosition[i]).html(exampos.SubjectName.toString() + " - " + exampos.StudentId.toString());
+                $('#name' + arrayPosition[i]).html(exampos.StudentName.toString());
             }
-            //Cùng môn
-            else if (exampos.TypePosition.toString() == "1") {
-                color = "#2c3e50";
+        }
+    } else {
+        $('#listSpeaking').html("");
+        $("#positionPanel").hide();
+        $("#posListNumber").fadeIn();
+        for (var i = 1; i < 21; i++) {
+            if (examPosition[i] != undefined) {
+                //Neu la nguoi thi
+                if (examPosition[i]["TypePosition"] == 0) {
+                    $('#listSpeaking').append("<li style='color: #ff0000' onclick=searchNumClick('" + examPosition[i]["StudentId"] + "')><div class='plnNumber'>" + i + "</div><div class='plnId'>" + examPosition[i]["StudentId"] + "</div><div class='plnName'>" + examPosition[i]["StudentName"] + "</div></li>");
+                } else {
+                    $('#listSpeaking').append("<li onclick=searchNumClick('" + examPosition[i]["StudentId"] + "')><div class='plnNumber'>" + i + "</div><div class='plnId'>" + examPosition[i]["StudentId"] + "</div><div class='plnName'>" + examPosition[i]["StudentName"] + "</div></li>");
+                }
             }
-            //Cùng phòng
-            else {
-                color = "#ecf0f1";
-            }
-            $('#name' + arrayPosition[i]).css("color", color);
-            $('#subId' + arrayPosition[i]).css("color", color);
-            $('#subId' + arrayPosition[i]).html(exampos.SubjectName.toString() + " - " + exampos.StudentId.toString());
-            $('#name' + arrayPosition[i]).html(exampos.StudentName.toString());
         }
     }
+
     //Không cần chọn ngày
     $('.dateExam').removeAttr("style");
     //Bỏ hiện các môn thi
     $('#ListSubjectName').html("");
+    //Hiện ro body
+    $('#body').css({opacity: "1"});
 
-    checkStudentExist(examDetail.StudentId);
+    showOn();
+
+    var id = studentId + '_' + studentName.replaceAll(' ', '.') + '_' + subjectName + '_' + date.replaceAll('/', '.') + '_' + examTypeStr;
+    checkMemoryExist(id);
 }
 
 function deleteMemory(id) {
@@ -453,12 +536,13 @@ function deleteMemory(id) {
     }
     catch (e) {
     }
+    checkMemoryExist(id);
 }
 
 function loadLocalStorage() {
     $('#listStorage').html("");
     for (var i = 0; i < localStorage.length - 1; i++) {
-        var valueLocalStorageRow = localStorage.getItem(localStorage.key(i));
+        //var valueLocalStorageRow = localStorage.getItem(localStorage.key(i));
         var id = localStorage.key(i);
         var arrayInfo = id.split('_');
         if (arrayInfo.indexOf('Writting') > 0 || arrayInfo.indexOf('Speaking') > 0) {
@@ -468,7 +552,7 @@ function loadLocalStorage() {
             var mDate = arrayInfo[3].replaceAll('.', '/');
             var mExamTypeStr = arrayInfo[4]
             var quote = String.fromCharCode(39);
-            document.getElementById('listStorage').innerHTML = '<div class="itemStorage" id="' + id + '"><a href="#" title="Xóa ghi nhớ"><div class="verticalLine" onclick="deleteMemory(' + quote + id + quote + ')"><div class="delete"><img width="10px" height="10px" title="Xóa ghi nhớ" src="../images/imgSearch/x.svg"/></div></div></a><a href="#" title="Xem lịch thi" onclick="fillData(' + quote + id + quote + ')"><div class="nameStorage"><span>' + mStudentName + '</span></div><div class="subjectDate"><span>' + mSubjectName + ' - ' + mDate + '</span></div><div class="examTypeStorage"><span>' + mExamTypeStr + '</span></div></a></div>'
+            document.getElementById('listStorage').innerHTML = '<div class="itemStorage" id="' + id + '"><a title="Xóa ghi nhớ"><div class="verticalLine" onclick="deleteMemory(' + quote + id + quote + ')"><div class="delete"><img width="10px" height="10px" title="Xóa ghi nhớ" src="../images/imgSearch/x.svg"/></div></div></a><a title="Xem lịch thi" onclick="fillData(' + quote + id + quote + ')"><div class="nameStorage"><span>' + mStudentName + '</span></div><div class="subjectDate"><span>' + mSubjectName + ' - ' + mDate + '</span></div><div class="examTypeStorage"><span>' + mExamTypeStr + '</span></div></a></div>'
                 + document.getElementById('listStorage').innerHTML;
         }
     }
@@ -479,10 +563,10 @@ function loadStatusButton() {
     var subjectElements = document.getElementsByClassName('subject');
     for (var i = 0; i < subjectElements.length; i++) {
         if ($('.subject')[i].innerText == statusSubjectName) {
-            if ($('.subject')[i].childNodes[1].outerHTML.indexOf('pen.svg') > 0 && statusWriting == true) {
+            if ($('.subject')[i].childNodes[1].outerHTML.indexOf('icon-pencil') > 0 && statusWriting == true) {
                 subjectElements[i].style.background = "#d35400";
             }
-            if ($('.subject')[i].childNodes[1].outerHTML.indexOf('bubble.svg') > 0 && statusWriting == false) {
+            if ($('.subject')[i].childNodes[1].outerHTML.indexOf('icon-comment') > 0 && statusWriting == false) {
                 subjectElements[i].style.background = "#d35400";
             }
         }
@@ -535,11 +619,12 @@ $(document).ready(function () {
 function writeFireLogs(logs) {
     var consoleLogs = fuLogsSnap.val()["Console"];
     var time = new Date().addHours(7);
-    var timeStr = ("0" + time.getUTCHours()).slice(-2)+":"+
-        ("0" + time.getUTCMinutes()).slice(-2)+":"+
-        ("0" + time.getUTCSeconds()).slice(-2)+" "+
-        ("0" + time.getUTCDate()).slice(-2)+"/"+
-        ("0" + time.getUTCMonth()).slice(-2)+"/"+
+    var month = time.getUTCMonth() + 1;
+    var timeStr = ("0" + time.getUTCHours()).slice(-2) + ":" +
+        ("0" + time.getUTCMinutes()).slice(-2) + ":" +
+        ("0" + time.getUTCSeconds()).slice(-2) + " " +
+        ("0" + time.getUTCDate()).slice(-2) + "/" +
+        ("0" + month).slice(-2) + "/" +
         time.getUTCFullYear();
     fuLogsRef.child('Console').set("[" + timeStr + "] " + logs + "\n" + consoleLogs);
 }
@@ -573,7 +658,7 @@ String.prototype.replaceAll = function (strTarget, // The substring you want to 
     return( strText );
 }
 
-Date.prototype.addHours= function(h){
-    this.setHours(this.getHours()+h);
+Date.prototype.addHours = function (h) {
+    this.setHours(this.getHours() + h);
     return this;
 }

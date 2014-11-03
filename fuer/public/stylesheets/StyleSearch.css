@@ -23,12 +23,13 @@ ol, ul {
     list-style: none;
 }
 
-#body{
+#body {
     text-align: center;
-    width: 1245px;
+    width: 1205px;
+    height: 612px;
     margin: 0 auto;
     min-height: 610px;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
 }
 
 #loadingpage {
@@ -63,52 +64,87 @@ ol, ul {
     display: none;
 }
 
+.infoBody{
+    display: none;
+}
+
+.infoTitle{
+    display: none;
+}
+
 #exam {
     display: block;
 }
 
-#memory{
-    float:right;
-    margin-top: -5px;
-    display: none;
-    height: 55px;
+#memory {
+    float: right;
     cursor: pointer;
+    margin-top: 4px;
 }
 
-#memory:hover{
+#memory i {
+    font-size: 30px;
 }
 
-#memory .title{
+#memory .icon-star-dark {
+    text-shadow: 1px 4px 6px #EEE, 0 0 0 #000, 1px 4px 6px #EEE;
+    color: rgba(125, 139, 139, 0.8);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#memory .icon-star-dark:hover {
+    /*text-shadow: 3px 1px 5px rgba(46, 44, 44, 0.8);*/
+    color: #859596;
+}
+
+#memory .icon-star-light {
+    color: #f1c40f;
+    text-shadow: 3px 1px 5px rgba(46, 44, 44, 0.8);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#memory .icon-star-light:hover {
+    color: #ffff00;
+}
+
+#memory .title {
     width: 10px;
     line-height: 12px;
     margin-top: -63px;
     margin-left: 24px;
     font-size: 18px;
     font-family: cursive;
-    color:white;
+    color: white;
 }
 
-#memory .title:hover{
-    color:#f1c40f;
+#memory .title:hover {
+    color: #f1c40f;
 }
 
-#memory svg{
-    fill:#27ae60;
+#memory svg {
+    fill: #27ae60;
     width: 60px;
     height: 60px;
 }
 
-#memory svg:hover{
-    fill:#2ecc71;
+#memory svg:hover {
+    fill: #2ecc71;
 }
 
-#searchForm{
+#searchForm {
     display: none;
 }
 
-
 #noResult {
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     width: 500px;
     height: 40px;
     margin-top: 30px;
@@ -140,7 +176,7 @@ ol, ul {
 }
 
 #right h2 {
-    font: 400 40px/1.5 Segoe UI Light, Verdana, sans-serif;
+    font: 400 40px/1.5 Segoe UI, Verdana, sans-serif;
     margin: 0 auto;
     /*    padding-top: 8px;*/
     text-align: center;
@@ -286,7 +322,7 @@ ol, ul {
 .titleLogin {
     text-align: center;
     line-height: 25px;
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     font-size: 2em;
 }
 
@@ -311,7 +347,7 @@ ol, ul {
     padding: 5px 5px 5px 10px;
     width: 220px;
     height: 35px;
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     float: right;
 }
 
@@ -326,7 +362,7 @@ ol, ul {
 }
 
 .btnLogin {
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     position: relative;
     vertical-align: top;
     font-size: 1.5em;;
@@ -495,7 +531,7 @@ ol, ul {
     color: #DD4E3F;
     text-align: center;
     line-height: 25px;
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     font-size: 2em;
 }
 
@@ -505,7 +541,7 @@ ol, ul {
     height: 25px;
     text-align: left;
     color: #859596;
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     font-size: 1em;
     text-align: center;
 }
@@ -517,7 +553,7 @@ ol, ul {
 }
 
 .btnDelete {
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     position: relative;
     vertical-align: top;
     font-size: 1.5em;;
@@ -553,7 +589,7 @@ ol, ul {
 }
 
 .btnCancel {
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     position: relative;
     vertical-align: top;
     font-size: 1.5em;;
@@ -593,8 +629,6 @@ ol, ul {
 
 /*End Delete from*/
 
-
-
 #ListSubjectName {
     width: 340px;
     margin: 0 auto;
@@ -603,7 +637,7 @@ ol, ul {
 
 #ListSubjectName .subject {
     margin: 5px;
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     vertical-align: top;
     font-size: 13px;
     color: white;
@@ -614,7 +648,6 @@ ol, ul {
     -o-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     -ms-transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     transition: border-bottom 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-    width: 70px;
     height: 25px;
     border-radius: 4px;
 }
@@ -629,9 +662,6 @@ ol, ul {
     height: 15px;
     float: right;
 }
-
-
-
 
 /*Positon*/
 
@@ -678,7 +708,7 @@ ol, ul {
 /*Exam Date*/
 #examDate {
     float: left;
-    width: 200px;
+    width: 180px;
     min-height: 610px;
     border: 1px solid #ecf0f1;
     border-top: 0px;
@@ -687,10 +717,10 @@ ol, ul {
     box-shadow: -5px 0 30px -5px #D4D4D4;
 }
 
-#examDate .title{
+#examDate .title {
     padding-top: 8px;
     min-height: 40px;
-    font-family: 'Segoe UI Light','Segoe UI';
+    font-family: 'Segoe UI';
     font-weight: 100;
     text-align: center;
     background-color: #c0392b;
@@ -698,14 +728,13 @@ ol, ul {
     border-radius: 20px 0px 0px 0px;
 }
 
-#examDate .title span{
+#examDate .title span {
     color: #ecf0f1;
     display: block;
     margin-bottom: 5px;
 }
 
 #examDate .list {
-    width: 200px;
 }
 
 #examDate .list ul {
@@ -730,7 +759,31 @@ ol, ul {
     text-decoration: none;
     color: #000;
     display: block;
-    width: 200px;
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#examDate .list li div:hover {
+    font-size: 30px;
+    background: #f6f6f6;
+}
+
+/*End Exam Date*/
+
+#posListNumber ul{
+    font-size: 18px;
+}
+
+#posListNumber ul li{
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
+    border-radius: 5px;
+
     -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
     -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
     -o-transition: font-size 0.3s ease, background-color 0.3s ease;
@@ -738,17 +791,38 @@ ol, ul {
     transition: font-size 0.3s ease, background-color 0.3s ease;
 }
 
-#examDate .list li div:hover {
-    font-size: 30px;
-    background: #f6f6f6;
+#posListNumber ul li:hover{
+    background: #95a5a6;
+    color: white;
 }
-/*End Exam Date*/
+
+
+#posListNumber ul li .plnNumber{
+    float: left;
+    width: 35px;
+    padding-right: 10px;
+    border-right: 1px solid #CCC;
+    text-align: right;
+}
+
+#posListNumber ul li .plnId{
+    float: left;
+    text-align: left;
+    padding-left: 10px;
+    width: 80px;
+    border-right: 1px solid #CCC;
+}
+
+#posListNumber ul li .plnName{
+    float: left;
+    padding-left: 10px;
+}
 
 /*Memory panel*/
 
 #storagePanel {
     float: left;
-    width: 200px;
+    width: 180px;
     min-height: 610px;
     border: 1px solid #ecf0f1;
     border-top: 0px;
@@ -757,10 +831,10 @@ ol, ul {
     box-shadow: 5px 0 30px -5px #DDD;
 }
 
-#storagePanel .title{
+#storagePanel .title {
     padding-top: 8px;
     min-height: 40px;
-    font-family: 'Segoe UI Light','Segoe UI';
+    font-family: 'Segoe UI', 'Segoe UI';
     font-weight: 100;
     text-align: center;
     background-color: #27ae60;
@@ -781,11 +855,11 @@ ol, ul {
 #listStorage a {
     text-decoration: none;
     color: #7f8c8d;
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-        -ms-transition: all 0.5s ease;
-        transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 #listStorage a:hover {
@@ -802,6 +876,7 @@ ol, ul {
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .itemStorage:hover {
@@ -846,7 +921,7 @@ ol, ul {
     margin-right: 5px;
     line-height: 5px;
     font-size: 0.7em;
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
 }
 
 .itemStorage .examTypeStorage {
@@ -854,17 +929,18 @@ ol, ul {
     font-size: 0.7em;
     line-height: 5px;
 }
+
 /*end Memory panel*/
 
 /*menu bar*/
 nav.fixed-menu {
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     margin-top: 0;
     position: fixed !important;
     top: 0;
     left: 0;
     z-index: 100;
-    box-shadow: 0 0 7px 1px rgba(51,51,51, 0.4);
+    box-shadow: 0 0 7px 1px rgba(51, 51, 51, 0.4);
     background-color: #5B6BA7;
     width: 100%;
 }
@@ -875,7 +951,8 @@ nav .container {
     margin: 0 auto;
     width: 50%;
     min-width: 800px;
-    text-align: left;}
+    text-align: left;
+}
 
 nav .left-nav {
     float: left;
@@ -893,7 +970,7 @@ nav .left-nav {
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     border-radius: 10px;
     border: 1px solid #fff;
 }
@@ -904,11 +981,12 @@ nav span {
     font-size: 16px;
     color: #fff !important;
 }
+
 /*end menu bar*/
 
 /*search bar*/
 
-#searchBar{
+#searchBar {
     float: right;
     width: 500px;
     height: 40px;
@@ -917,18 +995,17 @@ nav span {
 
 /*end search bar*/
 
-
-.cf:before, .cf:after{
-    content:"";
-    display:table;
+.cf:before, .cf:after {
+    content: "";
+    display: table;
 }
 
-.cf:after{
-    clear:both;
+.cf:after {
+    clear: both;
 }
 
-.cf{
-    zoom:1;
+.cf {
+    zoom: 1;
 }
 
 /* Form wrapper styling */
@@ -937,9 +1014,9 @@ nav span {
     padding: 8px;
     /*margin: 150px auto 50px auto;*/
     background: #444;
-    background: rgba(0,0,0,.2);
+    background: rgba(0, 0, 0, .2);
     border-radius: 10px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
     float: right;
     margin-bottom: 0px;
     margin-top: 3px;
@@ -962,7 +1039,7 @@ nav span {
 .form-wrapper input:focus {
     outline: 0;
     background: #fff;
-    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .8) inset;
 }
 
 .form-wrapper input::-webkit-input-placeholder {
@@ -983,7 +1060,6 @@ nav span {
     font-style: italic;
 }
 
-
 .form-wrapper button {
     overflow: visible;
     position: relative;
@@ -998,21 +1074,22 @@ nav span {
     text-transform: uppercase;
     background: #d83c3c;
     border-radius: 0 3px 3px 0;
-    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
     line-height: 1px;
 }
 
-.form-wrapper button:hover{
+.form-wrapper button:hover {
     background: #e54040;
 }
 
 .form-wrapper button:active,
-.form-wrapper button:focus{
+.form-wrapper button:focus {
     background: #c42f2f;
     outline: 0;
 }
 
-.form-wrapper button:before { /* left arrow */
+.form-wrapper button:before {
+    /* left arrow */
     content: '';
     position: absolute;
     border-width: 8px 8px 8px 0;
@@ -1022,21 +1099,22 @@ nav span {
     left: -6px;
 }
 
-.form-wrapper button:hover:before{
+.form-wrapper button:hover:before {
     border-right-color: #e54040;
 }
 
 .form-wrapper button:focus:before,
-.form-wrapper button:active:before{
+.form-wrapper button:active:before {
     border-right-color: #c42f2f;
 }
 
-.form-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+.form-wrapper button::-moz-focus-inner {
+    /* remove extra button spacing for Mozilla Firefox */
     border: 0;
     padding: 0;
 }
 
-#loadingImage{
+#loadingImage {
     margin-top: 1px;
 }
 
@@ -1102,27 +1180,61 @@ nav span {
 }
 
 @-webkit-keyframes pace-spinner {
-    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
-@-moz-keyframes pace-spinner {
-    0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
-    100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
-}
-@-o-keyframes pace-spinner {
-    0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
-    100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
-}
-@-ms-keyframes pace-spinner {
-    0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
-    100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
-}
-@keyframes pace-spinner {
-    0% { transform: rotate(0deg); transform: rotate(0deg); }
-    100% { transform: rotate(360deg); transform: rotate(360deg); }
-}
-/*end load bar*/
 
+@-moz-keyframes pace-spinner {
+    0% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes pace-spinner {
+    0% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes pace-spinner {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pace-spinner {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/*end load bar*/
 
 /*register modal*/
 #regisDialog {
@@ -1201,7 +1313,7 @@ nav span {
     width: 350px;
 }
 
-#regisDialog .dialog .body-dialog p a{
+#regisDialog .dialog .body-dialog p a {
     text-decoration: none;
     color: white;
 }
@@ -1231,43 +1343,41 @@ nav span {
 
 /*end register modal*/
 
-
 /*exam date info*/
-#dateInfo{
+#dateInfo {
     margin-top: 20px;
     background: #ecf0f1;
 }
 
-#dateInfo .exam{
+#dateInfo .exam {
     margin-top: 10px;
 }
 
-#dateInfo  img{
+#dateInfo i {
+    font-size: 20px;
     float: left;
-    margin-left: 22px;
-    margin-right: 22px;
-    height: 25px;
-    margin-top: 2px;
+    color: white;
+    margin-top: 5px;
 }
 
-#dateInfo .titleInfo{
+#dateInfo .titleInfo {
     background: #f39c12;
     height: 30px;
     line-height: 25px;
     text-align: left;
     font-size: 20px;
     color: white;
-    font-family: 'Segoe UI Light','Segoe UI';
+    font-family: 'Segoe UI', 'Segoe UI';
 }
 
-#dateInfo .number{
+#dateInfo .number {
     height: 25px;
     line-height: 25px;
     font-family: serif;
     font-size: 15px;
 }
 
-#dateInfo .titleNum{
+#dateInfo .titleNum {
     float: left;
     margin-left: 20px;
     font-weight: bolder;
@@ -1275,7 +1385,29 @@ nav span {
     text-align: left;
 }
 
-#dateInfo .contenNum{
+#dateInfo .contenNum {
 
 }
+
 /*end exam date info*/
+
+/*position*/
+.posTable{
+}
+
+.posTable:hover{
+}
+
+.posPos{
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.posPos:hover{
+    background: #bdc3c7;
+}
+/*end position*/

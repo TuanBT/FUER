@@ -1,3 +1,11 @@
+body {
+    margin: 0px;
+}
+
+#body {
+
+}
+
 /*menu*/
 nav {
     /*margin-bottom: 40px;*/
@@ -90,11 +98,11 @@ nav .left-nav {
 
 }
 
-#nbLogin{
+#nbLogin {
 
 }
 
-.nbLoginBtn{
+.nbLoginBtn {
     font-family: "Segoe UI Light";
     font-size: 18px;
     color: white;
@@ -110,58 +118,49 @@ nav .left-nav {
     float: right;
 }
 
-.nbLoginBtn:hover{
+.nbLoginBtn:hover {
     background: #2ecc71;
 }
 
-#nbLoginName{
+#nbLoginName {
     display: block;
     float: right;
     font-family: cursive;
     margin-top: 10px;
 }
 
-.loginName{
+.loginName {
 
 }
-
 
 /*end menu*/
 
 #left {
-    float: left;
+    /*float: left;*/
     width: 322px;
+    margin: 0px auto;
 }
 
 /*manager*/
 #mailInfoPanel {
-    /*width: 302px;*/
+    width: 400px;
     height: 120px;
-    /*float: left;*/
     border: 1px solid #DDD;
-    padding-left: 5px;
-    padding-right: 5px;
+    border-top: 0px;
+    margin: 0 auto;
 }
 
-#DateExam {
-    width: 110px;
+.infoFunction{
+    width: 100px;
     float: left;
 }
 
-#DateExam svg {
+.infoFunction svg {
     float: left;
     height: 40px;
-}
-
-#sentEmail {
-    width: 100px;
-    float: left;
-    border-top: 0px;
-}
-
-#addInfo {
-    width: 100px;
-    float: left;
+    width: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .title {
@@ -171,6 +170,8 @@ nav .left-nav {
     font-size: 20px;
     font-family: sans-serif;
     border-bottom: 1px solid #DDD;
+    background: darkorange;
+    color: white;
 }
 
 .write {
@@ -188,16 +189,32 @@ nav .left-nav {
     font-size: 14px;
     font-family: fantasy;
 }
+#addSearchInfoBtn{
+    font-family: "Segoe UI Light";
+    font-size: 18px;
+    color: white;
+    border: 0;
+    width: 70px;
+    height: 30px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 8 auto;
+    background: #27ae60;
+}
+
+#addSearchInfoBtn:hover{
+    background: #2ecc71;
+}
 
 /*end manager*/
 
 /*Statistics*/
 #statisticsPanel {
     border-left: 1px solid #DDDDDD;
-   border-right: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
 }
 
-#statisticsPanel .staTitle{
+#statisticsPanel .staTitle {
     text-align: center;
     background: turquoise;
     color: white;
@@ -206,64 +223,64 @@ nav .left-nav {
     line-height: 30px;
 }
 
-#statisticsPanel .staType{
+#statisticsPanel .staType {
     line-height: 35px;
     font-family: arial;
     font-size: 20px;
     border-bottom: 1px solid #DDDDDD;
 }
 
-#statisticsPanel .staType  .staText{
+#statisticsPanel .staType .staText {
     margin-left: 10px;
 }
 
-#statisticsPanel .staType .staContent{
+#statisticsPanel .staType .staContent {
     margin-right: 100px;
     float: right;
 }
 
-#statisticsPanel .staType svg{
+#statisticsPanel .staType svg {
     float: right;
     width: 20px;
     margin-right: 10px;
     cursor: pointer;
 }
 
-#statisticsPanel .staType svg:hover{
-    fill:red;
+#statisticsPanel .staType svg:hover {
+    fill: red;
 }
 
 /*end statistics*/
 
 /*exam manager panel*/
- #examManagerPanel{
-     border-left: 1px solid #DDDDDD;
-     border-right: 1px solid #DDDDDD;
- }
+#examManagerPanel {
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+}
 
- #examManagerPanel .emTitle{
-     text-align: center;
-     background: #27ae60;
-     color: white;
-     font-family: arial;
-     font-size: 23px;
-     line-height: 30px;
- }
+#examManagerPanel .emTitle {
+    text-align: center;
+    background: #27ae60;
+    color: white;
+    font-family: arial;
+    font-size: 23px;
+    line-height: 30px;
+}
 
- #examManagerPanel .examDate{
-     line-height: 35px;
-     font-family: arial;
-     font-size: 20px;
-     border-bottom: 1px solid #DDDDDD;
-     height: 85px;
- }
+#examManagerPanel .examDate {
+    line-height: 35px;
+    font-family: arial;
+    font-size: 20px;
+    border-bottom: 1px solid #DDDDDD;
+    height: 85px;
+}
 
-#examManagerPanel .examDate .emDate{
+#examManagerPanel .examDate .emDate {
     margin-left: 10px;
     font-weight: bold;
 }
 
-#examManagerPanel .examDate svg{
+#examManagerPanel .examDate svg {
     float: right;
     width: 20px;
     margin-right: 10px;
@@ -271,11 +288,11 @@ nav .left-nav {
     margin-top: 5px;
 }
 
-#examManagerPanel .examDate svg:hover{
-    fill:red;
+#examManagerPanel .examDate svg:hover {
+    fill: red;
 }
 
-.emDetail{
+.emDetail {
     /*margin-left: 40px;
     margin-right: 40px;*/
     font-size: 15px;
@@ -283,34 +300,36 @@ nav .left-nav {
     font-family: sans-serif;
 }
 
-.emDeTitle{
+.emDeTitle {
     font-weight: bold;
 }
 
-.emWri{
+.emWri {
     float: left;
     width: 160px;
     text-align: center;
 }
 
-.emWri div{
+.emWri div {
 
 }
 
-.emSpe{
+.emSpe {
     float: left;
     width: 160px;
     text-align: center;
 }
+
 /*end exam manager panel*/
 
 /*Edit position panel*/
 
 #posSenPanel {
     width: 455px;
-    height: 440px;
+    height: 640px;
     border: 1px solid #DDD;
-    float: left;
+    /*float: left;*/
+    margin: 0 auto;
 }
 
 #position {
@@ -333,7 +352,6 @@ nav .left-nav {
     background: #34495e;
     color: #FFFFFF;
 }
-
 
 #posList {
     float: left;
@@ -400,7 +418,7 @@ nav .left-nav {
     margin-left: 10px;
 }
 
-#buttonFunction  .btn {
+#buttonFunction .btn {
     margin-left: 30px;
     font-family: "Segoe UI Light";
     font-size: 18px;
@@ -416,7 +434,7 @@ nav .left-nav {
     float: left;
 }
 
-#buttonFunction  .btn {
+#buttonFunction .btn {
 
 }
 
@@ -598,12 +616,13 @@ input[type=checkbox] {
     left: 43px;
 }
 
-
 /*logs panel*/
-#logsPanel{
-         float: left;
+#logsPanel {
+    /*float: left;*/
+    width: 100%;
 }
-#lgbtnReset{
+
+#lgbtnReset {
     font-family: "Segoe UI Light";
     font-size: 18px;
     color: white;
@@ -617,24 +636,24 @@ input[type=checkbox] {
     margin: 0 auto;
 }
 
-#lgbtnReset:hover{
+#lgbtnReset:hover {
     background: #e74c3c;
 }
 
-#logsText{
-
+#logsText {
+    width: 100%;
 }
+
 /*end logs panel*/
 
-
 /*Add exam panel*/
-#addExamPanel{
+#addExamPanel {
     border: 1px solid #DDDDDD;
     border-top: 0px;
     height: 128px;
 }
 
-.aeTitle{
+.aeTitle {
     text-align: center;
     background: #2980b9;
     color: white;
@@ -644,7 +663,7 @@ input[type=checkbox] {
     margin-bottom: 10px;
 }
 
-.aeTxt{
+.aeTxt {
     float: left;
     margin-left: 10px;
     width: 210px;
@@ -652,11 +671,11 @@ input[type=checkbox] {
     height: 30px;
 }
 
-.aeTxt:focus{
+.aeTxt:focus {
     border: 2px solid #2ecc71;
 }
 
-.aeBtn{
+.aeBtn {
     font-family: "Segoe UI Light";
     font-size: 18px;
     color: white;
@@ -672,17 +691,17 @@ input[type=checkbox] {
     margin-right: 10px;
 }
 
-.aeBtn:hover{
+.aeBtn:hover {
     background: #2ecc71;;
 }
 
-.aeLoading{
+.aeLoading {
     width: 30px;
     float: right;
     display: none;
 }
 
-#aeEqual{
+#aeEqual {
     margin-left: 10px;
     margin-right: 10px;
     text-align: center;
@@ -698,9 +717,9 @@ input[type=checkbox] {
     padding: 8px;
     /* margin: 150px auto 50px auto; */
     background: #444;
-    background: rgba(0,0,0,.2);
+    background: rgba(0, 0, 0, .2);
     border-radius: 10px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
     float: left;
     margin-bottom: 0px;
     margin-left: 10px;
@@ -723,7 +742,7 @@ input[type=checkbox] {
 .form-wrapper input:focus {
     outline: 0;
     background: #fff;
-    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .8) inset;
 }
 
 .form-wrapper input::-webkit-input-placeholder {
@@ -744,7 +763,6 @@ input[type=checkbox] {
     font-style: italic;
 }
 
-
 .form-wrapper button {
     overflow: visible;
     position: relative;
@@ -759,21 +777,22 @@ input[type=checkbox] {
     text-transform: uppercase;
     background: #27ae60;
     border-radius: 0 3px 3px 0;
-    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
     line-height: 1px;
 }
 
-.form-wrapper button:hover{
+.form-wrapper button:hover {
     background: #2ecc71;
 }
 
 .form-wrapper button:active,
-.form-wrapper button:focus{
+.form-wrapper button:focus {
     background: #c42f2f;
     outline: 0;
 }
 
-.form-wrapper button:before { /* left arrow */
+.form-wrapper button:before {
+    /* left arrow */
     content: '';
     position: absolute;
     border-width: 8px 8px 8px 0;
@@ -783,17 +802,19 @@ input[type=checkbox] {
     left: -6px;
 }
 
-.form-wrapper button:hover:before{
+.form-wrapper button:hover:before {
     border-right-color: #2ecc71;
 }
 
 .form-wrapper button:focus:before,
-.form-wrapper button:active:before{
+.form-wrapper button:active:before {
     border-right-color: #c42f2f;
 }
 
-.form-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+.form-wrapper button::-moz-focus-inner {
+    /* remove extra button spacing for Mozilla Firefox */
     border: 0;
     padding: 0;
 }
+
 /*End add exam panel*/

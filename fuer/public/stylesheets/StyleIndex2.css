@@ -1,3 +1,119 @@
+body, .register-submit,.register-submit:before, .register-submit:after {
+    background: white;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    font: 14px/20px 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #404040;
+}
+
+a {
+    color: currentcolor;
+    text-decoration: none;
+}
+a:hover {
+}
+
+#register-form {
+    position: relative;
+    margin: 10px auto;
+    width: 400px;
+    padding-right: 32px;
+    font-weight: 300;
+    color: black;
+    text-shadow: 1px 1px 0 white;
+}
+#register-form p {
+    margin: 0 0 10px;
+}
+
+input, button, label {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+label {
+    float: left;
+    width: 100px;
+    line-height: 40px;
+    padding-right: 10px;
+    font-weight: 100;
+    text-align: right;
+    letter-spacing: 1px;
+}
+::-moz-focus-inner {
+    bordera: 0;
+    padding: 0;
+}
+
+.lt-ie9 input[type=text], .lt-ie9 input[type=password] {
+    line-height: 40px;
+    background: #282828;
+}
+.lt-ie9 .login-submit {
+    position: absolute;
+    top: 12px;
+    right: -28px;
+    padding: 4px;
+}
+.lt-ie9 .login-submit:before, .lt-ie9 .login-submit:after {
+    display: none;
+}
+.lt-ie9 .login-button {
+    line-height: 48px;
+}
 
 body {
     background-color: rgba(255, 255, 255, 0.98);
@@ -62,15 +178,15 @@ body {
 }
 
 .counter {
-    display: block;
+   display: block;
     color: white;
-    font-family: Segoe UI Light;
+    font-family: Segoe UI;
     border: 1px solid #fff;
     -webkit-border-radius: 4px;
     width: 215px;
     height: 30px;
-    padding-top: 12px;
-    line-height: 15px;
+    padding-top: 5px;
+    line-height: 20px;
     font-weight: lighter;
     font-size: 21px;
     text-align: center;
@@ -94,6 +210,16 @@ body {
     text-align: center;
     float: left;
     margin: 0px 5px 10px 6px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#register-ul li:hover{
+    border-color: red;
 }
 
 nav {
@@ -190,9 +316,13 @@ nav .left-nav {
 /*Register form*/
 #register-container {
     min-height: 350px;
-    width: 443px;
+    /*width: 443px;*/
     padding: 35px;
     margin: 0 auto;
+}
+
+#leftTitle{
+    margin-left: 85px;
 }
 
 #content {
@@ -236,6 +366,7 @@ nav .left-nav {
     background-color: #eaedf2;
 }
 /*end register form*/
+
 
 /*login from*/
 #loginContainer{
@@ -295,12 +426,12 @@ nav .left-nav {
 }
 
 #loginBtn{
-    background: none repeat scroll 0 0 #3498db;
+    background: none repeat scroll 0 0 #e67e22;
     border: none;
     border-radius: 4px 4px 4px 4px;
     color: #FFFFFF;
     cursor: pointer;
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     font-size: 25px;
     margin: 9px 0px 0px 132px;
     line-height: 38px;
@@ -315,7 +446,7 @@ nav .left-nav {
 }
 
 #loginBtn:hover{
-    background: #5B6BA7;
+    background: #d35400;
  }
 
 #liImg{
@@ -344,12 +475,13 @@ nav .left-nav {
 }
 
 #searchDiv {
-    background: #999;
+    background: #34495e;
     width: 376px;
     border-radius: 3px;
     height: 25px;
     padding: 10px 0 10px 32px;
     margin-bottom: 10px;
+    margin-top: 60px;
 }
 
 #student-id {
@@ -369,7 +501,7 @@ nav .left-nav {
 }
 
 #student-id:hover {
-    border: 2px solid #2980b9;
+    border: 1px solid #16a085;
 }
 
 #email {
@@ -389,16 +521,16 @@ nav .left-nav {
 }
 
 #email:hover {
-    border: 2px solid #2980b9;
+    border: 1px solid #16a085;
 }
 
 .register-button {
-    background: none repeat scroll 0 0 #3498db;
+    background: none repeat scroll 0 0 #f1c40f;
     border: none;
     border-radius: 4px 4px 4px 4px;
     color: #FFFFFF;
     cursor: pointer;
-    font-family: "Segoe UI Light";
+    font-family: "Segoe UI";
     font-size: 25px;
     margin: 9px 0px 0px 118px;
     line-height: 38px;
@@ -415,7 +547,7 @@ nav .left-nav {
 }
 
 .register-button:hover {
-    background: #5B6BA7;
+    background: #f39c12;
 }
 
 #regImg {
@@ -434,7 +566,7 @@ nav .left-nav {
 
 #recaptcha_area .recaptcha_input_area input {
     border: 1px solid #eaedf2 !important;
-    border-radius: 3px;
+    /*border-radius: 3px;*/
     height: 40px;
     padding: 10px 0 10px 32px;
     outline: none;
@@ -443,6 +575,10 @@ nav .left-nav {
     width: 316px !important;
     margin-left: -7px !important;
     margin-top: -3px;;
+}
+
+#recaptcha_area .recaptcha_input_area input:hover {
+    border: 1px solid #16a085 !important;
 }
 
 .inactive-color #recaptcha_area .recaptcha_input_area input {
@@ -468,7 +604,7 @@ nav .left-nav {
     -ms-transition: all 0.25s linear;
     transition: all 0.25s linear;
     height: 450px;
-    font-family: Segoe UI Light;
+    font-family: Segoe UI;
 }
 
 #right-content {
@@ -517,6 +653,105 @@ nav .left-nav {
     margin: 0 auto;
 
 }
+
+#typeSearchBox{
+    float: left;
+    height: 70px;
+}
+
+#typeSearchBox span{
+    font-size: 15px;
+    float: left;
+    line-height: 70px;
+}
+
+#typeSearchBox .left{
+
+}
+
+#typeSearchBox .right{
+
+}
+
+
+/* SLIDE THREE */
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+.slideThree {
+    float: left;
+    margin: 23px 10px 0px 10px;
+    width: 80px;
+    height: 26px;
+    background: #1abc9c;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    position: relative;
+}
+
+.slideThree:after {
+    /*right*/
+    content: 'max';
+    font: 12px/26px Arial, sans-serif;
+    color: #FFFFFF;
+    position: absolute;
+    right: 10px;
+    z-index: 0;
+    font-weight: bold;
+}
+
+.slideThree:before {
+    /*left*/
+    content: 'min';
+    font: 12px/26px Arial, sans-serif;
+    color: #FFFFFF;
+    position: absolute;
+    left: 10px;
+    z-index: 0;
+    font-weight: bold;
+}
+
+.slideThree label {
+    display: block;
+    width: 34px;
+    height: 20px;
+
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    transition: all .4s ease;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+
+    background: #FFFFFF;
+
+    /*-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    background: #fcfff4;
+
+    background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0);*/
+}
+
+.slideThree input[type=checkbox]:checked + label {
+    left: 43px;
+}
+/*END SLIDE THREE */
 
 #search-result-container {
     height: 270px;
@@ -633,7 +868,7 @@ nav .left-nav {
     background: #444;
     background: rgba(0, 0, 0, .2);
     border-radius: 0px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);*/
     float: right;
     margin-right: 19px;
 }
@@ -805,7 +1040,7 @@ nav .left-nav {
 /* Effect 5: same word slide in */
 .cl-effect-5 {
     margin-top: -23px;
-    margin-left: 137px;
+    margin-left: 86px;
     float: left;
 }
 
@@ -813,11 +1048,9 @@ nav .left-nav {
     overflow: hidden;
     display: inline-block;
     outline: none;
-    color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
-    background: #3498db;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -833,9 +1066,8 @@ nav .left-nav {
     -webkit-transition: -webkit-transform 0.3s;
     -moz-transition: -moz-transform 0.3s;
     transition: transform 0.3s;
-    font-size: 13px;
-    line-height: 22px;
-    font-family: sans-serif;
+    font-size: 17px;
+    line-height: 23px;
 }
 
 .cl-effect-5 a span::before {
@@ -853,11 +1085,27 @@ nav .left-nav {
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
     transform: translateY(-100%);
+    text-align: center;
 }
 
 /*End link Efect*/
 
-/*login form*/
+/*output Container*/
+#outputContainer{
+    min-height: 350px;
+    width: 443px;
+    padding: 35px;
+    margin: 0 auto;
+    display: none;
+}
 
+/*end output Container*/
 
-/*end login form*/
+#returnBtn{
+    margin-bottom: -30px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: none;
+    cursor: pointer;
+}

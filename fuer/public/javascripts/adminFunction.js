@@ -2,6 +2,7 @@ var fuExamWrittingRef = new Firebase('https://fuerdb.firebaseio.com/ExamWriting'
 var fuExamSpeakingRef = new Firebase('https://fuerdb.firebaseio.com/ExamSpeaking');
 var fuExamRef = new Firebase('https://fuerdb.firebaseio.com/Exams/Exams');
 var fuinfoRef = new Firebase('https://fuerdb.firebaseio.com/FUInfo/Students');
+var fuinfoSearchRef = new Firebase('https://fuerdb.firebaseio.com/FUInfo/Search');
 var fuAdminRef = new Firebase('https://fuerdb.firebaseio.com/Admin');
 var fuPositionRef = new Firebase('https://fuerdb.firebaseio.com/Positions');
 var fuStatisticsRef = new Firebase('https://fuerdb.firebaseio.com/Admin/Statistics');
@@ -11,10 +12,9 @@ var fuExamSpeakingSnap = null;
 var examWriting = null;
 var examSpeaking = null;
 var fuExamSnap = null;
-var fuLogsSnap=null;
+var fuLogsSnap = null;
 var adminWriting = null;
 var adminSpeaking = null;
-;
 var fuPositionSnap = null;
 var constPos = "S0"
 var positionName = constPos;
@@ -49,7 +49,7 @@ fuPositionRef.on('value', function (snapshots) {
 
 fuExamRef.on('value', function (fuExamSnap) {
     $('#listExamManager').html("");
-    this.fuExamSnap=fuExamSnap;
+    this.fuExamSnap = fuExamSnap;
     fuExamSnap.forEach(function (fuExamChildSnap) {
         var date = fuExamChildSnap.val()['Date'];
         var wStuNum = 0;
@@ -74,21 +74,21 @@ fuExamRef.on('value', function (fuExamSnap) {
 
         var div =
             "<div class='examDate'>" +
-                "<span class='emDate'>" + date + "</span>" +
-                "<span onclick=deleteExams('"+date+"')><svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' id='Layer_1' version='1.1' viewBox='0 0 24 24' width='24px' xml:space='preserve'><path d='M22.245,4.015c0.313,0.313,0.313,0.826,0,1.139l-6.276,6.27c-0.313,0.312-0.313,0.826,0,1.14l6.273,6.272  c0.313,0.313,0.313,0.826,0,1.14l-2.285,2.277c-0.314,0.312-0.828,0.312-1.142,0l-6.271-6.271c-0.313-0.313-0.828-0.313-1.141,0  l-6.276,6.267c-0.313,0.313-0.828,0.313-1.141,0l-2.282-2.28c-0.313-0.313-0.313-0.826,0-1.14l6.278-6.269  c0.313-0.312,0.313-0.826,0-1.14L1.709,5.147c-0.314-0.313-0.314-0.827,0-1.14l2.284-2.278C4.308,1.417,4.821,1.417,5.135,1.73  L11.405,8c0.314,0.314,0.828,0.314,1.141,0.001l6.276-6.267c0.312-0.312,0.826-0.312,1.141,0L22.245,4.015z'/></svg></span>" +
-                "<div class='emDetail'>" +
-                "<div class='emWri'>" +
-                "<div class='emDeTitle'>Thi viết</div>" +
-                "<div>Số môn: " + wStuSubject + "</div>" +
-                "<div>Số sinh viên: " + wStuNum + "</div>" +
-                "</div>" +
-                "<div class='emSpe'>" +
-                "<div class='emDeTitle'>Thi nói</div>" +
-                "<div>Số môn: " + sStuSubject + "</div>" +
-                "<div>Số sinh viên: " + sStuNum + "</div>" +
-                "</div>" +
-                "</div>" +
-                "</div>";
+            "<span class='emDate'>" + date + "</span>" +
+            "<span onclick=deleteExams('" + date + "')><svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' id='Layer_1' version='1.1' viewBox='0 0 24 24' width='24px' xml:space='preserve'><path d='M22.245,4.015c0.313,0.313,0.313,0.826,0,1.139l-6.276,6.27c-0.313,0.312-0.313,0.826,0,1.14l6.273,6.272  c0.313,0.313,0.313,0.826,0,1.14l-2.285,2.277c-0.314,0.312-0.828,0.312-1.142,0l-6.271-6.271c-0.313-0.313-0.828-0.313-1.141,0  l-6.276,6.267c-0.313,0.313-0.828,0.313-1.141,0l-2.282-2.28c-0.313-0.313-0.313-0.826,0-1.14l6.278-6.269  c0.313-0.312,0.313-0.826,0-1.14L1.709,5.147c-0.314-0.313-0.314-0.827,0-1.14l2.284-2.278C4.308,1.417,4.821,1.417,5.135,1.73  L11.405,8c0.314,0.314,0.828,0.314,1.141,0.001l6.276-6.267c0.312-0.312,0.826-0.312,1.141,0L22.245,4.015z'/></svg></span>" +
+            "<div class='emDetail'>" +
+            "<div class='emWri'>" +
+            "<div class='emDeTitle'>Thi viết</div>" +
+            "<div>Số môn: " + wStuSubject + "</div>" +
+            "<div>Số sinh viên: " + wStuNum + "</div>" +
+            "</div>" +
+            "<div class='emSpe'>" +
+            "<div class='emDeTitle'>Thi nói</div>" +
+            "<div>Số môn: " + sStuSubject + "</div>" +
+            "<div>Số sinh viên: " + sStuNum + "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
 
         $('#listExamManager').append(div);
     });
@@ -112,7 +112,7 @@ function addExam() {
 function deleteExams(dateExam) {
     fuExamSnap.forEach(function (fuExamChildSnap) {
         var date = fuExamChildSnap.val()['Date'];
-        if(date==dateExam){
+        if (date == dateExam) {
             fuExamRef.child(fuExamChildSnap.name()).remove();
             return;
         }
@@ -249,28 +249,12 @@ function savePos() {
 }
 
 
-function enterTextarea() {
-    var key = window.event.keyCode;
-    // If the user has pressed enter
-    if (key == 13) {
-        //alert("enter");
-    }
-    if (key == 27) {
-        //alert("ESC");
-    }
-}
-
-
 fuExamWrittingRef.on('value', function (examWritingSnap) {
     if (examWritingSnap.val() == null) {
-        $('#DateExam .write').hide();
-        $('#sentEmail .write').hide();
-        $('#addInfo .write').hide();
+        $('.infoFunction .write').hide();
         return;
     } else {
-        $('#DateExam .write').show();
-        $('#sentEmail .write').show();
-        $('#addInfo .write').show();
+        $('.infoFunction .write').show();
     }
     fuExamWrittingSnap = examWritingSnap;
     examWriting = examWritingSnap.val();
@@ -278,18 +262,15 @@ fuExamWrittingRef.on('value', function (examWritingSnap) {
     $('#WdateExam').html(examWriting["Date"]);
     $('#mailTrue').prop('checked', examWriting["IsSent"]);
     $('#infoTrue').prop('checked', examWriting["IsAdd"]);
+
 });
 
 fuExamSpeakingRef.on('value', function (examSpeakingSnap) {
     if (examSpeakingSnap.val() == null) {
-        $('#DateExam .speak').hide();
-        $('#sentEmail .speak').hide();
-        $('#addInfo .speak').hide();
+        $('.infoFunction .speak').hide();
         return;
     } else {
-        $('#DateExam .speak').show();
-        $('#sentEmail .speak').show();
-        $('#addInfo .speak').show();
+        $('.infoFunction .speak').show();
     }
     fuExamSpeakingSnap = examSpeakingSnap;
     examSpeaking = examSpeakingSnap.val();
@@ -315,18 +296,18 @@ function changeStatus(type, isWriting) {
             fuExamSpeakingRef.child("IsAdd").set(false);
         }
     }
-}
-
-function checkPass() {
-    if ($('#pass').val() == "abc123") {
-        $('#left').show();
-        $('#lgbtnReset').show();
-        $('#pass').hide();
+    if (type == "searchInfo") {
+        if (isWriting) {
+            var students = jsonPath(examWriting, "$..ExamDetails[?(@.StudentId)]");
+            var studentInfo = [];
+            for (var i = 0; i < students.length; i++) {
+                studentInfo.push({ Class: students[i].StudentClass, Date: students[i].Birthdate, MSSV: students[i].StudentId, Name: students[i].StudentName });
+            }
+            fuinfoSearchRef.set("");
+            fuinfoSearchRef.child(examWriting.Date.replaceAll('/','_')).set(studentInfo);
+        }
     }
 }
-
-
-
 
 // Replaces all instances of the given substring.
 String.prototype.replaceAll = function (strTarget, // The substring you want to replace

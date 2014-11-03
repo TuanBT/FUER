@@ -2,6 +2,7 @@ var firebase = require('firebase')
     , jsonPath = require('JSONPath')
     , mailer = require('../lib/mailer.js')
     , db = require('../lib/db.js')
+    , fc = require('../lib/function.js')
     , XLS = require('js-xls')
     , fs = require('fs')
     , url = require('url')
@@ -36,6 +37,9 @@ exports.index = function (req, res) {
 
     console.log("Open Admin page");
 
+    global.USERNAME = "";
+    global.ROLE = "User";
+
     console.log(global.USERNAME);
 
     positionsRef.once('value', function (positionSnap) {
@@ -49,7 +53,7 @@ exports.index = function (req, res) {
 
 exports.postdata = function (req, res) {
     var values = req.body.form.value;
-    if(values==""){
+    if (values == "") {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.write(JSON.stringify({'success': "Không cho phép để trống", 'value': values}));
         res.end();
@@ -58,6 +62,160 @@ exports.postdata = function (req, res) {
     downloadFile(values, res);
 };
 
+examWritingRef.on("value", function (examwSnap) {
+    if (examwSnap.val() == null) {
+        return;
+    }
+    examWriting = examwSnap.val();
+
+    //Add lịch thi vào Exams
+    addExamToExams(examwSnap, true);
+    //gửi mail cho từng người
+    sentMailForeachRegister(examwSnap, true);
+});
+
+examSpeakingRef.on("value", function (examsSnap) {
+    if (examsSnap.val() == null) {
+        return;
+    }
+    examSpeaking = examsSnap.val();
+
+    //Add lịch thi vào Exams
+    addExamToExams(examsSnap, false);
+    //gửi mail cho từng người
+    sentMailForeachRegister(examsSnap, false);
+});
+
+//add lich vao Exams
+function addExamToExams(examSnap, isWriting) {
+    if (examSnap.val() == null) {
+        return;
+    }
+    if (examSnap.val()["IsAdd"] == false) {
+        fuExamRef.once('value', function (examsChildSnap) {
+            var date = examSnap.val()["Date"].replaceAll('/', '-');
+            if (examsChildSnap.hasChild(date) == false) {
+                fuExamRef.child(date).set({"Date": examSnap.val()["Date"], "Link": examSnap.val()["Link"]});
+            }
+            if (isWriting) {
+                fuExamRef.child(date).child('ExamWriting').set(examSnap.val());
+                setFuinfo(examSnap);
+                examWritingRef.update({'IsAdd': true});
+                console.log("Add exams writting " + examSnap.val()['Date']);
+            } else {
+                fuExamRef.child(date).child('ExamSpeaking').set(examSnap.val());
+                examSpeakingRef.update({'IsAdd': true});
+                console.log("Add exams speaking " + examSnap.val()['Date']);
+            }
+
+        });
+    }
+}
+
+//Gửi mail cho mọi người đăng ký
+function sentMailForeachRegister(examSnap, isWriting) {
+    if (examSnap.val() == null) {
+        return;
+    }
+    if (examSnap.val()["IsSent"] == false) {
+        var students = jsonPath.eval(examSnap.val(), "$..[?(@.StudentId)]");
+        if (registerSnap != null) {
+            for (var i = 0; i < students.length; i++) {
+                try {
+                    if (registerSnap.hasChild(students[i]["StudentId"])) {
+                        var arrRegisterMail = registerSnap.val()[students[i]["StudentId"]]["SendingEmail"].split(';');
+                        for (var j = 0; j < arrRegisterMail.length; j++) {
+                            var registerId = registerSnap.val()[students[i]["StudentId"]]["StudentId"];
+                            checkExamMail(registerId, arrRegisterMail[j], isWriting);
+                        }
+                    }
+                } catch (ex) {
+                    console.log("admin.js-sentMailForeachRegister: Error-"+students[i]["StudentId"]);
+                }
+            }
+        }
+        if (isWriting) {
+            examWritingRef.update({'IsSent': true});
+        } else {
+            examSpeakingRef.update({'IsSent': true});
+        }
+    }
+}
+
+function checkExamMail(studentId, email, isWriting) {
+    var exam = null;
+    if (isWriting) {
+        exam = examWriting;
+    } else {
+        exam = examSpeaking;
+    }
+    var examParts = exam["Date"].split("/");
+    var examDateMili = new Date(examParts[2], examParts[1], examParts[0]).getTime();
+    var timeNow = new Date().getTime();
+    if (examDateMili >= timeNow) {
+        var detailDic = fc.getDetailDictionary(exam, studentId);
+        if (detailDic == null) {
+            return;
+        }
+        var posDic = fc.getAllPosition(exam["ExamSubjects"], detailDic);
+        mailer.sendMail(email, detailDic, posDic, function (error, responseStatus) {
+            if (error) {
+                console.log("Error occur");
+                console.log(error);
+            } else {
+                console.log(email + " Send");
+            }
+        });
+    }
+}
+
+//Từ exam add vào Fuinfo
+function setFuinfo(examSnap) {
+    var arrExamDetail = jsonPath.eval(examSnap.val(), "$..ExamDetails[?(@.StudentId)]");
+    var arrFuinfo = new Array();
+    fuinfoRef.once("value", function (fuInfoSnap) {
+        for (var i = 0; i < arrExamDetail.length; i++) {
+            arrFuinfo.push({ Class: arrExamDetail[i].StudentClass, Date: arrExamDetail[i].Birthdate, MSSV: arrExamDetail[i].StudentId, Name: arrExamDetail[i].StudentName });
+        }
+        for (var i = 0; i < fuInfoSnap.val().length; i++) {
+            var fuInfoDetail = fuInfoSnap.val()[i];
+            var isExits = false;
+            for (var j = 0; j < arrExamDetail.length; j++) {
+                if (fuInfoDetail.MSSV == arrExamDetail[j].StudentId) {
+                    isExits = true;
+                    break;
+                }
+            }
+            if (isExits == false) {
+                arrFuinfo.push(fuInfoDetail);
+            }
+        }
+        fuinfoRef.set(arrFuinfo);
+    });
+}
+
+
+// Replaces all instances of the given substring.
+String.prototype.replaceAll = function (strTarget, // The substring you want to replace
+                                        strSubString // The string you want to replace in.
+    ) {
+    var strText = this;
+    var intIndexOfMatch = strText.indexOf(strTarget);
+
+    // Keep looping while an instance of the target string
+    // still exists in the string.
+    while (intIndexOfMatch != -1) {
+        // Relace out the current instance.
+        strText = strText.replace(strTarget, strSubString)
+
+        // Get the index of any next matching substring.
+        intIndexOfMatch = strText.indexOf(strTarget);
+    }
+
+    // Return the updated string with ALL the target strings
+    // replaced out with the new substring.
+    return( strText );
+}
 
 // Function to download file using HTTP.get
 function downloadFile(fileUrl, res) {
@@ -73,20 +231,21 @@ function downloadFile(fileUrl, res) {
     var file = fs.createWriteStream(downloadDir + fileName);
 
     http.get(options, function (ress) {
-        ress.on('data',function (data) {
+        ress.on('data', function (data) {
             file.write(data);
         }).on('end', function () {
-                file.end();
-                console.log(fileName + ' downloaded to ' + downloadDir);
-                var success = getDataFromExcel(downloadDir + fileName);
-                //Trả về client thông báo
-                res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.write(JSON.stringify({'success': success, 'value': fileUrl}));
-                res.end();
-            });
+            file.end();
+            console.log(fileName + ' downloaded to ' + downloadDir);
+            var success = getDataFromExcel(downloadDir + fileName);
+            //Trả về client thông báo
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.write(JSON.stringify({'success': success, 'value': fileUrl}));
+            res.end();
+        });
     });
 };
 
+//Từ excel tạo data cho ExamWriting và ExamSpaeking
 function getDataFromExcel(filePath) {
 //    var examWritingRef = new firebase("https://fu-exam-reminder-db.firebaseio.com/ExamWriting");
 //    var examSpeakingRef = new firebase("https://fu-exam-reminder-db.firebaseio.com/ExamSpeaking");
@@ -97,18 +256,20 @@ function getDataFromExcel(filePath) {
         workbook.Sheets[workbook.SheetNames[0]]["F2"].v == "- Thi vấn đáp" ? isWriting = false : isWriting = true;
         //Thi viết
         if (isWriting) {
-            var ExamSubjects=[];
+            var ExamSubjects = [];
             for (var i = 0; i < workbook.SheetNames.length; i++) {
-                var ExamDetails=[];
+                var ExamDetails = [];
                 var sheetName = workbook.SheetNames[i];
                 var sheet = workbook.Sheets[sheetName];
                 subjectName = sheet["F2"].v;
-                date = db.formatDate(sheet["C3"].w);
+                date = fc.formatDate(sheet["C3"].w);
                 time = sheet["F3"].v;
                 examTimes = sheet["I4"].v;
+                //console.log(subjectName);
 
                 var un = 0;
                 for (var j = 1; j < 1000; j++) {
+                    //console.log("A" + j);
                     if (sheet["A" + j] == undefined) {
                         un++;
                         if (un > 20) {
@@ -120,10 +281,10 @@ function getDataFromExcel(filePath) {
                         //Nếu true la so
                         if (!isNaN(parseFloat(sheet["A" + j].v)) && isFinite(sheet["A" + j].v)) {
                             position = sheet["B" + j] == undefined ? "FUER" : sheet["B" + j].v;
-                            studentId = (sheet["C" + j].v).toString();
-                            studentName = sheet["D" + j].v;
-                            birthdate = sheet["E" + j] == undefined ? "" : db.formatDate(sheet["E" + j].w);
-                            studentClass = sheet["F" + j].v;
+                            studentId = sheet["C" + j] == undefined ? "-" : sheet["C" + j].v;
+                            studentName = sheet["D" + j] == undefined ? "-" : sheet["D" + j].v;
+                            birthdate = sheet["E" + j] == undefined ? "-" : fc.formatDate(sheet["E" + j].w);
+                            studentClass = sheet["F" + j] == undefined ? "-" : sheet["F" + j].v;
 
                             var ExamDetail = {Room: room, Position: position, Birthdate: birthdate, StudentClass: studentClass, StudentName: studentName, StudentId: studentId};
                             ExamDetails.push(ExamDetail);
@@ -141,13 +302,13 @@ function getDataFromExcel(filePath) {
         }
         //Thi nói
         else {
-            var ExamSubjects=[];
+            var ExamSubjects = [];
             for (var i = 0; i < workbook.SheetNames.length; i++) {
-                var ExamDetails=[];
+                var ExamDetails = [];
                 var sheetName = workbook.SheetNames[i];
                 var sheet = workbook.Sheets[sheetName];
                 subjectName = sheet["E2"].v;
-                date = db.formatDate(sheet["B3"].w);
+                date = fc.formatDate(sheet["B3"].w);
                 time = sheet["E3"].v.trim();
                 examTimes = sheet["H4"].v;
 
@@ -166,7 +327,7 @@ function getDataFromExcel(filePath) {
                             position = sheet["A" + j].v;
                             studentId = (sheet["B" + j].v).toString();
                             studentName = sheet["C" + j].v;
-                            birthdate = sheet["D" + j] == undefined ? "" : db.formatDate(sheet["D" + j].w);
+                            birthdate = sheet["D" + j] == undefined ? "" : fc.formatDate(sheet["D" + j].w);
                             studentClass = sheet["E" + j].v;
 
                             var ExamDetail = {Room: room, Position: position, Birthdate: birthdate, StudentClass: studentClass, StudentName: studentName, StudentId: studentId};
