@@ -6,8 +6,8 @@ var fs = require('fs')
     , nodeMailer = require('nodemailer')
     , transport = nodeMailer.createTransport("Hotmail", {
         auth: {
-            user: "fuer_app@hotmail.com",
-            pass: "fptlaso11111"
+            user: "fuer_app@outlook.com",
+            pass: "fptlaso1"
 
         }
     });
