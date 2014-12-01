@@ -261,15 +261,14 @@ function getDataFromExcel(filePath) {
                 var ExamDetails = [];
                 var sheetName = workbook.SheetNames[i];
                 var sheet = workbook.Sheets[sheetName];
-                subjectName = sheet["F2"].v;
-                date = fc.formatDate(sheet["C3"].w);
-                time = sheet["F3"].v;
-                examTimes = sheet["I4"].v;
-                //console.log(subjectName);
+                subjectName = sheet["F2"] == undefined ? "" : sheet["F2"].v;
+                date =  sheet["C3"] == undefined ? "" :fc.formatDate(sheet["C3"].w);
+                time = sheet["F3"] == undefined ? "" :sheet["F3"].v;
+                examTimes = sheet["I4"] == undefined ? "1" :sheet["I4"].v;
 
                 var un = 0;
                 for (var j = 1; j < 1000; j++) {
-                    //console.log("A" + j);
+                    //console.log("A"+j);
                     if (sheet["A" + j] == undefined) {
                         un++;
                         if (un > 20) {
@@ -277,11 +276,13 @@ function getDataFromExcel(filePath) {
                         }
                     } else {
                         un = 0;
-                        if (sheet["A" + j].v == "Phòng thi") room = (sheet["C" + j].v).toString();
+                        if (sheet["A" + j].v == "Phòng thi") {
+                            room = sheet["C" + j] == undefined ? "" : (sheet["C" + j].v).toString();
+                        }
                         //Nếu true la so
                         if (!isNaN(parseFloat(sheet["A" + j].v)) && isFinite(sheet["A" + j].v)) {
                             position = sheet["B" + j] == undefined ? "FUER" : sheet["B" + j].v;
-                            studentId = sheet["C" + j] == undefined ? "-" : sheet["C" + j].v;
+                            studentId = sheet["C" + j] == undefined ? "-" : (sheet["C" + j].v).toString();
                             studentName = sheet["D" + j] == undefined ? "-" : sheet["D" + j].v;
                             birthdate = sheet["E" + j] == undefined ? "-" : fc.formatDate(sheet["E" + j].w);
                             studentClass = sheet["F" + j] == undefined ? "-" : sheet["F" + j].v;
@@ -307,10 +308,10 @@ function getDataFromExcel(filePath) {
                 var ExamDetails = [];
                 var sheetName = workbook.SheetNames[i];
                 var sheet = workbook.Sheets[sheetName];
-                subjectName = sheet["E2"].v;
-                date = fc.formatDate(sheet["B3"].w);
-                time = sheet["E3"].v.trim();
-                examTimes = sheet["H4"].v;
+                subjectName = sheet["E2"] == undefined ? "" : sheet["E2"].v;
+                date =  sheet["B3"] == undefined ? "" :fc.formatDate(sheet["B3"].w);
+                time = sheet["E3"] == undefined ? "" :sheet["E3"].v;
+                examTimes = sheet["H4"] == undefined ? "1" :sheet["H4"].v;
 
                 var un = 0;
                 for (var j = 1; j < 1000; j++) {
@@ -321,14 +322,16 @@ function getDataFromExcel(filePath) {
                         }
                     } else {
                         un = 0;
-                        if (sheet["A" + j].v == "Phòng thi") room = (sheet["B" + j].v).toString();
+                        if (sheet["A" + j].v == "Phòng thi") {
+                            room = sheet["B" + j] == undefined ? "" : (sheet["B" + j].v).toString();
+                        }
                         //Nếu true la so
                         if (!isNaN(parseFloat(sheet["A" + j].v)) && isFinite(sheet["A" + j].v)) {
-                            position = sheet["A" + j].v;
-                            studentId = (sheet["B" + j].v).toString();
-                            studentName = sheet["C" + j].v;
-                            birthdate = sheet["D" + j] == undefined ? "" : fc.formatDate(sheet["D" + j].w);
-                            studentClass = sheet["E" + j].v;
+                            position = sheet["A" + j] == undefined ? "0" : sheet["A" + j].v;
+                            studentId = sheet["B" + j] == undefined ? "-" : (sheet["B" + j].v).toString();
+                            studentName = sheet["C" + j] == undefined ? "-" : sheet["C" + j].v;
+                            birthdate = sheet["D" + j] == undefined ? "-" : fc.formatDate(sheet["D" + j].w);
+                            studentClass = sheet["E" + j] == undefined ? "-" : sheet["E" + j].v;
 
                             var ExamDetail = {Room: room, Position: position, Birthdate: birthdate, StudentClass: studentClass, StudentName: studentName, StudentId: studentId};
                             ExamDetails.push(ExamDetail);

@@ -20,10 +20,10 @@ fuStatisticsRef.on('value',function(snapshots){
 
 exports.sendMail = function (email, detailDic, posDic, callback) {
     console.log(email + "-" + detailDic["subjectName"] + "-" + detailDic["exam"] + " Sending mail...");
-    db.writeFireLogs(email + "-" + detailDic["subjectName"] + "-" + detailDic["exam"] + " Sending mail...");
+    //db.writeFireLogs(email + "-" + detailDic["subjectName"] + "-" + detailDic["exam"] + " Sending mail...");
     //email = "bttvn.4t@gmail.com";
     transport.sendMail({
-            from: "fuer_app@hotmail.com",
+            from: "fuer_app@outlook.com",
             to: email,
             subject: "[FUER] Thông báo lịch thi môn " + detailDic["subjectName"],
             html: ejs.render(template, {
